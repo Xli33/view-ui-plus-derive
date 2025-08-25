@@ -1,0 +1,34 @@
+.combi {
+  display: inline-table;
+  vertical-align: middle;
+
+  &-cell {
+    display: table-cell;
+
+    > [class^='ivu-'] {
+      vertical-align: top;
+    }
+
+    .ivu-date-picker .ivu-input {
+      z-index: 0;
+    }
+
+    &.with-append {
+      > [class^='ivu-'],
+      > .ivu-date-picker .ivu-input,
+      > .ivu-select .ivu-select-selection {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    &.with-prepend {
+      > [class^='ivu-'],
+      > .ivu-date-picker .ivu-input,
+      > .ivu-select .ivu-select-selection {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}

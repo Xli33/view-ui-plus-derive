@@ -1,0 +1,35 @@
+@prefix: date-range;
+// @normal-dis: 5px;
+// @small-dis: 2.5px;
+
+.@{prefix} {
+  display: inline-flex;
+  width: 100%;
+  vertical-align: middle;
+
+  > .ivu-date-picker {
+    // width: calc(50% - @normal-dis);
+    width: 50%;
+    flex: 1;
+
+    // @media (max-width: 1365px) {
+    // .@{prefix}>.ivu-date-picker {
+    // width: calc(50% - @small-dis);
+    // }
+    // }
+    &:first-child > .ivu-date-picker-rel .ivu-input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child > .ivu-date-picker-rel .ivu-input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &-joiner {
+    width: 10px;
+    background: #dcdee2;
+  }
+}

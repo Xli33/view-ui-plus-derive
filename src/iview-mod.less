@@ -1,0 +1,302 @@
+@ivu: ivu-;
+@disabledColor: #7a7a7a;
+
+.@{ivu} {
+  // 防止Select在关闭选项时可能出现的点击更换选项bug
+  &select-dropdown.transition-drop-leave-active {
+    pointer-events: none;
+  }
+  // &input-type-text.uppercase > &input {
+  //   text-transform: uppercase;
+  // }
+  // &message-notice-content-info > &message-notice-content-text {
+  //   vertical-align: top;
+  // }
+
+  // 带有固定列的Table存在横向滚动条时，固定列下方的滚动条无法点到。以下样式用于修复该问题
+  &table-fixed-shadow {
+    height: auto;
+  }
+  // 当Table启用show-summary时，底部合计栏依旧会导致固定列下方滚动条无法点击。以下样式用于修复该问题
+  &table-overflowX ~ &table-fixed-shadow {
+    overflow: visible;
+
+    > .@{ivu}table-fixed-body + div {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+    }
+  }
+  // &card:not(:last-child) {
+  //   margin-bottom: 10px;
+  // }
+  // &input-number,
+  // &date-picker {
+  //   width: 100%;
+  // }
+  // &btn {
+  //   &:not(&-long):not(:last-child) {
+  //     margin-right: 10px;
+  //   }
+  //   &.big-icon-btn {
+  //     > .@{ivu}icon {
+  //       font-size: 16px;
+  //     }
+  //   }
+  // }
+  // &btn-group > &btn:not(:last-child) {
+  //   margin-right: 0;
+  // }
+  // &modal:not(&modal-fullscreen) {
+  //   top: 5vh;
+  // }
+  // &form-item-content &table {
+  //   line-height: normal;
+  // }
+  // &page {
+  //   .@{ivu}input-wrapper,
+  //   .@{ivu}select {
+  //     width: 100%;
+  //   }
+  // }
+  // &tooltip-inner-with-width {
+  //   max-width: 80vw;
+  //   max-height: 80vh;
+  //   overflow: auto;
+  // }
+  // &input-number.ta-r {
+  //   &:hover > .@{ivu}input-number-input-wrap > .@{ivu}input-number-input {
+  //     padding-right: 32px;
+  //   }
+  //   > .@{ivu}input-number-input-wrap > .@{ivu}input-number-input {
+  //     text-align: right;
+  //   }
+  // }
+
+  // 优化部分表单组件在 disabled 状态下的（非placeholder）文本显示，iview原本设计颜色过淡
+  &input[disabled],
+  // &input[disabled]::placeholder,
+  fieldset[disabled] &input,
+  &select-disabled &select-selection,
+  &input-number-disabled &input-number-input {
+    color: @disabledColor;
+  }
+  &input-number-disabled &input-number-input {
+    opacity: 1;
+  }
+  &select-input[disabled] {
+    color: @disabledColor;
+    -webkit-text-fill-color: initial;
+  }
+}
+
+.btn-disabled() {
+  &.disabled,
+  &[disabled] {
+    color: @disabledColor;
+
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+      color: @disabledColor;
+    }
+  }
+  fieldset[disabled] & {
+    color: @disabledColor;
+
+    &.active,
+    &:active {
+      color: @disabledColor;
+    }
+  }
+  [disabled] & {
+    &:focus,
+    &:hover {
+      color: @disabledColor;
+    }
+  }
+}
+// 批量给iview Button各类型调整禁用文本颜色
+@btnTypes: default, primary, dashed, text, info, success, warning, error;
+each(@btnTypes, {
+  .@{ivu}btn-@{value} {
+    .btn-disabled();
+    
+    &.@{ivu}btn-ghost {
+      .btn-disabled();
+    }
+  }
+});
+
+// @media (min-width: 1360px) {
+//   .@{ivu}select-dropdown {
+//     max-height: 320px;
+//   }
+// }
+
+// // 字号调整
+// @base-font-size: 12px;
+
+// .fontSize(@size: @base-font-size) {
+//   font-size: @size;
+// }
+
+// body {
+//   .fontSize();
+// }
+
+// .@{ivu} {
+//   &btn:not(&btn-icon-only),
+//   &btn-small {
+//     .fontSize();
+//   }
+//   &btn-icon-only&btn-small {
+//     .fontSize();
+//   }
+//   &btn-circle-outline&btn-icon-only&btn-small,
+//   &btn-circle&btn-icon-only&btn-small {
+//     .fontSize();
+//   }
+//   &btn-group-small > &btn {
+//     .fontSize();
+//   }
+//   &radio-group,
+//   &radio-wrapper {
+//     .fontSize();
+//   }
+//   &radio-group-button &radio-wrapper {
+//     .fontSize();
+//   }
+//   &radio-group-button&radio-group-small &radio-wrapper {
+//     .fontSize();
+//   }
+//   &checkbox-small {
+//     .fontSize();
+//   }
+//   &checkbox-wrapper {
+//     .fontSize();
+//   }
+//   &checkbox-group {
+//     .fontSize();
+//   }
+//   &input-number {
+//     .fontSize();
+//   }
+//   &input-number-handler-down-inner,
+//   &input-number-handler-up-inner {
+//     .fontSize();
+//   }
+//   &page-options-elevator input {
+//     .fontSize();
+//   }
+//   &page-simple &page-simple-pager input {
+//     .fontSize();
+//   }
+//   textarea&input-number {
+//     .fontSize();
+//   }
+//   textarea&page-options-elevator input {
+//     .fontSize();
+//   }
+//   textarea&page-simple &page-simple-pager input {
+//     .fontSize();
+//   }
+//   &select {
+//     .fontSize();
+//   }
+//   &select-item {
+//     .fontSize() !important;
+//   }
+//   &select-single &select-selection &select-placeholder,
+//   &select-single &select-selection &select-selected-value {
+//     .fontSize();
+//   }
+//   &select-multiple &select-selection &select-placeholder {
+//     .fontSize();
+//   }
+//   &select-input {
+//     .fontSize();
+//   }
+//   &select-group-title {
+//     .fontSize();
+//   }
+//   &tooltip-popper {
+//     .fontSize();
+//   }
+//   &tooltip-light&tooltip-popper {
+//     .fontSize();
+//   }
+//   &poptip-popper {
+//     .fontSize();
+//   }
+//   &input {
+//     .fontSize();
+//   }
+//   textarea&input {
+//     .fontSize();
+//   }
+//   &input-group {
+//     .fontSize();
+//   }
+//   &form-item-error &transfer &input {
+//     .fontSize();
+//   }
+//   textarea&form-item-error &transfer &input {
+//     .fontSize();
+//   }
+//   &cascader-label {
+//     .fontSize();
+//   }
+//   &cascader &cascader-menu-item {
+//     .fontSize() !important;
+//   }
+//   &cascader-transfer &cascader-menu-item {
+//     .fontSize() !important;
+//   }
+//   &transfer-list {
+//     .fontSize();
+//   }
+//   &transfer-list-content-item {
+//     .fontSize() !important;
+//   }
+//   &table {
+//     .fontSize();
+//   }
+//   &dropdown-item {
+//     .fontSize() !important;
+//   }
+//   &tabs-nav-container {
+//     .fontSize();
+//   }
+//   &tabs-mini &tabs-nav-container {
+//     .fontSize();
+//   }
+//   &form-item-content {
+//     .fontSize();
+//   }
+//   &form &form-item-label {
+//     .fontSize();
+//   }
+//   &form-item-required &form-item-label:before {
+//     .fontSize();
+//   }
+//   &rate-text {
+//     .fontSize();
+//   }
+//   &tree ul {
+//     .fontSize();
+//   }
+//   &modal-body {
+//     .fontSize();
+//   }
+//   &page-item-jump-next i,
+//   &page-item-jump-prev i {
+//     font-size: 1.3em;
+//     color: #999;
+//   }
+//   &card {
+//     .fontSize();
+//   }
+// }

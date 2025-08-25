@@ -397,7 +397,7 @@ async function getRemoteData() {
   loading.value = true
   // emit('update:loading', true)
   emit('update:selection', [])
-  let res = await props.method(
+  const res = await props.method(
     Object.assign(getPageParam(), typeof props.param !== 'function' ? props.param : props.param())
   )
   loading.value = false

@@ -119,7 +119,7 @@
   <Card title="CurdTable" class="block">
     <ToggleColumn v-for="n in colNum" :key="n" v-model="columns" cache-id="app"></ToggleColumn>
     <Table :columns="columns" :data="table.list">
-      <template #num="{ row, index }">
+      <template #num="{ index }">
         <Input v-model.trim="table.list[index]!.num"></Input>
       </template>
     </Table>
@@ -130,7 +130,7 @@
       :action-width="130"
       :add-row="table.add"
       loading>
-      <template #num="{ row, index }">
+      <template #num="{ index }">
         <Input v-model.trim="table.list[index]!.num"></Input>
       </template>
       <template #moreAction="{ row }">
@@ -233,7 +233,7 @@
           fullscreen />
       </Col>
     </Row>
-    <Tag v-for="item in pageTable.selection">{{ item }}</Tag>
+    <Tag v-for="(item, index) in pageTable.selection" :key="index">{{ item }}</Tag>
   </Card>
   <Card title="MCalendar" class="block">
     <MCalendar

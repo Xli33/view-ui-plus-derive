@@ -1,9 +1,9 @@
 import type { App } from 'vue'
 import type { Obj } from './type'
-import dayjs from 'dayjs'
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
-import isBetween from 'dayjs/plugin/isBetween'
+// import dayjs from 'dayjs'
+// import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+// import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+
 import AllCheckbox, { type CheckValue } from './components/AllCheckbox.vue'
 import BaseSwitch, { type SwitchValue } from './components/BaseSwitch.vue'
 import Combi from './components/Combi.vue'
@@ -35,16 +35,15 @@ const components = [
     PageTable,
     ToggleColumn
   ],
-  directives = { iviewSelect },
-  dayjsPlugin = {
-    isSameOrBefore,
-    isSameOrAfter,
-    isBetween
-  }
+  directives = { iviewSelect }
+// dayjsPlugin = {
+//   isSameOrBefore,
+//   isSameOrAfter
+// }
 
-for (const k in dayjsPlugin) {
-  !dayjs.prototype[k] && dayjs.extend(dayjsPlugin[k as keyof typeof dayjsPlugin])
-}
+// for (const k in dayjsPlugin) {
+//   !dayjs.prototype[k] && dayjs.extend(dayjsPlugin[k as keyof typeof dayjsPlugin])
+// }
 
 export function install(
   app: App,

@@ -1,6 +1,11 @@
 <template>
   <Card title="BaseSwitch" class="block">
     <Space>
+      <!--<Select v-model="locale" @on-change="(v: 'zh-CN') => i18n.global.locale.value = v">
+        <Option value="zh-CN">中文</Option>
+        <Option value="en-US">英文</Option>
+      </Select> -->
+      <!-- <Tag>{{ t('d.lang') }}</Tag> -->
       <Btn id="r"></Btn>
       <Btn id="qr">fff</Btn>
       <BaseSwitch v-model="toggle" @change="change"></BaseSwitch>
@@ -254,6 +259,7 @@
 
 <script lang="tsx">
 import { onMounted, reactive, ref, shallowReactive, shallowRef, useTemplateRef } from 'vue'
+// import { useI18n } from 'vue-i18n'
 import {
   AllCheckbox,
   BaseSwitch,
@@ -270,6 +276,7 @@ import {
   ToggleColumn
 } from './index'
 import type { Obj } from './type'
+// import { i18n } from './i18n'
 
 export default {
   components: {
@@ -301,6 +308,9 @@ export default {
 </script>
 
 <script setup lang="tsx">
+// const { t } = useI18n()
+// const locale = ref('zh-CN')
+
 const toggle = ref('T')
 const allCheckeds = shallowRef(['1', '3']),
   allCheck = ref(),

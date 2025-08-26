@@ -3,11 +3,7 @@ import { getPathValue } from 'utils-where'
 import zhCN from './zh-CN'
 
 type Translator = {
-  i18n: {
-    global: {
-      t: Translator['t']
-    }
-  } | null
+  i18n: any
   prefix: string
   msg: Obj
   t(key: string, ...args: any[]): string

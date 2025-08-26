@@ -94,7 +94,7 @@ const emit = defineEmits<{
   change: [val: Obj[] | Obj]
 }>()
 
-let tid: number | null, first: string, restKeys: string
+let tid: ReturnType<typeof setTimeout> | null, first: string, restKeys: string
 // 保存状态至本地
 const save = (flag?: boolean) => {
   clearTimeout(tid!)
@@ -210,12 +210,13 @@ function change(item: Obj, index: number) {
   emit('change', backup.value[index]!)
 }
 
-let toToggle: number
+let toToggle: ReturnType<typeof setTimeout> | null
 function toggle(open: boolean) {
-  clearTimeout(toToggle)
+  clearTimeout(toToggle!)
   toToggle = setTimeout(() => {
     // console.log("toggle");
     visible.value = open
+    toToggle = null
   }, 200)
 }
 

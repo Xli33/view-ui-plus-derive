@@ -48,7 +48,10 @@ import type { Obj } from '@/type'
 import { type PropType, type Ref, ref, computed, watch, nextTick } from 'vue'
 // import { Row, Col, Spin } from 'view-ui-plus' // 待必需才启用
 import dayjs from 'dayjs'
+import isBetween from 'dayjs/plugin/isBetween'
 import { $i18n } from '@/locale/i18n'
+
+if (!dayjs.prototype.isBetween) dayjs.extend(isBetween)
 
 export default {
   name: 'MCalendar'

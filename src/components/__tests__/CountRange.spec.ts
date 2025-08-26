@@ -2,18 +2,18 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import ViewUiPlus from 'view-ui-plus'
-import BaseSwitch from '../BaseSwitch.vue'
+import CountRange from '../CountRange.vue'
 
-describe('BaseSwitch', () => {
+describe('CountRange', () => {
   it('renders properly', () => {
-    const wrapper = mount(BaseSwitch, {
+    const wrapper = mount(CountRange, {
       global: {
         plugins: [ViewUiPlus]
       },
-      props: { trueLabel: 'Open', falseLabel: 'Close', modelValue: 'F' }
+      props: { begin: 11 }
     })
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('Close')
+    expect(wrapper.html()).toContain('value="11"')
   })
 })

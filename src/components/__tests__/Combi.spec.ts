@@ -2,18 +2,18 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import ViewUiPlus from 'view-ui-plus'
-import BaseSwitch from '../BaseSwitch.vue'
+import Combi from '../Combi.vue'
 
-describe('BaseSwitch', () => {
+describe('Combi', () => {
   it('renders properly', () => {
-    const wrapper = mount(BaseSwitch, {
+    const wrapper = mount(Combi, {
       global: {
         plugins: [ViewUiPlus]
       },
-      props: { trueLabel: 'Open', falseLabel: 'Close', modelValue: 'F' }
+      props: { prepend: '类型' }
     })
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('Close')
+    expect(wrapper.text()).toContain('类型')
   })
 })

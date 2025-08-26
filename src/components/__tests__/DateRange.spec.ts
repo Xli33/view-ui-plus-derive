@@ -2,18 +2,19 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import ViewUiPlus from 'view-ui-plus'
-import BaseSwitch from '../BaseSwitch.vue'
+import DateRange from '../DateRange.vue'
 
-describe('BaseSwitch', () => {
+describe('DateRange', () => {
   it('renders properly', () => {
-    const wrapper = mount(BaseSwitch, {
+    const now = new Date()
+    const wrapper = mount(DateRange, {
       global: {
         plugins: [ViewUiPlus]
       },
-      props: { trueLabel: 'Open', falseLabel: 'Close', modelValue: 'F' }
+      props: { begin: now }
     })
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('Close')
+    expect(wrapper.vm.begin).toBe(now)
   })
 })

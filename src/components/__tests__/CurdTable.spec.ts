@@ -2,18 +2,18 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import ViewUiPlus from 'view-ui-plus'
-import BaseSwitch from '../BaseSwitch.vue'
+import CurdTable from '../CurdTable.vue'
 
-describe('BaseSwitch', () => {
+describe('CurdTable', () => {
   it('renders properly', () => {
-    const wrapper = mount(BaseSwitch, {
+    const wrapper = mount(CurdTable, {
       global: {
         plugins: [ViewUiPlus]
       },
-      props: { trueLabel: 'Open', falseLabel: 'Close', modelValue: 'F' }
+      props: {}
     })
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('Close')
+    expect(wrapper.text()).toContain('新增')
   })
 })

@@ -9,7 +9,9 @@
     <span @mouseover="toggle(true)" @mouseout="toggle(false)" class="toggle-column-btn">
       <slot>
         <Button type="default" :icon="icon">
-          <template v-if="!icon">{{ title }} <Icon type="ios-arrow-down" /></template>
+          <template v-if="!icon"
+            >{{ title ?? $i18n.t('toggleColumn.title') }} <Icon type="ios-arrow-down"
+          /></template>
         </Button>
       </slot>
     </span>
@@ -60,12 +62,7 @@ const props = defineProps({
   modelValue: {
     type: Array
   },
-  title: {
-    type: String,
-    default() {
-      return $i18n.t('toggleColumn.title')
-    }
-  },
+  title: String,
   /**
    * 仅显示图标
    */

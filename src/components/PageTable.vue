@@ -12,7 +12,7 @@
     <Row v-if="showHeader" justify="space-between" align="middle" class="page-table-header">
       <Col>
         <slot name="title">
-          <h1 class="page-table-header-title">{{ title }}</h1>
+          <h1 class="page-table-header-title">{{ title ?? $i18n.t('pageTable.title') }}</h1>
         </slot>
       </Col>
       <Col>
@@ -249,12 +249,7 @@ const props = defineProps({
   /**
    * head title
    */
-  title: {
-    type: String,
-    default() {
-      return $i18n.t('pageTable.title')
-    }
-  },
+  title: String,
   /**
    * 是否显示header
    */

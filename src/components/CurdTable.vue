@@ -30,7 +30,7 @@
       icon="md-add"
       style="display: block; position: relative; margin-top: -1px"
       @click="toAdd">
-      {{ addText }}
+      {{ addText ?? $i18n.t('curdTable.addText') }}
     </Button>
   </div>
 </template>
@@ -93,12 +93,7 @@ const props = defineProps({
   /**
    * 控制列表头文本
    */
-  actionText: {
-    type: String,
-    default() {
-      return $i18n.t('curdTable.actionText')
-    }
-  },
+  actionText: String,
   /**
    * 右侧控制列
    */
@@ -106,7 +101,7 @@ const props = defineProps({
     type: Object,
     default(props: Obj) {
       return {
-        title: props.actionText,
+        // title: props.actionText,
         slot: 'action',
         width: props.actionWidth,
         align: props.actionAlign,
@@ -166,12 +161,7 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
-  addText: {
-    type: String,
-    default() {
-      return $i18n.t('curdTable.addText')
-    }
-  },
+  addText: String,
   /**
    * 是否隐藏每行的删除按钮，通过函数返回值决定
    */
@@ -205,7 +195,16 @@ const list = ref(props.modelValue)
 // computed
 
 const tableColumns = computed(() =>
-  props.disabled ? props.columns : props.columns.concat(props.actionCol)
+  props.disabled
+    ? props.columns
+    : props.columns.concat(
+        Object.assign(
+          {
+            title: props.actionText ?? $i18n.t('curdTable.actionText')
+          },
+          props.actionCol
+        )
+      )
 )
 
 const slotColumns = computed(() => {

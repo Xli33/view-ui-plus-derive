@@ -213,7 +213,7 @@ const week = computed(() => {
   for (let i = weekAt.value; i < max; i++) {
     order = i % 7
     arr.push({
-      title: props.weekMap?.[order] || $i18n.t(`dCalendar.${props.weekType}.${order}`),
+      title: props.weekMap?.[order] || $i18n.t(`mCalendar.${props.weekType}.${order}`),
       order
     })
   }

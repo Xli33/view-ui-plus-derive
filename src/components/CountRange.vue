@@ -73,21 +73,11 @@ const props = defineProps({
   /**
    * 最小值占位文本
    */
-  minHolder: {
-    type: String,
-    default() {
-      return $i18n.t('countRange.minHolder')
-    }
-  },
+  minHolder: String,
   /**
    * 最大值占位文本
    */
-  maxHolder: {
-    type: String,
-    default() {
-      return $i18n.t('countRange.maxHolder')
-    }
-  },
+  maxHolder: String,
   controlsOutside: Boolean,
   step: Number,
   readonly: Boolean,
@@ -138,7 +128,7 @@ const minVal = ref(props.begin),
 const minProps = computed(() => ({
   min: props.min,
   max: props.max,
-  placeholder: props.minHolder,
+  placeholder: props.minHolder ?? $i18n.t('countRange.minHolder'),
   disabled: props.disabled || props.minDisabled,
   class: props.minClass,
   controlsOutside: props.controlsOutside,
@@ -155,7 +145,7 @@ const minProps = computed(() => ({
 const maxProps = computed(() => ({
   min: minVal.value as number,
   max: props.max,
-  placeholder: props.maxHolder,
+  placeholder: props.maxHolder ?? $i18n.t('countRange.maxHolder'),
   disabled: props.disabled || props.maxDisabled,
   class: props.maxClass,
   controlsOutside: props.controlsOutside,

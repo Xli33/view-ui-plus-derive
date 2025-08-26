@@ -17,7 +17,7 @@ export default {
       beginHolder: 'start from',
       endHolder: 'end at'
     },
-    dCalendar: {
+    mCalendar: {
       mini: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       short: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

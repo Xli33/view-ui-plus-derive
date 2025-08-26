@@ -91,21 +91,11 @@ const props = defineProps({
   /**
    * 开始时间placeholder
    */
-  beginHolder: {
-    type: String,
-    default() {
-      return $i18n.t('dateRange.beginHolder')
-    }
-  },
+  beginHolder: String,
   /**
    * 结束时间placeholder
    */
-  endHolder: {
-    type: String,
-    default() {
-      return $i18n.t('dateRange.endHolder')
-    }
-  },
+  endHolder: String,
   /**
    * 一次性传给开始组件的prop
    */
@@ -160,7 +150,7 @@ const beginProps = computed(() => ({
       }
     : undefined,
   disabled: props.disabled || props.beginDisabled,
-  placeholder: props.beginHolder,
+  placeholder: props.beginHolder ?? $i18n.t('dateRange.beginHolder'),
   class: props.beginClass,
   clearable: props.clearable,
   transfer: props.transfer,
@@ -174,7 +164,7 @@ const endProps = computed(() => ({
       beginDate.value && date && dayjs(date).isBefore(beginDate.value, dateTypes[props.type])
   },
   disabled: props.disabled || props.endDisabled,
-  placeholder: props.endHolder,
+  placeholder: props.endHolder ?? $i18n.t('dateRange.endHolder'),
   class: props.endClass,
   clearable: props.clearable,
   transfer: props.transfer,

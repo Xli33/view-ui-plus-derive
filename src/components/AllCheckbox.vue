@@ -5,7 +5,7 @@
       v-model="whole"
       :indeterminate="indeterminate"
       @on-change="change"
-      >{{ title }}</Checkbox
+      >{{ title ?? $i18n.t('allCheckbox.title') }}</Checkbox
     >
     <CheckboxGroup v-model="inner" class="ivu-inline-block" @on-change="change">
       <!-- <slot> -->
@@ -53,12 +53,7 @@ const props = defineProps({
   /**
    * 全选框显示文本，默认“全选”
    */
-  title: {
-    type: String,
-    default() {
-      return $i18n.t('allCheckbox.title')
-    }
-  },
+  title: String,
   /**
    * 选项数组，数组成员可以是数组或对象
    */

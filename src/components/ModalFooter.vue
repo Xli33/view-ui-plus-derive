@@ -11,7 +11,7 @@
           :type="cancelType"
           v-bind="cancel"
           @click="toCancel"
-          >{{ cancelText }}</Button
+          >{{ cancelText ?? $i18n.t('modalFooter.cancel') }}</Button
         >
         <Button
           v-if="hasOk"
@@ -20,7 +20,7 @@
           v-bind="ok"
           type="primary"
           @click="$emit('ok')"
-          >{{ okText }}</Button
+          >{{ okText ?? $i18n.t('modalFooter.ok') }}</Button
         >
       </template>
       <template v-else>
@@ -31,7 +31,7 @@
           v-bind="ok"
           type="primary"
           @click="$emit('ok')"
-          >{{ okText }}</Button
+          >{{ okText ?? $i18n.t('modalFooter.ok') }}</Button
         >
         <Button
           :disabled="cancelDisabled"
@@ -39,7 +39,7 @@
           :type="cancelType"
           v-bind="cancel"
           @click="toCancel"
-          >{{ cancelText }}</Button
+          >{{ cancelText ?? $i18n.t('modalFooter.cancel') }}</Button
         >
       </template>
       <slot name="action"></slot>
@@ -66,21 +66,11 @@ defineProps({
   /**
    * 确定按钮文本
    */
-  okText: {
-    type: String,
-    default() {
-      return $i18n.t('modalFooter.ok')
-    }
-  },
+  okText: String,
   /**
    * 取消按钮文本
    */
-  cancelText: {
-    type: String,
-    default() {
-      return $i18n.t('modalFooter.cancel')
-    }
-  },
+  cancelText: String,
   /**
    * 传递给确定按钮的props
    */

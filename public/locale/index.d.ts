@@ -1,7 +1,8 @@
-declare const lang: Record<string, any>
-declare module 'z-derive/locale/zh-CN' {
+declare module 'view-ui-plus-derive/locale/zh-CN' {
+  const lang: Record<string, any>
   export default lang
 }
-declare module 'z-derive/locale/en-US' {
+declare module 'view-ui-plus-derive/locale/en-US' {
+  const lang: Record<string, any>
   export default lang
 }

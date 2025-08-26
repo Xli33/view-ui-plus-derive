@@ -60,10 +60,6 @@ export function install(
   Object.entries(directives).forEach((e) => {
     app.directive(e[0], e[1])
   })
-  if (opt.msg) {
-    $i18n.msg = opt.msg
-    return
-  }
   if (opt.i18n) {
     $i18n.i18n = opt.i18n
     // 语言内容默认挂在键d上。若不使用“d”则将其替换为opt.msgPrefix
@@ -74,6 +70,10 @@ export function install(
       //   delete $i18n.msg.d
       // }
     }
+    return
+  }
+  if (opt.msg) {
+    $i18n.msg = opt.msg
   }
 }
 

@@ -2,11 +2,16 @@
   "name": "view-ui-plus-derive",
   "version": "0.0.1",
   "type": "module",
-  "description": "基于view-ui-plus的组件等扩展",
+  "description": "基于view-ui-plus的Vue3组件等扩展",
   "keywords": [
-    "view-ui-plus component",
-    "vue component",
-    "typescript"
+    "view-ui-plus-derive",
+    "component",
+    "vuejs",
+    "vue",
+    "component-library",
+    "ui",
+    "typescript",
+    "derive"
   ],
   "main": "dist/index.js",
   "module": "dist/index.js",

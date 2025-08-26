@@ -895,7 +895,6 @@ actionCol: {
   type: Object,
   default(props) {
     return {
-      title: props.actionText,
       slot: 'action',
       width: props.actionWidth,
       align: props.actionAlign,

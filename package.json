@@ -13,7 +13,7 @@
     "typescript",
     "derive"
   ],
-  "main": "dist/index.js",
+  "main": "dist/umd/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -32,7 +32,8 @@
     "./iview-mod": "./dist/iview-mod.js",
     "./iview-mod.css": "./dist/iview-mod.css",
     "./style": "./dist/style.js",
-    "./styles/*": "./dist/styles/*"
+    "./styles/*": "./dist/styles/*",
+    "./umd/index": "./dist/umd/index.js"
   },
   "files": [
     "dist"
@@ -41,7 +42,9 @@
     "prepare": "husky",
     "release": "commit-and-tag-version",
     "dev": "vite",
+    "prebuild": "node -e \"fs.rm('dist',{recursive:true},err=>{console.log(err)})\"",
     "build": "run-p type-check \"build-only {@}\" --",
+    "postbuild": "node postBuild.js",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",

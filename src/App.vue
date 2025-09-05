@@ -8,6 +8,8 @@
       <!-- <Tag>{{ t('d.lang') }}</Tag> -->
       <Btn id="r"></Btn>
       <Btn id="qr">fff</Btn>
+      <CD v-if="toggle === 'T'" :end="3600000"></CD>
+      <CK v-if="toggle === 'T'"></CK>
       <BaseSwitch v-model="toggle" @change="change"></BaseSwitch>
       <BaseSwitch
         v-model="toggle"
@@ -258,7 +260,16 @@
 </template>
 
 <script lang="tsx">
-import { onMounted, reactive, ref, shallowReactive, shallowRef, useTemplateRef } from 'vue'
+import {
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+  shallowReactive,
+  shallowRef,
+  useTemplateRef
+} from 'vue'
+import { Tag } from 'view-ui-plus'
 // import { useI18n } from 'vue-i18n'
 import {
   AllCheckbox,
@@ -276,6 +287,7 @@ import {
   ToggleColumn
 } from './index'
 import type { Obj } from './type'
+import { Clock, Countdown } from 'utils-where'
 // import { i18n } from './i18n'
 
 export default {
@@ -300,6 +312,77 @@ export default {
           <button disabled={props.disabled} {...props} {...ctx.attrs}>
             {ctx.slots.default?.() || props.title}
           </button>
+        )
+      }
+    },
+    CD: {
+      props: {
+        end: Number
+      },
+      setup(props) {
+        const leftH = ref(),
+          leftM = ref(),
+          leftS = ref()
+        const cd = new Countdown(
+          new Date(Date.now() + props.end),
+          false,
+          ({ hour, minute, second }) => {
+            leftH.value = hour
+            leftM.value = minute
+            leftS.value = second
+            console.log('still countdowning')
+          }
+        )
+        cd.stop()
+        setTimeout(() => cd.start(), 3000)
+        onBeforeUnmount(() => {
+          cd.remove()
+        })
+        return () => (
+          <Tag>
+            {leftH.value}:{leftM.value}:{leftS.value}
+          </Tag>
+        )
+      }
+    },
+    CK: {
+      setup() {
+        const y = ref(),
+          m = ref(),
+          d = ref(),
+          h = ref(),
+          w = ref(),
+          mn = ref(),
+          s = ref()
+        const padZero = (num: number) => (num + '').padStart(2, '0')
+        const ck = new Clock(
+          new Date(2000, 1, 1, 0, 0, 0),
+          2,
+          false,
+          ({ year, month, day, week, hour, minute, second }) => {
+            y.value = year
+            m.value = month
+            d.value = day
+            w.value = week
+            h.value = hour
+            mn.value = minute
+            s.value = second
+            console.log('still clocking')
+          }
+        )
+        ck.stop()
+        setTimeout(() => {
+          ck.start()
+        }, 3000)
+
+        onBeforeUnmount(() => {
+          ck.remove()
+        })
+        return () => (
+          <Tag>
+            {y.value} - {m.value} - {d.value} 星期：{w.value} &nbsp;&nbsp; {padZero(h.value)}:
+            {padZero(m.value)}:{padZero(s.value)}
+          </Tag>
         )
       }
     }

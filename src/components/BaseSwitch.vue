@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-// Switch，省去重复写slot
+// Switch，避免反复写slot
 
 import { ref, watch } from 'vue'
 // import { Switch } from 'view-ui-plus' // 待必需才启用

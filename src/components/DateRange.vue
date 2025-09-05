@@ -17,9 +17,9 @@
 <script lang="ts">
 // 日期范围组件
 
-import { type PropType, computed, ref, watch } from 'vue'
+import { type PropType, computed, getCurrentInstance, ref, watch } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 import { $i18n } from '@/locale/i18n'
 
 export default {
@@ -30,6 +30,7 @@ export default {
 <script setup lang="ts">
 export type DateValue = Date | string
 
+const dayjs = getCurrentInstance()!.appContext.config.globalProperties.$Date
 const dateTypes = {
   date: 'day',
   month: 'month',

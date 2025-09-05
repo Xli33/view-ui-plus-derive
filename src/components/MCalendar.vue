@@ -45,13 +45,12 @@
 // 日历组件
 
 import type { Obj } from '@/type'
-import { type PropType, type Ref, ref, computed, watch, nextTick } from 'vue'
+import { type PropType, type Ref, ref, computed, watch, nextTick, getCurrentInstance } from 'vue'
 // import { Row, Col, Spin } from 'view-ui-plus' // 待必需才启用
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
+import type { Dayjs } from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { $i18n } from '@/locale/i18n'
-
-if (!dayjs.prototype.isBetween) dayjs.extend(isBetween)
 
 export default {
   name: 'MCalendar'
@@ -70,6 +69,8 @@ export interface MCalendarCell {
   [x: string]: any
 }
 
+const dayjs = getCurrentInstance()!.appContext.config.globalProperties.$Date
+if (!dayjs.prototype.isBetween) dayjs.extend(isBetween)
 // defineSlots<{
 //   cell({ item, index }: { item: MCalendarCell, index: number }): any
 // }>()
@@ -268,7 +269,7 @@ const renderByDate = () => {
       ? props.dates.slice() /* 若props.dates是reactive，则slice结果是跳过proxy的裸数组 */
       : [],
     now = new Date()
-  let i, eachDay: dayjs.Dayjs, sameDate
+  let i, eachDay: Dayjs, sameDate
 
   list.value = []
   for (i = 0; i < 42; i++) {

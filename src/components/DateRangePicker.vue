@@ -16,9 +16,9 @@
 <script lang="ts">
 // iview date-picker type=range组件
 
-import { type PropType, computed } from 'vue'
+import { type PropType, computed, getCurrentInstance } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 
 export default {
   name: 'DateRangePicker'
@@ -28,6 +28,7 @@ export default {
 <script setup lang="ts">
 type DateType = 'daterange' | 'datetimerange'
 
+const dayjs = getCurrentInstance()!.appContext.config.globalProperties.$Date
 const props = defineProps({
   /**
    * 双向绑定开始时间

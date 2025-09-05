@@ -1,11 +1,11 @@
 # view-ui-plus-derive
 
-基于view-ui-plus的组件等扩展，需要vue 3.5+
+基于vue 3.5+与view-ui-plus的组件&优化扩展等
 
 ## 安装
 
 ```bash
-npm install view-ui-plus-derive
+npm i view-ui-plus-derive
 
 or
 
@@ -14,7 +14,21 @@ yarn add view-ui-plus-derive
 
 [TOC]
 
-## 使用
+### CDN引入
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css">
+<link rel="stylesheet" href="https://unpkg.com/view-ui-plus-derive/dist/umd/index.css">
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/view-ui-plus"></script>
+<script src="https://unpkg.com/view-ui-plus-derive/dist/umd/index.js"></script>
+
+<!-- <script src="https://unpkg.com/view-ui-plus-derive/dist/umd/en-US.js"></script> -->
+
+<script>
+  Vue.createApp().use(ViewUIPlus).use(iviewDerive /*,{msg: iviewDeriveENUS} */).mount('#app')
+</script>
+```
 
 ### 全局引入
 
@@ -22,7 +36,7 @@ yarn add view-ui-plus-derive
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import plugin from 'view-ui-plus-derive' // 注册组件与指令
+import plugin from 'view-ui-plus-derive' // 包含所有组件与指令
 import 'view-ui-plus-derive/style' // 引入所有组件样式
 
 import App from './App.vue'
@@ -44,7 +58,7 @@ import App from './App.vue'
 createApp(App).use(ViewUIPlus).component(Combi.name, Combi).mount('#app')
 ```
 
-仅部分组件有对应样式，如图
+仅部分组件需要对应样式，如图
 ![css](./assets/import%20component%20css.png)
 
 ### 多语言
@@ -176,7 +190,7 @@ createApp(App)
   .mount('#app')
 ```
 
-### 其它扩展
+### 更多优化
 
 - 为多选模式的iview Select添加全选功能。**若全局安装了插件则无需再次注册指令**
 
@@ -185,7 +199,7 @@ createApp(App)
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import { iviewSelect } from "view-ui-plus-derive";
+import { iviewSelect } from "view-ui-plus-derive"
 import App from './App.vue'
 
 createApp(App).use(ViewUIPlus).directive('iviewSelect', iviewSelect).mount('#app')
@@ -221,17 +235,29 @@ import 'view-ui-plus-derive/iview-mods/table'
 也可以一次性引入iview-mods下的input-number、select、table
 
 ```js
+// 本地引入
 import 'view-ui-plus-derive/iview-mod'
+```
+
+```html
+<!-- CDN引入 -->
+<script src="https://unpkg.com/view-ui-plus-derive/dist/umd/iview-mod.js"></script>
 ```
 
 针对iview组件的样式优化
 
 - 修复带有固定列的Table存在水平滚动条时，固定列下方的滚动条无法点中
 - 防止Select在关闭选项时可能出现的点击更换选项bug
-- 调整Input、InputNumber、Select、Button在禁用状态下非placeholder的文本颜色为#7a7a7a
+- 适当调整Input、InputNumber、Select、Button在禁用状态下非placeholder的文本颜色
 
 ```js
+// 本地引入
 import 'view-ui-plus-derive/iview-mod.css'
+```
+
+```html
+<!-- CDN引入 -->
+<link rel="stylesheet" href="https://unpkg.com/view-ui-plus-derive/dist/iview-mod.css">
 ```
 
 ### 组件
@@ -326,7 +352,7 @@ default({item})
 
 #### BaseSwitch
 
-省去重复写slot的Switch
+更易于使用的Switch
 
 ```html
 <template>
@@ -387,7 +413,7 @@ close()
 
 #### RemoteSelect
 
-远程请求数据的Select
+远程Select
 
 ```html
 <template>
@@ -553,7 +579,7 @@ text( { text })
 
 #### CacheSelect
 
-同一个cacheId只请求一次数据的RemoteSelect
+避免重复调用远程接口的RemoteSelect，同一个cacheId对应只触发一次请求
 
 ```html
 <template>

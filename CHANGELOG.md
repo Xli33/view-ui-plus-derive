@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [0.0.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.0.2...v0.0.3) (2025-09-06)
+
+
+### Features
+
+* 支持打包到umd ([429d0f7](https://github.com/Xli33/view-ui-plus-derive/commit/429d0f7c17e2d1d21a0215b9c2e1adfef2303efe))
+
+
+### Bug Fixes
+
+* 修复MCalendar在传入range超出当前可显示范围时的bug ([e91b1ae](https://github.com/Xli33/view-ui-plus-derive/commit/e91b1aeafc97cf7f2f2d3fb997548e836900ccbb))
+
 ## [0.0.2](https://github.com/Xli33/view-ui-plus-derive/compare/v0.0.1...v0.0.2) (2025-08-26)
 
 

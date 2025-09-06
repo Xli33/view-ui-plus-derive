@@ -371,34 +371,45 @@ const setRange = (val: typeof props.range) => {
     })
     return
   }
-  if (val[0] && val[1]) {
-    if (dayjs(val[0]._date).isAfter(val[1]._date)) {
-      const temp = val[1]
-      val[1] = val[0]
-      val[0] = temp
-    }
-    let each, startIndex: number, endIndex: number
-    for (let i = 0, len = list.value.length; i < len; i++) {
-      each = dayjs(list.value[i]!._date)
-      if (each.isSame(val[0]._date, 'day')) {
-        rangeStart.value = list.value[i]!
-        startIndex = i
-      }
-      if (each.isSame(val[1]._date, 'day')) {
-        rangeEnd.value = list.value[i]!
-        endIndex = i
-        break
-      }
-    }
-    list.value.forEach((e, i) => {
-      e._inRange = i >= startIndex && i <= endIndex
-    })
+  if (!val[0] || !val[1]) return
+  if (dayjs(val[0]._date).isAfter(val[1]._date)) {
+    const temp = val[1]
+    val[1] = val[0]
+    val[0] = temp
   }
+  const len = list.value.length
+  let each,
+    // 传入的range可能是当前42格日期之外的时间，故startIndex与endIndex默认值分别为-1 和 len
+    // 保证后续的_inRange判断中不会出现startIndex或endIndex是undefined，导致范围中的日期_inRange却是false
+    startIndex: number = -1,
+    endIndex: number = len
+  for (let i = 0; i < len; i++) {
+    each = dayjs(list.value[i]!._date)
+    if (startIndex < 0 && each.isSame(val[0]._date, 'day')) {
+      rangeStart.value = list.value[i]!
+      startIndex = i
+    }
+    if (each.isSame(val[1]._date, 'day')) {
+      rangeEnd.value = list.value[i]!
+      endIndex = i
+      break
+    }
+  }
+  list.value.forEach((e, i) => {
+    e._inRange = i >= startIndex && i <= endIndex
+  })
 }
 
 // 默认生成一次日历
 renderByDate()
-if (props.range) setRange(props.range)
+if (props.range) {
+  // 传入的范围可能是在当前42格日期之外，在后续setRange中就获取不到对应的rangeStart & rangeEnd
+  // 此时虽然界面上范围是高亮的，但选中某一格日期时不会先清除已有范围（当clearable为true时）
+  // 所以这里先直接将传入范围赋值给rangeStart & rangeEnd以避免上述问题，如果范围没有超出的话，setRange内部一定会重新对rangeStart、rangeEnd赋值
+  rangeStart.value = props.range[0] as MCalendarCell
+  rangeEnd.value = props.range[1] as MCalendarCell
+  setRange(props.range)
+}
 
 watch(
   () => props.date,

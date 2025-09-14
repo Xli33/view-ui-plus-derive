@@ -36,12 +36,12 @@ yarn add view-ui-plus-derive
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import plugin from 'view-ui-plus-derive' // 包含所有组件与指令
+import iviewDerive from 'view-ui-plus-derive' // 包含所有组件与指令
 import 'view-ui-plus-derive/style' // 引入所有组件样式
 
 import App from './App.vue'
 
-createApp(App).use(ViewUIPlus).use(plugin).mount('#app')
+createApp(App).use(ViewUIPlus).use(iviewDerive).mount('#app')
 ```
 
 ### 按需引入
@@ -71,14 +71,14 @@ createApp(App).use(ViewUIPlus).component(Combi.name, Combi).mount('#app')
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import viewUiDerive from 'view-ui-plus-derive'
+import iviewDerive from 'view-ui-plus-derive'
 import enUS from 'view-ui-plus-derive/locale/en-US'
 
 import App from './App.vue'
 
 createApp(App)
   .use(ViewUIPlus)
-  .use(viewUiDerive, {
+  .use(iviewDerive, {
     msg: enUS
   })
   .mount('#app')
@@ -90,13 +90,13 @@ createApp(App)
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import viewUiDerive from 'view-ui-plus-derive'
+import iviewDerive from 'view-ui-plus-derive'
 
 import App from './App.vue'
 
 createApp(App)
   .use(ViewUIPlus)
-  .use(viewUiDerive, {
+  .use(iviewDerive, {
     msg: {
       d: {
         lang: 'zh-Hant',
@@ -150,7 +150,7 @@ import ViewUIPlus from 'view-ui-plus'
 import zh from 'view-ui-plus/dist/locale/zh-CN'
 import en from 'view-ui-plus/dist/locale/en-US'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import viewUiDerive from 'view-ui-plus-derive'
+import iviewDerive from 'view-ui-plus-derive'
 import zhCN from 'view-ui-plus-derive/locale/zh-CN'
 import enUS from 'view-ui-plus-derive/locale/en-US'
 
@@ -183,7 +183,7 @@ const i18n = createI18n({
 createApp(App)
   .use(i18n)
   .use(ViewUIPlus)
-  .use(viewUiDerive, {
+  .use(iviewDerive, {
     i18n
     // msgPrefix: 'someKey' // 该值仅针对使用vue-i18n的情况生效
   })

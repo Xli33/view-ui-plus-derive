@@ -287,19 +287,20 @@ watch(
     nextTick(() => {
       outerChanged = null
     })
-    code.value = val || ''
-    if (hasCode()) {
-      changeCode(code.value)
-      if (props.refresh === search) return
-      for (const i in chosenItem.value) {
-        return
-      }
-      /* this.opening = true;
+    code.value = val ?? ''
+    // 修复当从外部清空值时（从有到无），由于hasCode()不通过而不会将内部值同步为当前空的modelValue
+    // if (hasCode()) {
+    changeCode(code.value)
+    if (props.refresh === search) return
+    for (const i in chosenItem.value) {
+      return
+    }
+    /* this.opening = true;
         this.$nextTick(() => {
           this.opening = false;
         }); */
-      openChange(true)
-    }
+    openChange(hasCode())
+    // }
   }
 )
 // 监听parentCode

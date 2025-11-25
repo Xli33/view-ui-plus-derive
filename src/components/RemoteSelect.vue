@@ -158,7 +158,7 @@ defineSlots<{
 
 // data
 
-const code = ref<SelectValue>(props.modelValue || '')
+const code = ref<SelectValue>(props.modelValue ?? '')
 const codes = ref<Obj[]>([])
 const loading = ref(false)
 const chosenItem = ref<Obj>({})
@@ -241,7 +241,7 @@ function changeCode(val: SelectValue) {
     list: codes.value,
     value: code.value
   })
-  emit('update:modelValue', val || '')
+  emit('update:modelValue', val ?? '')
   emit('update:chosen', chosenItem.value)
 }
 // 展开事件

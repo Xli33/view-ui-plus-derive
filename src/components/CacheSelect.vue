@@ -138,7 +138,7 @@ const hasCode = () => code.value != undefined && code.value.toString().length > 
 watch(
   () => props.modelValue,
   (val) => {
-    if (code.value !== val /* !flag */) code.value = val || ''
+    if (code.value !== val /* !flag */) code.value = val ?? ''
   }
 )
 

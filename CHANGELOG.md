@@ -1,6 +1,30 @@
 # Changelog
 
 
+## [0.1.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.0.3...v0.1.0) (2025-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* 调整PageTable，select-rows 事件更名为 selection-change
+* 调整RemoteSelect展示内容，默认仅显示label，不显示对应值
+
+### Features
+
+* 调整PageTable，select-rows 事件更名为 selection-change ([5d09cfe](https://github.com/Xli33/view-ui-plus-derive/commit/5d09cfe9028be3a90de0c6c450bdee585d12c2d3))
+* 调整RemoteSelect展示内容，默认仅显示label，不显示对应值 ([e883d64](https://github.com/Xli33/view-ui-plus-derive/commit/e883d64cc90b7615c26a50a7c56d69a182fa248a))
+* 优化MCalendar，无需引入扩展dayjs插件以减小构建体积 ([296d464](https://github.com/Xli33/view-ui-plus-derive/commit/296d464c5e755673a6acf5239a4ca9cc2d3edc6c))
+* 优化PageTable样式 ([c1ddaf9](https://github.com/Xli33/view-ui-plus-derive/commit/c1ddaf9745d719fcdcba7aaf406c00b40d79ebdd))
+* 优化RemoteSelect，去除check默认值 ([4a60e02](https://github.com/Xli33/view-ui-plus-derive/commit/4a60e02188f95da79fef9ddb29627c15c6aa1504))
+* 优化umd.d.ts声明 ([e1414d7](https://github.com/Xli33/view-ui-plus-derive/commit/e1414d76a0e772a940181c23a01ef78828f9799b))
+
+
+### Bug Fixes
+
+* 修复CacheSelect & RemoteSelect 无法接收非 null 与 undefined 的Falsy值 ([71894c9](https://github.com/Xli33/view-ui-plus-derive/commit/71894c9f20730ecaff7f0363029fece2f331378a))
+* 修复RemoteSelect可能无法从外部清空内部modelValue ([bef53b2](https://github.com/Xli33/view-ui-plus-derive/commit/bef53b29d16b1952bef8853a46fab298b2716897))
+* 修复ToggleColumn在显示列时可能出现列减少问题 ([c2a6d5d](https://github.com/Xli33/view-ui-plus-derive/commit/c2a6d5deb8b874ce80106382e33f49e5de2da977))
+
 ## [0.0.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.0.2...v0.0.3) (2025-09-06)
 
 

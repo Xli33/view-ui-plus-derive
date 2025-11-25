@@ -17,10 +17,7 @@
         :label="formatLabel && formatLabel(item, index)"
         :disabled="optionDisabled && optionDisabled(item, index)"
         :tag="optionTag && optionTag(item, index)">
-        <slot :item="item" :index="index">
-          {{ item[keyMap.label]
-          }}<template v-if="item[keyMap.value]">({{ item[keyMap.value] }})</template>
-        </slot>
+        <slot :item="item" :index="index">{{ item[keyMap.label] }}</slot>
       </Option>
     </slot>
   </Select>
@@ -172,17 +169,8 @@ const selected = computed<string>(() =>
   chosenItem.value && Object.keys(chosenItem.value).length > 0
     ? typeof props.textFormat !== 'function'
       ? !props.multiple
-        ? `${chosenItem.value[props.keyMap.label]}${
-            chosenItem.value[props.keyMap.value]
-              ? '(' + chosenItem.value[props.keyMap.value] + ')'
-              : ''
-          }`
-        : chosenItem.value
-            .map(
-              (e: Obj) =>
-                `${e[props.keyMap.label]}${e[props.keyMap.value] ? '(' + e[props.keyMap.value] + ')' : ''}`
-            )
-            .join(',')
+        ? chosenItem.value[props.keyMap.label]
+        : chosenItem.value.map((e: Obj) => e[props.keyMap.label]).join(',')
       : props.textFormat(chosenItem.value)
     : ''
 )

@@ -19,7 +19,6 @@
 
 import { type PropType, computed, getCurrentInstance, ref, watch } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
-// import dayjs from 'dayjs'
 import { $i18n } from '@/locale/i18n'
 
 export default {

@@ -18,7 +18,6 @@
 
 import { type PropType, computed, getCurrentInstance } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
-// import dayjs from 'dayjs'
 
 export default {
   name: 'DateRangePicker'

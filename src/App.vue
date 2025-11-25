@@ -86,6 +86,7 @@
         v-model:list="selectLists"
         :method="getList"
         filterable
+        clearable
         all
         style="width: 200px">
       </RemoteSelect>
@@ -107,7 +108,7 @@
         filterable
         all
         style="width: 200px"
-        @on-change="$Message.info($event)"
+        @on-change="$Message.info($event || '')"
         @load="(e) => console.log(e)">
       </CacheSelect>
       <CacheSelect :model-value="selectModel" :list="selectList" textMode></CacheSelect>

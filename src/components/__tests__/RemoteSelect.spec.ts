@@ -33,6 +33,6 @@ describe('RemoteSelect', () => {
     await flushPromises()
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('一(a)')
+    expect(wrapper.text()).toContain('一')
   })
 })

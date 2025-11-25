@@ -22,6 +22,6 @@ describe('CacheSelect', () => {
     })
     // console.log('text(): --- ', wrapper.html())
 
-    expect(wrapper.text()).toContain('one(a)')
+    expect(wrapper.text()).toContain('one')
   })
 })

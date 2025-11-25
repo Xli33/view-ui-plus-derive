@@ -6,15 +6,19 @@ body.clip {
 
 .@{prefix} {
   &bordered {
-    border: 1px solid #e8eaec;
     border-radius: 4px;
 
-    .@{prefix} {
+    &:not(.@{prefix}maximized) {
+      border: 1px solid #e8eaec;
+    }
+
+    > .@{prefix} {
       &list {
         padding: 15px;
       }
       &header {
         border-bottom: 1px solid #e8eaec;
+        padding-top: 10px;
         padding-left: 15px;
         padding-right: 15px;
       }
@@ -25,7 +29,8 @@ body.clip {
     background: #fff;
     border-radius: 0;
 
-    &:fullscreen {
+    &:not(.@{prefix}bordered),
+    &:not(.@{prefix}bordered):fullscreen {
       padding: 10px;
     }
     &:not(.@{prefix}fullscreen) {
@@ -39,7 +44,8 @@ body.clip {
   }
 
   &header {
-    padding: 10px 0px;
+    // padding: 10px 0px;
+    padding-bottom: 10px;
 
     &-title {
       font-size: 16px;

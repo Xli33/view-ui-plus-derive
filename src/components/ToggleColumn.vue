@@ -44,7 +44,7 @@
 // 切换列组件
 
 import type { Obj } from '@/type'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 // import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus' // 待必需才启用
 import { deepMerge, getPathValue, makeObjectByPath, setPathValue } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
@@ -249,12 +249,12 @@ let flag: true | null
 function emitModel() {
   if (props.cacheId != null) {
     initial[props.cacheId].flag = true
-    nextTick(() => {
+    setTimeout(() => {
       initial[props.cacheId!].flag = null
     })
   }
   flag = true
-  nextTick(() => {
+  setTimeout(() => {
     flag = null
   })
   emit(

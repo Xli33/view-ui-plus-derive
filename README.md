@@ -1713,7 +1713,7 @@ emit('load', res)
  * 勾选项变更后触发
  * @param selections 勾选项
  */
-emit('select-rows', selections)
+emit('selection-change', selections)
 
 /**
  * 更改全选框后触发

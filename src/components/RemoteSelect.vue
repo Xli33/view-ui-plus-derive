@@ -91,8 +91,7 @@ const props = defineProps({
    * 点开再请求时，该函数返回true表示可发送请求
    */
   check: {
-    type: Function,
-    default: () => true
+    type: Function
   },
   textMode: Boolean,
   textFormat: Function,
@@ -238,7 +237,7 @@ function openChange(open: boolean) {
     !props.autoGet &&
     !loading.value &&
     !loaded.value &&
-    props.check() &&
+    (!props.check || props.check()) &&
     (!props.strict || !!props.parentCode) &&
     search()
 }
@@ -247,8 +246,6 @@ function hasCode() {
   return code.value != undefined && code.value.toString().length > 0
 }
 
-// created
-// code.value = props.modelValue || ''
 emit('update:refresh', search)
 
 // 挂载后尝试查询一次

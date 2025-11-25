@@ -47,9 +47,8 @@
 import type { Obj } from '@/type'
 import { type PropType, type Ref, ref, computed, watch, nextTick, getCurrentInstance } from 'vue'
 // import { Row, Col, Spin } from 'view-ui-plus' // 待必需才启用
-// import dayjs from 'dayjs'
 import type { Dayjs } from 'dayjs'
-import isBetween from 'dayjs/plugin/isBetween'
+// import isBetween from 'dayjs/plugin/isBetween'
 import { $i18n } from '@/locale/i18n'
 
 export default {
@@ -70,7 +69,7 @@ export interface MCalendarCell {
 }
 
 const dayjs = getCurrentInstance()!.appContext.config.globalProperties.$Date
-if (!dayjs.prototype.isBetween) dayjs.extend(isBetween)
+// if (!dayjs.prototype.isBetween) dayjs.extend(isBetween)
 // defineSlots<{
 //   cell({ item, index }: { item: MCalendarCell, index: number }): any
 // }>()
@@ -278,7 +277,7 @@ const renderByDate = () => {
     list.value.push({
       _date: eachDay.toDate(),
       _text: eachDay.format(props.textFormat),
-      _isOuter: !eachDay.isBetween(start, end, 'day', '[]'),
+      _isOuter: eachDay.isBefore(start, 'day') || eachDay.isAfter(end, 'day'), //!eachDay.isBetween(start, end, 'day', '[]'),
       _isToday: eachDay.isSame(now, 'day'),
       // _rangeStart: undefined,
       // _rangeEnd: undefined,

@@ -104,10 +104,9 @@ import {
 } from 'vue'
 import { Checkbox } from 'view-ui-plus'
 // import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus' // 待必需才启用
-import { getPathValue } from 'utils-where'
+import { getPathValue, omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import ToggleColumn from './ToggleColumn.vue'
-import { omitKeys } from '@/util'
 
 export default {
   name: 'PageTable'
@@ -116,7 +115,7 @@ export default {
 </script>
 
 <script setup lang="tsx">
-const attrs = omitKeys(useAttrs())
+const attrs = omitOwnKeys(useAttrs(), ['id', 'class', 'style'])
 // console.log(attrs)
 
 const props = defineProps({
@@ -274,7 +273,7 @@ const emit = defineEmits<{
   'update:selection': [val: Obj[]]
   load: [res: any]
   'select-all': [val: Obj[], boolean]
-  'select-rows': [val: Obj[]]
+  'selection-change': [val: Obj[]]
   select: [val: Obj, boolean]
   reload: []
   'change-col': [val: Obj[] | Obj]
@@ -293,7 +292,7 @@ const loading = defineModel('loading', { type: Boolean }),
     // rows: [] as Obj[],
     // selections: [],
     // loading: false,
-    maxHeight: null as unknown as number | string | void,
+    maxHeight: props.maxHeight,
     selectType: {
       align: 'center',
       className: 'page-table-mr0',
@@ -490,7 +489,7 @@ function selectRow(row?: Obj, val?: boolean) {
     selections = selections.map((e: Obj) => pureRow(e))
   }
   emit('update:selection', selections)
-  emit('select-rows', selections)
+  emit('selection-change', selections)
 }
 
 function setMaxHeight() {
@@ -648,9 +647,6 @@ watch(
   () => props.maxHeight,
   (val) => {
     table.maxHeight = val
-  },
-  {
-    immediate: true
   }
 )
 

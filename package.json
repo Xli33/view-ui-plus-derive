@@ -1,6 +1,6 @@
 {
   "name": "view-ui-plus-derive",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "基于view-ui-plus的组件&优化扩展等",
   "keywords": [

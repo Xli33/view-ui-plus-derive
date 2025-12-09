@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [0.1.1](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.0...v0.1.1) (2025-12-09)
+
+
+### Features
+
+* **PageTable:** 新增事件 `maximize-change`，切换最大化后触发 ([482b87d](https://github.com/Xli33/view-ui-plus-derive/commit/482b87d6b5c41c65510c6f32b8af83895ca6056c))
+
+
+### Bug Fixes
+
+* **PageTable:** 修复当传入未定义的props时，内部Table绑定的attrs不会随外部值变化而更新 ([be14b5e](https://github.com/Xli33/view-ui-plus-derive/commit/be14b5e3513cf4706c3bbb0e6d2cf5e6488a6cd7))
+
 ## [0.1.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.0.3...v0.1.0) (2025-11-25)
 
 

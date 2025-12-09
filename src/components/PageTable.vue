@@ -273,6 +273,7 @@ const emit = defineEmits<{
   select: [val: Obj, boolean]
   reload: []
   'change-col': [val: Obj[] | Obj]
+  'maximize-change': [val: boolean]
 }>()
 
 // data
@@ -562,12 +563,15 @@ function changeFullscreen() {
   }
   maximized.value = !maximized.value
   if (maximized.value) {
-    setTimeout(setMaxHeight)
+    setMaxHeight()
     document.body.classList.add('clip')
   } else {
     table.maxHeight = props.maxHeight ?? initMaxHeight
     document.body.classList.remove('clip')
   }
+  nextTick(() => {
+    emit('maximize-change', maximized.value)
+  })
 }
 function reload() {
   if (!loading.value) props.isLocal ? emit('reload') : search()
@@ -601,6 +605,9 @@ onMounted(() => {
       maximized.value
         ? setTimeout(setMaxHeight)
         : (table.maxHeight = props.maxHeight ?? initMaxHeight)
+      setTimeout(() => {
+        emit('maximize-change', maximized.value)
+      })
     }
   }
 })

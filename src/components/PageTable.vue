@@ -48,7 +48,7 @@
     <div class="page-table-list">
       <Table
         ref="tableRef"
-        v-bind="attrs"
+        v-bind="omitOwnKeys($attrs, ['id', 'class', 'style'])"
         :border="border"
         :columns="tableColumns"
         :data="table.data"
@@ -99,8 +99,7 @@ import {
   onMounted,
   shallowReactive,
   shallowRef,
-  useTemplateRef,
-  useAttrs
+  useTemplateRef
 } from 'vue'
 import { Checkbox } from 'view-ui-plus'
 // import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus' // 待必需才启用
@@ -115,9 +114,6 @@ export default {
 </script>
 
 <script setup lang="tsx">
-const attrs = omitOwnKeys(useAttrs(), ['id', 'class', 'style'])
-// console.log(attrs)
-
 const props = defineProps({
   columns: {
     type: Array as PropType<Obj[]>,

@@ -1733,6 +1733,12 @@ emit('select', row, checked)
  * @param checked 切换的列
  */
 emit('change-col', checked)
+
+/**
+ * 切换最大化后触发
+ * @param maximized 是否最大化
+ */
+emit('maximize-change', maximized)
 ```
 
 **slots**

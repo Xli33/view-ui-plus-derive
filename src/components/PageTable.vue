@@ -581,6 +581,7 @@ defineExpose({
   search,
   setMaxHeight,
   table,
+  sizer,
   getPage: () => ({
     ...getPageParam(),
     curr: sizer.curr,

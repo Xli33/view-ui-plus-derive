@@ -335,7 +335,7 @@ const loading = defineModel('loading', { type: Boolean }),
 
 const sizer = shallowReactive({
   curr: 1,
-  size: 30,
+  size: props.initSize || props.pageSizeOpts[0]!,
   total: 0
 })
 
@@ -591,7 +591,7 @@ defineExpose({
 
 // created
 makeCols()
-sizer.size = props.initSize || props.pageSizeOpts[0]!
+// sizer.size = props.initSize || props.pageSizeOpts[0]!
 
 onMounted(() => {
   if (!props.maxHeight && props.autoMaxHeight) {

@@ -1710,6 +1710,11 @@ storeAt: String
 emit('load', res)
 
 /**
+ * 点击刷新图标触发，仅本地分页时生效
+ */
+emit('reload')
+
+/**
  * 勾选项变更后触发
  * @param selections 勾选项
  */

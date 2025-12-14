@@ -1512,8 +1512,11 @@ action()
     v-model:loading="pageTable.loading"
     :columns="pageTable.columns"
     :method="getList"
-    data-key="ress"
+    page-key="current"
+    size-key="size"
+    data-key="list"
     total-key="total"
+    use-page-num
     :max-height="400"
     show-header
     border

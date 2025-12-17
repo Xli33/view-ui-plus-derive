@@ -1,9 +1,10 @@
 <template>
-  <div class="combi ivu-input-group">
+  <div :class="[useClass('combi'), 'ivu-input-group']">
     <div v-if="hasPrepend" class="ivu-input-group-prepend">
       <slot name="prepend">{{ prepend }}</slot>
     </div>
-    <div :class="['combi-cell', { 'with-append': hasAppend, 'with-prepend': hasPrepend }]">
+    <div
+      :class="[useClass('combi-cell'), { 'with-append': hasAppend, 'with-prepend': hasPrepend }]">
       <slot></slot>
     </div>
     <div v-if="hasAppend" class="ivu-input-group-append">
@@ -16,6 +17,7 @@
 // 类似iview Input[append prepend]的组合框
 
 import { computed } from 'vue'
+import { useClass } from '@/util'
 
 export default {
   name: 'Combi'

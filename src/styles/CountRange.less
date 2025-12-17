@@ -1,33 +1,36 @@
-@prefix: count-range;
-// @normal-dis: 5px;
-// @small-dis: 2.5px;
+& {
+  @vupd-block: .vupd-block(count-range) [ @vupd-block];
 
-.@{prefix} {
-  display: inline-flex;
-  width: 100%;
-  vertical-align: middle;
+  // @normal-dis: 5px;
+  // @small-dis: 2.5px;
 
-  > .ivu-input-number {
-    // width: calc(50% - @normal-dis);
-    width: 50%;
-    flex: 1;
+  .@{vupd-block} {
+    display: inline-flex;
+    width: 100%;
+    vertical-align: middle;
 
-    // @media (max-width: 1365px) {
-    //   width: calc(50% - @small-dis);
-    // }
-    &:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+    > .ivu-input-number {
+      // width: calc(50% - @normal-dis);
+      width: 50%;
+      flex: 1;
+
+      // @media (max-width: 1365px) {
+      //   width: calc(50% - @small-dis);
+      // }
+      &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
     }
 
-    &:last-child {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    &-joiner {
+      width: 10px;
+      background: #dcdee2;
     }
-  }
-
-  &-joiner {
-    width: 10px;
-    background: #dcdee2;
   }
 }

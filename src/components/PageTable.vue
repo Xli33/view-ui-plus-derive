@@ -2,17 +2,26 @@
   <div
     ref="elRef"
     :class="[
-      'page-table-container',
-      {
-        'page-table-bordered': border && showHeader,
-        'page-table-maximized': maximized,
-        'page-table-fullscreen': maximized && fullscreen
-      }
+      useClass('page-table-container'),
+      // {
+      //   'page-table-bordered': border && showHeader,
+      //   'page-table-maximized': maximized,
+      //   'page-table-fullscreen': maximized && fullscreen
+      // }
+      border && showHeader && useClass('page-table-bordered'),
+      maximized && useClass('page-table-maximized'),
+      maximized && fullscreen && useClass('page-table-fullscreen')
     ]">
-    <Row v-if="showHeader" justify="space-between" align="middle" class="page-table-header">
+    <Row
+      v-if="showHeader"
+      justify="space-between"
+      align="middle"
+      :class="useClass('page-table-header')">
       <Col>
         <slot name="title">
-          <h1 class="page-table-header-title">{{ title ?? $i18n.t('pageTable.title') }}</h1>
+          <h1 :class="useClass('page-table-header-title')">
+            {{ title ?? $i18n.t('pageTable.title') }}
+          </h1>
         </slot>
       </Col>
       <Col>
@@ -21,14 +30,14 @@
           placement="top"
           :content="$i18n.t('pageTable.reload')"
           :transfer="isTransfer"
-          class="page-table-action">
+          :class="useClass('page-table-action')">
           <Icon type="md-refresh" size="20" @click="reload" />
         </Tooltip>
         <Tooltip
           placement="top"
           :content="$i18n.t(`pageTable.${maximized ? 'restore' : 'maxmize'}`)"
           :transfer="isTransfer"
-          class="page-table-action">
+          :class="useClass('page-table-action')">
           <Icon
             :type="maximized ? 'md-contract' : 'md-expand'"
             size="20"
@@ -45,7 +54,7 @@
         <!-- </Tooltip> -->
       </Col>
     </Row>
-    <div class="page-table-list">
+    <div :class="useClass('page-table-list')">
       <Table
         ref="tableRef"
         v-bind="omitOwnKeys($attrs, ['id', 'class', 'style'])"
@@ -77,7 +86,7 @@
         show-elevator
         :transfer="isTransfer"
         :page-size-opts="pageSizeOpts"
-        class="page-table-page-right"
+        :class="useClass('page-table-page-right')"
         @on-change="changePage"
         @on-page-size-change="changePageSize" />
     </div>
@@ -106,6 +115,7 @@ import { Checkbox } from 'view-ui-plus'
 import { getPathValue, omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import ToggleColumn from './ToggleColumn.vue'
+import { useClass } from '@/util'
 
 export default {
   name: 'PageTable'
@@ -292,7 +302,7 @@ const loading = defineModel('loading', { type: Boolean }),
     maxHeight: props.maxHeight,
     selectType: {
       align: 'center',
-      className: 'page-table-mr0',
+      className: useClass('page-table-mr0'),
       renderHeader: (h: any) => {
         // const checkableList = table.rows.filter((e) => e._checkable && !e._disabled),
         const checkableList = table.data.filter((e) => e._checkable && !e._disabled),

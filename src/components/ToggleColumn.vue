@@ -4,9 +4,12 @@
     :visible="visible"
     placement="bottom-end"
     :transfer="transfer"
-    transfer-class-name="toggle-column-pop"
-    class="toggle-column">
-    <span @mouseover="toggle(true)" @mouseout="toggle(false)" class="toggle-column-btn">
+    :transfer-class-name="useClass('toggle-column-pop')"
+    :class="useClass('toggle-column')">
+    <span
+      @mouseover="toggle(true)"
+      @mouseout="toggle(false)"
+      :class="useClass('toggle-column-btn')">
       <slot>
         <Button type="default" :icon="icon">
           <template v-if="!icon"
@@ -22,7 +25,7 @@
             $i18n.t('toggleColumn.checkAll')
           }}</Checkbox>
         </div>
-        <DropdownMenu class="toggle-column-list">
+        <DropdownMenu :class="useClass('toggle-column-list')">
           <DropdownItem
             v-for="(item, index) in checkList"
             :key="index"
@@ -48,6 +51,7 @@ import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vu
 // import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus' // 待必需才启用
 import { deepMerge, getPathValue, makeObjectByPath, setPathValue } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
+import { useClass } from '@/util'
 
 // 用于记录绑定的原始列，配合prop：cacheId使用，避免在v-for中绑定了有 _visible: false 的列时在切换显示后丢失原始列
 const initial: Obj = {}

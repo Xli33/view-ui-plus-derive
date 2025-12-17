@@ -1,33 +1,37 @@
-.combi {
-  display: inline-table;
-  vertical-align: middle;
+& {
+  @vupd-block: .vupd-block(combi) [ @vupd-block];
 
-  &-cell {
-    display: table-cell;
+  .@{vupd-block} {
+    display: inline-table;
+    vertical-align: middle;
 
-    > [class^='ivu-'] {
-      vertical-align: top;
-    }
+    &-cell {
+      display: table-cell;
 
-    .ivu-date-picker .ivu-input {
-      z-index: 0;
-    }
-
-    &.with-append {
-      > [class^='ivu-'],
-      > .ivu-date-picker .ivu-input,
-      > .ivu-select .ivu-select-selection {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
+      > [class^='ivu-'] {
+        vertical-align: top;
       }
-    }
 
-    &.with-prepend {
-      > [class^='ivu-'],
-      > .ivu-date-picker .ivu-input,
-      > .ivu-select .ivu-select-selection {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+      .ivu-date-picker .ivu-input {
+        z-index: 0;
+      }
+
+      &.with-append {
+        > [class^='ivu-'],
+        > .ivu-date-picker .ivu-input,
+        > .ivu-select .ivu-select-selection {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &.with-prepend {
+        > [class^='ivu-'],
+        > .ivu-date-picker .ivu-input,
+        > .ivu-select .ivu-select-selection {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
       }
     }
   }

@@ -1,23 +1,26 @@
-@prefix: toggle-column-;
+& {
+  @vupd-block: .vupd-block(toggle-column) [ @vupd-block];
+  @prefix: ~'@{vupd-block}-';
 
-.@{prefix} {
-  &list {
-    max-height: 400px;
-    max-height: 60vh;
-    overflow: auto;
-    user-select: none;
-  }
-
-  &btn .ivu-icon {
-    line-height: 1;
-    font-size: 16px;
-
-    + span {
-      display: none;
+  .@{prefix} {
+    &list {
+      max-height: 400px;
+      max-height: 60vh;
+      overflow: auto;
+      user-select: none;
     }
-  }
 
-  &pop {
-    text-align: left;
+    &btn .ivu-icon {
+      line-height: 1;
+      font-size: 16px;
+
+      + span {
+        display: none;
+      }
+    }
+
+    &pop {
+      text-align: left;
+    }
   }
 }

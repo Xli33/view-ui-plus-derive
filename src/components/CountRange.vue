@@ -1,7 +1,7 @@
 <template>
-  <div class="count-range">
+  <div :class="useClass('count-range')">
     <InputNumber v-model="minVal" v-bind="minProps" @on-change="changeMin"></InputNumber>
-    <span v-show="!hideJoiner" :class="['count-range-joiner', joinerClass]"></span>
+    <span v-show="!hideJoiner" :class="[useClass('count-range-joiner'), joinerClass]"></span>
     <InputNumber v-model="maxVal" v-bind="maxProps" @on-change="changeMax"></InputNumber>
   </div>
 </template>
@@ -12,6 +12,7 @@
 import { type PropType, computed, ref, watch } from 'vue'
 // import { InputNumber } from 'view-ui-plus' // 待必需才启用
 import { $i18n } from '@/locale/i18n'
+import { useClass } from '@/util'
 
 export default {
   name: 'CountRange'

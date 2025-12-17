@@ -1,12 +1,12 @@
 <template>
-  <div class="mcalendar">
+  <div :class="useClass('mcalendar')">
     <Row>
       <Col
         v-for="(day, index) in week"
         :key="index"
         span="4"
         :class="[
-          'mcalendar-title',
+          useClass('mcalendar-title'),
           { weekend: offDay.includes(day.order) },
           titleClass && titleClass(day, index)
         ]"
@@ -19,8 +19,8 @@
         :key="index"
         span="4"
         :class="[
-          'mcalendar-cell',
-          { 'mcalendar-cell_today': item._isToday },
+          useClass('mcalendar-cell'),
+          item._isToday && useClass('mcalendar-cell_today'),
           { outer: item._isOuter },
           { 'range-start': item === rangeStart },
           { 'in-range': item._inRange },
@@ -50,6 +50,7 @@ import { type PropType, type Ref, ref, computed, watch, nextTick, getCurrentInst
 import type { Dayjs } from 'dayjs'
 // import isBetween from 'dayjs/plugin/isBetween'
 import { $i18n } from '@/locale/i18n'
+import { useClass } from '@/util'
 
 export default {
   name: 'MCalendar'

@@ -1,11 +1,11 @@
 <template>
-  <div class="date-range">
+  <div :class="useClass('date-range')">
     <DatePicker
       v-model="beginDate"
       @on-change="changeBegin"
       v-bind="beginProps"
       :type="type"></DatePicker>
-    <span v-show="!hideJoiner" :class="['date-range-joiner', joinerClass]"></span>
+    <span v-show="!hideJoiner" :class="[useClass('date-range-joiner'), joinerClass]"></span>
     <DatePicker
       v-model="endDate"
       @on-change="changeEnd"
@@ -20,6 +20,7 @@
 import { type PropType, computed, getCurrentInstance, ref, watch } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
 import { $i18n } from '@/locale/i18n'
+import { useClass } from '@/util'
 
 export default {
   name: 'DateRange'

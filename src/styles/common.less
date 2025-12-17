@@ -1,0 +1,7 @@
+@vupd-prefix: '';
+
+// 组件类名
+.vupd-block(@block-name) {
+  // block (块) - 例如: .self-curd
+  @vupd-block: if(@vupd-prefix = '', @block-name, ~'@{vupd-prefix}-@{block-name}');
+}

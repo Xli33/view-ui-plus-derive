@@ -1,5 +1,7 @@
 // import type { Obj } from '@/type'
 
+import { inject } from 'vue'
+
 // /**
 //  * 根据源对象返回不包含自有可枚举指定属性的新对象
 //  *
@@ -21,3 +23,10 @@
 //   })
 //   return omitted
 // }
+
+export const classSymbol = Symbol('vupdPrefix')
+
+export const useClass = (name: string) => {
+  const prefix = inject(classSymbol, '') as string
+  return prefix ? prefix.replace(/\B([A-Z])/g, '-$1').toLowerCase() + '-' + name : name
+}

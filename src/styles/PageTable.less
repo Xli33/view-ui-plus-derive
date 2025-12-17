@@ -1,88 +1,94 @@
-@prefix: page-table-;
+& {
+  @vupd-block: .vupd-block(page-table) [ @vupd-block];
+  @prefix: ~'@{vupd-block}-';
 
-body.clip {
-  overflow: hidden;
-}
-
-.@{prefix} {
-  &bordered {
-    border-radius: 4px;
-
-    &:not(.@{prefix}maximized) {
-      border: 1px solid #e8eaec;
-    }
-
-    > .@{prefix} {
-      &list {
-        padding: 15px;
-      }
-      &header {
-        border-bottom: 1px solid #e8eaec;
-        padding-top: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-    }
+  body.clip {
+    overflow: hidden;
   }
 
-  &maximized {
-    background: #fff;
-    border-radius: 0;
+  .@{prefix} {
+    &bordered {
+      border-radius: 4px;
 
-    &:not(.@{prefix}bordered),
-    &:not(.@{prefix}bordered):fullscreen {
-      padding: 10px;
-    }
-    &:not(.@{prefix}fullscreen) {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 999;
-    }
-  }
+      &:not(.@{prefix}maximized) {
+        border: 1px solid #e8eaec;
+      }
 
-  &header {
-    // padding: 10px 0px;
-    padding-bottom: 10px;
+      > .@{prefix} {
+        &list {
+          padding: 15px;
+        }
 
-    &-title {
-      font-size: 16px;
+        &header {
+          border-bottom: 1px solid #e8eaec;
+          padding-top: 10px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
     }
-    .toggle-column {
+
+    &maximized {
+      background: #fff;
+      border-radius: 0;
+
+      &:not(.@{prefix}bordered),
+      &:not(.@{prefix}bordered):fullscreen {
+        padding: 10px;
+      }
+
+      &:not(.@{prefix}fullscreen) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+      }
+    }
+
+    &header {
+      // padding: 10px 0px;
+      padding-bottom: 10px;
+
+      &-title {
+        font-size: 16px;
+      }
+
+      // .toggle-column {
+      //   vertical-align: top;
+      //
+      //   > .ivu-dropdown-rel,
+      //   .ivu-icon {
+      //     vertical-align: top;
+      //   }
+      // }
+    }
+
+    &action {
       vertical-align: top;
+      cursor: pointer;
 
-      > .ivu-dropdown-rel,
-      .ivu-icon {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      > .ivu-tooltip-rel {
         vertical-align: top;
+
+        > .ivu-icon {
+          vertical-align: top;
+        }
       }
     }
-  }
 
-  &action {
-    vertical-align: top;
-    cursor: pointer;
-
-    &:not(:last-child) {
-      margin-right: 10px;
+    &page-right {
+      margin-top: 10px;
+      text-align: right;
     }
 
-    > .ivu-tooltip-rel {
-      vertical-align: top;
-
-      > .ivu-icon {
-        vertical-align: top;
-      }
+    &mr0 .ivu-checkbox-wrapper {
+      margin-right: 0;
     }
-  }
-
-  &page-right {
-    margin-top: 10px;
-    text-align: right;
-  }
-
-  &mr0 .ivu-checkbox-wrapper {
-    margin-right: 0;
   }
 }

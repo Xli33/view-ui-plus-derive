@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.1.2](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.1...v0.1.2) (2025-12-17)
+
+
+### Features
+
+* 支持自定义组件名前缀及其样式class前缀 ([3df43f1](https://github.com/Xli33/view-ui-plus-derive/commit/3df43f1cc8a5c2a6588750d6d5dacb62319a00fd))
+* **PageTable:** 调整PageTable组件，暴露内部sizer ([7291c2f](https://github.com/Xli33/view-ui-plus-derive/commit/7291c2f0c43b6a98265c3af5cbad996e6da80fed))
+
 ## [0.1.1](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.0...v0.1.1) (2025-12-09)
 
 

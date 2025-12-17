@@ -1,6 +1,7 @@
 # view-ui-plus-derive
 
-基于vue 3.5+与view-ui-plus的组件&优化扩展等
+基于vue 3.5+与view-ui-plus的组件&优化扩展等，支持自定义组件名前缀  
+**示例均使用无前缀的默认组件名**
 
 ## 安装
 
@@ -42,6 +43,43 @@ import 'view-ui-plus-derive/style' // 引入所有组件样式
 import App from './App.vue'
 
 createApp(App).use(ViewUIPlus).use(iviewDerive).mount('#app')
+```
+
+#### 自定义组件名前缀
+
+为免容易变得冗长，组件名及其样式class默认无前缀，若需要自定义，可传入prefix参数  
+该参数通过全局provide提供以便访问，对应的key为 `Symbol('vupdPrefix')` ，不会与其它全局provide冲突
+
+```js
+import { createApp } from 'vue'
+import ViewUIPlus from 'view-ui-plus'
+import 'view-ui-plus/dist/styles/viewuiplus.css'
+import iviewDerive from 'view-ui-plus-derive' // 包含所有组件与指令
+
+import App from './App.vue'
+
+createApp(App)
+  .use(ViewUIPlus)
+  // 所有组件名前缀将被设置为 My，使用时如 <MyCombi>，<MyBaseSwitch> ...
+  .use(iviewDerive, { prefix: 'My' })
+  .mount('#app')
+```
+
+**此时需要再修改组件共用的less变量以适配前缀**，无需前缀时建议直接引入`view-ui-plus-derive/style`中的css  
+`App.vue`
+
+```less
+<style lang="less">
+// 引入组件less则必须同时引入common.less，导入后并覆盖变量@vupd-prefix为需要的前缀名称
+@import 'view-ui-plus-derive/less/common.less';
+@vupd-prefix: 'my';
+
+// 导入所有组件样式
+@import 'view-ui-plus-derive/less/index.less';
+
+// 或者单独导入需要的组件样式
+@import 'view-ui-plus-derive/less/Combi.less';
+</style>
 ```
 
 ### 按需引入

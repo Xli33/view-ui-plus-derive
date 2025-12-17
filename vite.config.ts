@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import { unlinkSync } from 'node:fs'
+import { cpSync, unlinkSync } from 'node:fs'
 // import { resolve } from 'node:path'
 
 import { build, defineConfig } from 'vite'
@@ -10,6 +10,20 @@ import dts from 'vite-plugin-dts'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
+  const sameOption = {
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: `@import "@/styles/common.less";`
+        }
+      }
+    }
+  }
   if (command === 'build') {
     console.log('build umd')
 
@@ -22,10 +36,9 @@ export default defineConfig(({ command }) => {
       await build({
         configFile: false,
         plugins: [vue(), vueJsx()],
-        resolve: {
-          alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
-          }
+        ...sameOption,
+        esbuild: {
+          drop: ['console', 'debugger'] // umd打包时删除所有的console 和 debugger
         },
         build: {
           target: 'es2015',
@@ -70,17 +83,14 @@ export default defineConfig(({ command }) => {
           unlinkSync('dist/iview-mod.d.ts')
           unlinkSync('dist/iview-mod.less.d.ts')
           unlinkSync('dist/zh-CN.d.ts')
+          cpSync('src/styles', 'dist/less', { recursive: true })
         }
         // beforeWriteFile(filePath) {
         //   if (filePath.match(/iview-mod.d.ts$|iview-mod.less.d.ts$/)) return false
         // }
       })
     ],
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
-    },
+    ...sameOption,
     build: {
       emptyOutDir: false,
       cssCodeSplit: true,

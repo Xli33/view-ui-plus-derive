@@ -402,17 +402,35 @@ function makeCols() {
 }
 
 let isFromRemote: true | null
+let isRequesting: true | null // 是否发起请求。loading可由父组件控制，比如默认展示loading状态但实际未发起请求，故需要单独变量判断是否在请求
+let reqId: number = 0 // 请求次数id
 async function getRemoteData() {
   if (typeof props.method !== 'function') return console.warn("typeof method isn't function")
+  if (isRequesting) {
+    // 未完成加载又触发新请求，让reqId在Number.MAX_SAFE_INTEGER范围内递增，用于后续与innerReqId比较判断是否为最近一次请求
+    reqId = (reqId + 1) % Number.MAX_SAFE_INTEGER
+  }
   // table.rows = []
   // this.table.selections = [];
+  const innerReqId = reqId
+  isRequesting = true
   loading.value = true
   // emit('update:loading', true)
   emit('update:selection', [])
   const res = await props.method(
     Object.assign(getPageParam(), typeof props.param !== 'function' ? props.param : props.param())
   )
+  // 当存在重复请求时，即上一次请求未完成又触发了新请求，则reqId会依次递增
+  // 若reqId与innerReqId不相等，则说明不是最近一次请求
+  if (reqId !== innerReqId) return
   loading.value = false
+  isRequesting = null
+  // 这里不能将reqId重置为0。假设连续触发2次请求，第1次请求的innerId是0，第2次的是1, 但第2次请求比第1次请求更快完成
+  // 此时若重置reqId，则第1次请求结束时，因其innerId与reqId同为0，依旧会通过，导致列表又被第一次的结果覆盖了
+  // 所以当存在重复请求时，reqId是保持递增的，若没有重复请求，则reqId维持在上一次请求的值
+  // 也就依然需要isRequesting判断是否在重复请求，不能单靠reqId是否大于0判断
+  // 当没有重复请求时，reqId应该始终为初始值0，存在重复请求时也只会依次递增
+  // reqId = 0;
   // emit('update:loading', false)
   if (!res) {
     if (!props.autoRemain) {

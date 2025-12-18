@@ -54,7 +54,11 @@
         <!-- </Tooltip> -->
       </Col>
     </Row>
-    <div :class="useClass('page-table-list')">
+    <div
+      :class="[
+        useClass('page-table-list'),
+        !sizer.total && !table.data.length && useClass('page-table-list-empty')
+      ]">
       <Table
         ref="tableRef"
         v-bind="omitOwnKeys($attrs, ['id', 'class', 'style'])"
@@ -78,6 +82,8 @@
         </template>
       </Table>
       <Page
+        v-show="!hidePage"
+        ref="pageRef"
         v-model="sizer.curr"
         :total="sizer.total"
         :page-size="sizer.size"
@@ -86,7 +92,7 @@
         show-elevator
         :transfer="isTransfer"
         :page-size-opts="pageSizeOpts"
-        :class="useClass('page-table-page-right')"
+        :class="useClass('page-table-paginator')"
         @on-change="changePage"
         @on-page-size-change="changePageSize" />
     </div>
@@ -270,7 +276,11 @@ const props = defineProps({
   /**
    * 传至ToggleColumn组件的storeAt
    */
-  storeAt: String
+  storeAt: String,
+  /**
+   * 隐藏分页
+   */
+  hidePage: Boolean,
 })
 
 const emit = defineEmits<{
@@ -292,6 +302,7 @@ let initMaxHeight: number // 未传入maxHeight时自动计算出的maxHeight
 const loading = defineModel('loading', { type: Boolean }),
   refTable = useTemplateRef('tableRef'),
   refEl = useTemplateRef('elRef'),
+  refPage = useTemplateRef('pageRef'),
   maximized = ref(false),
   tableColumns = shallowRef<Obj[]>() as Ref<Obj[]>,
   table = reactive({
@@ -425,7 +436,7 @@ async function getRemoteData() {
     }
   }
   table.data = data
-  sizer.total = getPathValue(res, props.totalKey!)
+  sizer.total = getPathValue(res, props.totalKey!) || 0
   // setRows()
   isFromRemote = true
   emit('update:modelValue', table.data)

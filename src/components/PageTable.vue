@@ -117,7 +117,7 @@ import {
   shallowRef,
   useTemplateRef
 } from 'vue'
-import { Checkbox } from 'view-ui-plus'
+import { Checkbox, type Page, type Table } from 'view-ui-plus'
 // import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus' // 待必需才启用
 import { getPathValue, omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
@@ -317,9 +317,9 @@ const emit = defineEmits<{
 let initHeight: number // 未传入height时自动计算出的height
 let initMaxHeight: number // 未传入maxHeight时自动计算出的maxHeight
 const loading = defineModel('loading', { type: Boolean }),
-  refTable = useTemplateRef('tableRef'),
+  refTable = useTemplateRef<typeof Table>('tableRef'),
   refEl = useTemplateRef('elRef'),
-  refPage = useTemplateRef('pageRef'),
+  refPage = useTemplateRef<typeof Page>('pageRef'),
   maximized = ref(false),
   tableColumns = shallowRef<Obj[]>() as Ref<Obj[]>,
   table = reactive({
@@ -550,8 +550,8 @@ function getHeight() {
   return (
     window.innerHeight -
     +props.bottomDis -
-    refTable.value.$el.getBoundingClientRect().top -
-    refPage.value.$el.offsetHeight
+    refTable.value!.$el.getBoundingClientRect().top -
+    refPage.value!.$el.offsetHeight
   )
 }
 /**

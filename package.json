@@ -2,10 +2,10 @@
   "name": "view-ui-plus-derive",
   "version": "0.1.2",
   "type": "module",
-  "description": "基于view-ui-plus的组件&优化扩展等",
+  "description": "基于view-ui-plus的组件&优化扩展等，可自定义组件名前缀",
   "keywords": [
     "view-ui-plus-derive",
-    "iview-derive",
+    "iview derive",
     "vue",
     "component library",
     "derive",

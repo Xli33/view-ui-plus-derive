@@ -1,6 +1,19 @@
 # Changelog
 
 
+## [0.1.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.2...v0.1.3) (2025-12-21)
+
+
+### Features
+
+* **PageTable:** 新增prop: `maximizeHeightType`，决定在最大化时设置height或maxHeight，默认`maxHeight` ([f4c2c6e](https://github.com/Xli33/view-ui-plus-derive/commit/f4c2c6e65b33c59c8a8ff171481729e2e95ba051))
+* **PageTable:** 新增prop：hidePage，为true时隐藏分页；当总条数无效，且无数据时，列表容器增加class：page-table-list-empty ([aaed37d](https://github.com/Xli33/view-ui-plus-derive/commit/aaed37d45f4edda6ac6127c4084d219f464386c5))
+
+
+### Bug Fixes
+
+* **PageTable:** 修复打包时提示PageTable中组件引用类型为unknown ([1c01626](https://github.com/Xli33/view-ui-plus-derive/commit/1c0162644a545441bbcc8d1d480eff6b477c8e69))
+
 ## [0.1.2](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.1...v0.1.2) (2025-12-17)
 
 

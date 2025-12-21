@@ -1671,12 +1671,6 @@ pageMap: {
 // 处理接口返回列表数据的函数
 process: Function
 
-// 自动设置Table的maxHeight
-autoMaxHeight: {
-  type: Boolean,
-  default: true
-}
-
 // 是否本地分页
 isLocal: Boolean
 
@@ -1697,9 +1691,6 @@ bottomDis: {
   type: [Number, String],
   default: 80
 }
-
-// Table的maxHeight
-maxHeight: [Number, String]
 
 border: Boolean
 
@@ -1738,6 +1729,27 @@ fullscreen: Boolean
 
 // 传至ToggleColumn组件的storeAt
 storeAt: String
+
+// 自动设置Table的maxHeight
+autoMaxHeight: {
+  type: Boolean,
+  default: true
+}
+
+// Table的maxHeight
+maxHeight: [Number, String]
+
+// Table的height
+height: [Number, String]
+
+// 自动设置Table的height
+autoHeight: Boolean
+
+// 最大化时自动计算哪种高度
+maximizeHeightType: {
+  type: String as PropType<'height' | 'maxHeight'>,
+  default: 'maxHeight'
+}
 ```
 
 **emits**  

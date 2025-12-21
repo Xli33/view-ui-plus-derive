@@ -66,6 +66,7 @@
         :columns="tableColumns"
         :data="table.data"
         :loading="loading"
+        :height="table.height"
         :max-height="table.maxHeight"
         @on-row-click="clickRow">
         <!-- @on-column-width-resize="changeColWidth"
@@ -103,7 +104,7 @@
 // 分页表格组件
 
 import type { Obj } from '@/type'
-import type { PropType, Ref, ComponentPublicInstance } from 'vue'
+import type { PropType, Ref } from 'vue'
 import {
   computed,
   ref,
@@ -200,13 +201,6 @@ const props = defineProps({
   process: Function,
   // loading: Boolean,
   /**
-   * 自动设置Table的maxHeight
-   */
-  autoMaxHeight: {
-    type: Boolean,
-    default: true
-  },
-  /**
    * 是否本地分页
    */
   isLocal: Boolean,
@@ -223,16 +217,12 @@ const props = defineProps({
   autoRemain: Boolean,
   /**
    * 计算Table的maxHeight时，Table距离视口底部的距离
-   * @default 80
+   * @default 45
    */
   bottomDis: {
     type: [Number, String],
-    default: 80
+    default: 45
   },
-  /**
-   * Table的maxHeight
-   */
-  maxHeight: [Number, String],
   /**
    * 勾选项
    */
@@ -281,6 +271,32 @@ const props = defineProps({
    * 隐藏分页
    */
   hidePage: Boolean,
+  /**
+   * 自动设置Table的maxHeight
+   */
+  autoMaxHeight: {
+    type: Boolean,
+    default: true
+  },
+  /**
+   * Table的maxHeight
+   */
+  maxHeight: [Number, String],
+  /**
+   * Table的height
+   */
+  height: [Number, String],
+  /**
+   * 自动设置Table的height
+   */
+  autoHeight: Boolean,
+  /**
+   * 最大化时自动计算哪种高度
+   */
+  maximizeHeightType: {
+    type: String as PropType<'height' | 'maxHeight'>,
+    default: 'maxHeight'
+  }
 })
 
 const emit = defineEmits<{
@@ -298,6 +314,7 @@ const emit = defineEmits<{
 
 // data
 
+let initHeight: number // 未传入height时自动计算出的height
 let initMaxHeight: number // 未传入maxHeight时自动计算出的maxHeight
 const loading = defineModel('loading', { type: Boolean }),
   refTable = useTemplateRef('tableRef'),
@@ -310,6 +327,7 @@ const loading = defineModel('loading', { type: Boolean }),
     // rows: [] as Obj[],
     // selections: [],
     // loading: false,
+    height: props.height,
     maxHeight: props.maxHeight,
     selectType: {
       align: 'center',
@@ -528,14 +546,31 @@ function selectRow(row?: Obj, val?: boolean) {
   emit('selection-change', selections)
 }
 
-function setMaxHeight() {
+function getHeight() {
+  return (
+    window.innerHeight -
+    +props.bottomDis -
+    refTable.value.$el.getBoundingClientRect().top -
+    refPage.value.$el.offsetHeight
+  )
+}
+/**
+ * 设置内部 Table 的（最大）高度
+ * @param isHeight 是否设置`height`，默认`false`：设置`maxHeight`
+ */
+function setMaxHeight(isHeight?: boolean) {
   nextTick(() => {
-    const num =
-      window.innerHeight -
-      +props.bottomDis -
-      (refTable.value as ComponentPublicInstance).$el.getBoundingClientRect().top
-    table.maxHeight = num > 0 ? num : 0
+    const num = getHeight()
+    table[isHeight ? 'height' : 'maxHeight'] = num > 0 ? num : 0
   })
+}
+
+function setMaximizeHeight() {
+  ;(props.maximizeHeightType === 'height' || props.maximizeHeightType === 'maxHeight') &&
+    nextTick(() => {
+      const num = getHeight()
+      table[props.maximizeHeightType] = num > 0 ? num : 0
+    })
 }
 
 function getPageParam() {
@@ -602,9 +637,10 @@ function changeFullscreen() {
   }
   maximized.value = !maximized.value
   if (maximized.value) {
-    setMaxHeight()
+    setMaximizeHeight()
     document.body.classList.add('clip')
   } else {
+    table.height = props.height ?? initHeight
     table.maxHeight = props.maxHeight ?? initMaxHeight
     document.body.classList.remove('clip')
   }
@@ -633,18 +669,22 @@ makeCols()
 // sizer.size = props.initSize || props.pageSizeOpts[0]!
 
 onMounted(() => {
-  if (!props.maxHeight && props.autoMaxHeight) {
-    setMaxHeight()
+  if (!props.maxHeight && !props.height && (props.autoMaxHeight || props.autoHeight)) {
+    setMaxHeight(props.autoHeight)
     nextTick(() => {
       initMaxHeight = table.maxHeight as number
+      initHeight = table.height as number
     })
   }
   if (props.fullscreen) {
     refEl.value!.onfullscreenchange = () => {
       maximized.value = !!document.fullscreenElement
-      maximized.value
-        ? setTimeout(setMaxHeight)
-        : (table.maxHeight = props.maxHeight ?? initMaxHeight)
+      if (maximized.value) {
+        setTimeout(setMaximizeHeight)
+      } else {
+        table.height = props.height ?? initHeight
+        table.maxHeight = props.maxHeight ?? initMaxHeight
+      }
       setTimeout(() => {
         emit('maximize-change', maximized.value)
       })
@@ -690,6 +730,12 @@ watch(
   () => props.maxHeight,
   (val) => {
     table.maxHeight = val
+  }
+)
+watch(
+  () => props.height,
+  (val) => {
+    table.height = val
   }
 )
 

@@ -52,7 +52,8 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "prepublishOnly": "npm run build && npm run release"
+    "check-auth": "npm whoami --registry=https://registry.npmjs.org",
+    "prepublishOnly": "npm run check-auth && npm run build && npm run release"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

@@ -53,7 +53,8 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "check-auth": "npm whoami --registry=https://registry.npmjs.org",
-    "prepublishOnly": "npm run check-auth && npm run build && npm run release"
+    "prepublishOnly": "npm run check-auth && npm run build && npm run release",
+    "republish": "npm run build && npm publish --ignore-scripts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

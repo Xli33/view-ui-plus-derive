@@ -19,7 +19,7 @@ import PageTable from './components/PageTable.vue'
 import ToggleColumn from './components/ToggleColumn.vue'
 import { $i18n } from './locale/i18n'
 import { iviewSelect } from './directives' // 用 import * as dirs from './directives'会导致生成额外的chunk，内容是通过Object.freeze处理过的只读对象
-import { classSymbol } from './util'
+import { classPrefix } from './util'
 
 const components = [
     AllCheckbox,
@@ -57,7 +57,8 @@ export function install(
 ) {
   // 支持定义组件名前缀
   if (opt.prefix) {
-    app.provide(classSymbol, opt.prefix)
+    // app.provide(classSymbol, opt.prefix)
+    classPrefix[0] = opt.prefix
     components.forEach((e) => (e.name = opt.prefix! + e.name))
   }
   components.forEach((component) => {

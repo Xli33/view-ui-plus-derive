@@ -45,10 +45,9 @@ import App from './App.vue'
 createApp(App).use(ViewUIPlus).use(iviewDerive).mount('#app')
 ```
 
-#### 自定义组件名前缀
+#### 自定义组件前缀
 
-为免容易变得冗长，组件名及其样式class默认无前缀，若需要自定义，可传入prefix参数  
-该参数通过全局provide提供以便访问，对应的key为 `Symbol('vupdPrefix')` ，不会与其它全局provide冲突
+为免容易变得冗长，组件名及其样式class默认无前缀，若需要自定义，可传入prefix参数
 
 ```js
 import { createApp } from 'vue'
@@ -65,7 +64,8 @@ createApp(App)
   .mount('#app')
 ```
 
-**此时需要再修改组件共用的less变量以适配前缀**，无需前缀时建议直接引入`view-ui-plus-derive/style`中的css  
+**此时需要再修改组件共用的less变量以适配前缀**，无需前缀时建议直接引入`view-ui-plus-derive/style`中的css
+
 `App.vue`
 
 ```less
@@ -228,7 +228,7 @@ createApp(App)
   .mount('#app')
 ```
 
-### 更多优化
+### 调优
 
 - 为多选模式的iview Select添加全选功能。**若全局安装了插件则无需再次注册指令**
 

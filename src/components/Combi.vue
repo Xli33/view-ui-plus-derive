@@ -17,7 +17,7 @@
 // 类似iview Input[append prepend]的组合框
 
 import { computed } from 'vue'
-import { useClass } from '@/util'
+import { useClass } from '@/utils'
 
 export default {
   name: 'Combi'

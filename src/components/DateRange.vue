@@ -20,7 +20,7 @@
 import { type PropType, computed, getCurrentInstance, ref, watch } from 'vue'
 // import { DatePicker } from 'view-ui-plus' // 待必需才启用
 import { $i18n } from '@/locale/i18n'
-import { useClass } from '@/util'
+import { useClass } from '@/utils'
 
 export default {
   name: 'DateRange'

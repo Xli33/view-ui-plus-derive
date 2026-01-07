@@ -122,7 +122,7 @@ import { Checkbox, type Page, type Table } from 'view-ui-plus'
 import { getPathValue, omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import ToggleColumn from './ToggleColumn.vue'
-import { useClass } from '@/util'
+import { useClass } from '@/utils'
 
 export default {
   name: 'PageTable'

@@ -51,7 +51,7 @@ import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vu
 // import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus' // 待必需才启用
 import { deepMerge, getPathValue, makeObjectByPath, setPathValue } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
-import { useClass } from '@/util'
+import { useClass } from '@/utils'
 
 // 用于记录绑定的原始列，配合prop：cacheId使用，避免在v-for中绑定了有 _visible: false 的列时在切换显示后丢失原始列
 const initial: Obj = {}

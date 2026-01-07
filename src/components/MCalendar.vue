@@ -50,7 +50,7 @@ import { type PropType, type Ref, ref, computed, watch, nextTick, getCurrentInst
 import type { Dayjs } from 'dayjs'
 // import isBetween from 'dayjs/plugin/isBetween'
 import { $i18n } from '@/locale/i18n'
-import { useClass } from '@/util'
+import { useClass } from '@/utils'
 
 export default {
   name: 'MCalendar'

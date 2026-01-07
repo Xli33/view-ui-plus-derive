@@ -41,8 +41,8 @@ export default defineConfig(({ command }) => {
           drop: ['console', 'debugger'] // umd打包时删除所有的console 和 debugger
         },
         build: {
-          target: 'es2015',
-          cssTarget: ['chrome107', 'edge107', 'firefox104', 'safari16'],
+          target: 'es2023',
+          cssTarget: ['chrome112', 'edge112', 'firefox115', 'safari16.4'],
           outDir: 'dist/umd',
           copyPublicDir: false,
           emptyOutDir: false,

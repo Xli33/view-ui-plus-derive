@@ -41,54 +41,36 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model双向绑定Table列
-modelValue: {
-  type: Array
-}
+`modelValue` _Array_  
+v-model双向绑定Table列
 
-// 全选框文本
-title: String
+`title` _String_  
+全选框文本
 
-// 传入iview icon名则仅显示图标
-icon: String
+`icon` _String_  
+传入iview icon名则仅显示图标
 
-// 绑定columns对应的唯一标识，一般在v-for中绑定了固定某列且列配置中带有 _visible:false 时用到
-cacheId: [String, Number]
+`cache-id` _String | Number_  
+绑定columns对应的唯一标识，一般在v-for中绑定了固定某列且列配置中带有 `_visible:false` 时用到
 
-// 是否显示全选框
-all: {
-  type: Boolean,
-  default: true
-}
+`all` _Boolean_ （default `true`）  
+是否显示全选框
 
-// Dropdown的transfer
-transfer: Boolean
+`transfer` _Boolean_  
+Dropdown的transfer
 
-/**
- * 将状态缓存至localStorage中的key，支持a.b形式
- * @example
- * // 组件会尝试将显示状态读写至 localStorage.app.main.cols
- * storeAt='app.main.cols'
- */
-storeAt: String
-```
+`store-at` _String_  
+将状态缓存至localStorage中的key，支持a.b形式  
+如`store-at='app.main.cols'`，组件会尝试将显示状态读写至 localStorage.app.main.cols
 
-**emits**
+## emits
 
-```js
-/**
- * 切换列状态时触发
- * @param value 切换的列
- */
-emit('change', value)
-```
+`change` (value)  
+切换列状态时触发。`value`: 切换的列
 
-**slots**
+## slots
 
-```js
-// 替换默认显示的Button
-default()
-```
+`default()`  
+替换默认显示的Button

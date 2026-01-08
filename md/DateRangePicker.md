@@ -14,61 +14,43 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model:begin双向绑定开始时间
-begin: {
-  type: [Date, String],
-  default: ''
-}
+`begin` _Date | String_ （default `''`）  
+v-model:begin双向绑定开始时间
 
-// v-model:end双向绑定结束时间
-end: {
-  type: [Date, String],
-  default: ''
-}
-// 可选的日期类型：daterange | datetimerange
-type: {
-  type: String,
-  default: 'daterange'
-}
+`end` _Date | String_ （default `''`）  
+v-model:end双向绑定结束时间
 
-// 是否默认限制开始时间
-limitBegin: {
-  type: Boolean,
-  default: true
-}
+`type` _String_ （default `'daterange'`）  
+可选的日期类型：daterange | datetimerange
 
-// 是否禁止选择今天
-disableToday: Boolean
+`limit-begin` _Boolean_ （default `true`）  
+是否默认限制开始时间
 
-// 用于格式化绑定时间，默认 YYYY-MM-DD
-valueFormat: {
-  type: String,
-  default: 'YYYY-MM-DD'
-}
+`disable-today` _Boolean_  
+是否禁止选择今天
 
-// 以下为DatePicker的同名prop
-options: Object,
-clearable: {
-  type: Boolean,
-  default: true
-},
-splitPanels: Boolean,
-transfer: Boolean,
-placeholder: String,
-disabled: Boolean,
-placement: String,
-```
+`value-format` _String_ （default `'YYYY-MM-DD'`）  
+用于格式化绑定时间
 
-**emits**
+以下为DatePicker的同名prop
 
-```js
-/**
- * 修改时触发
- * @param dates 开始结束时间组成的数组
- * @param type 当前日期类型 daterange | datetimerange
- */
-emit('change', dates, type)
-```
+`options` _Object_
+
+`clearable` _Boolean_ （default `true`）
+
+`split-panels` _Boolean_
+
+`transfer` _Boolean_
+
+`placeholder` _String_
+
+`disabled` _Boolean_
+
+`placement` _String_
+
+## emits
+
+`change` (dates, type)  
+修改时触发。`dates`：开始结束时间组成的数组，`type`：当前日期类型 daterange | datetimerange

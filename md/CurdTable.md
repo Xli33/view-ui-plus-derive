@@ -72,162 +72,98 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model双向绑定列表数据
-modelValue: {
-  type: Array,
-  default: () => []
-}
+`modelValue` _Array_ （default `[]`）  
+v-model双向绑定列表数据
 
-// iview Table columns
-columns: {
-  type: Array,
-  default: () => []
-}
+`columns` _Array_ （default `[]`）  
+iview Table columns
 
-// 隐藏控制列
-disabled: Boolean
+`disabled` _Boolean_  
+隐藏控制列
 
-// 可否增加数据，默认true
-addable: {
-  type: Boolean,
-  default: true
-}
+`addable` _Boolean_ （default `true`）  
+可否增加数据
 
-// 控制列宽度，默认90px
-actionWidth: {
-  type: Number,
-  default: 90
-}
+`action-width` _Number_ （default `90`）  
+控制列宽度
 
-// 控制列水平对齐，默认居中
-actionAlign: {
-  type: String,
-  default: 'center'
-}
+`action-align` _String_ （default `'center'`）  
+控制列水平对齐
 
-// 控制列是否固定
-actionFixed: String
+`action-fixed` _String_  
+控制列是否固定
 
-// 控制列表头文本
-actionText: String
+`action-text` _String_  
+控制列表头文本
 
-// 右侧控制列
-actionCol: {
-  type: Object,
-  default(props) {
-    return {
-      slot: 'action',
-      width: props.actionWidth,
-      align: props.actionAlign,
-      fixed: props.actionFixed
-    }
-  }
-}
+`action-col` _Object_  
+右侧控制列
 
-// 新增行时需要添加的数据
-addRow: {
-  type: Function,
-  default: () => []
-}
+`add-row` _Function_ （default `() => []`）  
+新增行时需要添加的数据
 
-// Table的border
-border: Boolean
-// Table的size
-size: String
+`border` _Boolean_  
+Table的border
 
-// 返回Promise以决定何时新增数据
-beforeAdd: Function
+`size` _String_  
+Table的size
 
-// 返回Promise以决定何时删除数据
-beforeRemove: Function
+`before-add` _Function_  
+返回Promise以决定何时新增数据
 
-// 新增按钮type
-addBtnType: {
-  type: String,
-  default: 'dashed'
-}
-// 新增按钮size
-addBtnSize: String
+`before-remove` _Function_  
+返回Promise以决定何时删除数据
 
-// 新增按钮的ghost
-addBtnGhost: {
-  type: Boolean,
-  default: false
-}
+`add-btn-type` _String_ （default `'dashed'`）  
+新增按钮type
 
-// 新增按钮的disabled
-addBtnDisabled: {
-  type: Boolean,
-  default(props) {
-    return !props.addable
-  }
-}
+`add-btn-size` _String_  
+新增按钮size
 
-// 传给新增Button的prop
-addBtn: Object
+`add-btn-ghost` _Boolean_ （default `false`）  
+新增按钮的ghost
 
-// 删除按钮type
-delBtnType: {
-  type: String,
-  default: 'warning'
-}
+`add-btn-disabled` _Boolean_  
+新增按钮的disabled
 
-// 删除按钮size
-delBtnSize: {
-  type: String,
-  default: 'small'
-}
+`add-btn` _Object_  
+传给新增Button的prop
 
-// 删除按钮的ghost
-delBtnGhost: {
-  type: Boolean,
-  default: true
-}
+`del-btn-type` _String_ （default `'warning'`）  
+删除按钮type
 
-// 传给删除按钮的prop
-delBtn: Object
+`del-btn-size` _String_ （default `'small'`）  
+删除按钮size
 
-// 新增按钮文本
-addText: String
+`del-btn-ghost` _Boolean_ （default `true`）  
+删除按钮的ghost
 
-// 是否隐藏每行的删除按钮，通过函数返回值决定
-hideDelBtn: Function
+`del-btn` _Object_  
+传给删除按钮的prop
 
-// 是否禁用每行删除按钮，通过函数返回值决定
-delBtnDisabled: {
-  type: Function,
-  default() {
-    return false
-  }
-}
-```
+`add-text` _String_  
+新增按钮文本
 
-**emits**
+`hide-del-btn` _Function_  
+是否隐藏每行的删除按钮，通过函数返回值决定
 
-```js
-/**
- * 新增后触发
- * @param row 新增的行
- */
-emit('add', row)
+`del-btn-disabled` _Function_ （default `() => false`）  
+是否禁用每行删除按钮，通过函数返回值决定
 
-/**
- * 删除后触发
- * @param row 删除的行
- */
-emit('remove', row)
+## emits
 
-/**
- * 增加或删除后触发
- * @param isAdd 是否新增了数据
- */
-emit('change', isAdd)
-```
+`add` (row)  
+新增后触发。`row`：新增的行
 
-**slots**
+`remove` (row)  
+删除后触发。`row`：删除的行
+
+`change` (isAdd)  
+增加或删除后触发。`isAdd`：是否新增了数据
+
+## slots
 
 ```js
 // 传给Table的动态slot，需要列配置中指定slot
@@ -240,11 +176,7 @@ e.g.
     }
 ]
 则可使用 <template #name="{row, index}"></template>
-
-/**
- * 每行删除按钮旁的更多内容
- * @param row 行
- * @param index
- */
-moreAction({ row, index })
 ```
+
+`moreAction({ row, index })`  
+每行删除按钮旁的更多内容。`row`：行，`index`：索引

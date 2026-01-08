@@ -39,67 +39,56 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// 双向绑定Modal的modelValue
-modelValue: Boolean
+`modelValue` _Boolean_  
+双向绑定Modal的modelValue
 
-// 确定按钮文本
-okText: String
+`ok-text` _String_  
+确定按钮文本
 
-// 确定按钮禁用状态
-okDisabled: Boolean
+`ok-disabled` _Boolean_  
+确定按钮禁用状态
 
-// 确定按钮加载状态
-okLoading: Boolean
+`ok-loading` _Boolean_  
+确定按钮加载状态
 
-// 传递给确定按钮的props
-ok: Object
+`ok` _Object_  
+传递给确定按钮的props
 
-// 取消按钮文本
-cancelText: String
+`cancel-text` _String_  
+取消按钮文本
 
-// 取消按钮加载状态
-cancelLoading: Boolean
+`cancel-loading` _Boolean_  
+取消按钮加载状态
 
-// 取消按钮禁用状态
-cancelDisabled: Boolean
+`cancel-disabled` _Boolean_  
+取消按钮禁用状态
 
-// 传递给取消按钮的props
-cancel: Object
+`cancel` _Object_  
+传递给取消按钮的props
 
-// 取消按钮type，默认 text
-cancelType: {
-  type: String,
-  default: 'text'
-}
+`cancel-type` _String_ （default `'text'`）  
+取消按钮type
 
-// 是否把取消按钮放到确定按钮右边
-rightCancel: Boolean
+`right-cancel` _Boolean_  
+是否把取消按钮放到确定按钮右边
 
-// 是否显示确定按钮
-hasOk: {
-  type: Boolean,
-  default: true
-}
-```
+`has-ok` _Boolean_ （default `true`）  
+是否显示确定按钮
 
-**emits**
+## emits
 
-```js
-// 点击确定按钮触发
-emit('ok')
+`ok`  
+点击确定按钮触发
 
-// 点击取消按钮触发。未监听该事件时会直接关闭Modal
-emit('cancel')
-```
+`cancel`  
+点击取消按钮触发。未监听该事件时会直接关闭Modal
 
-**slots**
+## slots
 
-```js
-// 显示在右下角按钮旁边的内容
-other()
-// 显示在底栏左侧的内容
-action()
-```
+`other()`  
+显示在右下角按钮旁边的内容
+
+`action()`  
+显示在底栏左侧的内容

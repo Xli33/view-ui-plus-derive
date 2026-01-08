@@ -23,65 +23,38 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model双向绑定选中值
-modelValue: Array
+`modelValue` _Array_  
+v-model双向绑定选中值
 
-// 全选框显示文本，默认“全选”
-title: String
+`title` _String_  
+全选框显示文本，默认“全选”
 
-// 选项数组，数组成员可以是数组或对象
-list: Array
+`list` _Array_  
+选项数组，数组成员可以是数组或对象
 
-// 各选项值对应list中的value键。如list是[{v:1,k:2}]，valueKey为 v 且 labelKey为 k, 则选项绑定值为 1，显示文本是 2
-valueKey: {
-  type: [String, Number],
-  default: 0
-}
+`value-key` _String | Number_ （default `0`）  
+各选项值对应list中的value键。如list是`[{v:1,k:2}]`，valueKey为 `v` 且 labelKey为 `k`, 则选项绑定值为 `1`，显示文本是 `2`
 
-// 各选项值对应list中的label键。如list是[{v:1,k:2}]，valueKey为 v 且 labelKey为 k, 则选项绑定值为 1，显示文本是 2
-labelKey: {
-  type: [String, Number],
-  default: 1
-}
+`label-key` _String | Number_ （default `1`）  
+各选项值对应list中的label键。如list是`[{v:1,k:2}]`，valueKey为 `v` 且 labelKey为 `k`, 则选项绑定值为 `1`，显示文本是 `2`
 
-// 同时设置valueKey & labelKey，优先级相对更高
-keyMap: {
-  type: Object,
-  default(props) {
-    return {
-      value: props.valueKey,
-      label: props.labelKey
-    }
-  }
-}
+`key-map` _Object_  
+同时设置valueKey & labelKey，优先级相对更高
 
-// 是否隐藏全选框
-hideAll: Boolean
+`hide-all` _Boolean_  
+是否隐藏全选框
 
-// 配合v-model:all双向绑定全选框的值，若全选中应为 true，否则 false
-all: Boolean
-```
+`all` _Boolean_  
+配合v-model:all双向绑定全选框的值，若全选中应为 `true`，否则 `false`
 
-**emits**
+## emits
 
-```js
-/**
- * 更改checkbox时触发
- * @param value 选中值
- * @param checkAll 是否全部选中
- */
-emit('change', value, checkAll)
-```
+`change` (value, checkAll)  
+更改checkbox时触发。`value`：选中值，`checkAll`：是否全部选中
 
-**slots**
+## slots
 
-```js
-/**
- * checkbox选项文本
- * @param item 数组项
- */
-default({item})
-```
+`default({item})`  
+checkbox选项文本

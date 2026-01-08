@@ -18,101 +18,74 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model:begin双向绑定开始时间
-begin: {
-  type: [Date, String],
-  default: ''
-}
+`begin` _Date | String_ （default `''`）  
+v-model:begin双向绑定开始时间
 
-// v-model:end双向绑定结束时间
-end: {
-  type: [Date, String],
-  default: ''
-}
+`end` _Date | String_ （default `''`）  
+v-model:end双向绑定结束时间
 
-// 可选的日期类型：date | month | year | datetime
-type: {
-  type: String,
-  default: 'date'
-}
+`type` _String_ （default `'date'`）  
+可选的日期类型：date | month | year | datetime
 
-// 禁用开始时间
-beginDisabled: Boolean
+`begin-disabled` _Boolean_  
+禁用开始时间
 
-// 禁用结束时间
-endDisabled: Boolean
+`end-disabled` _Boolean_  
+禁用结束时间
 
-// 是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天
-autoNext: {
-  type: Boolean,
-  default: true
-}
+`auto-next` _Boolean_ （default `true`）  
+是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天
 
-// 是否默认限制开始时间
-limitBegin: {
-  type: Boolean,
-  default: true
-}
+`limit-begin` _Boolean_ （default `true`）  
+是否默认限制开始时间
 
-// 开始组件的class
-beginClass: [String, Array, Object]
+`begin-class` _String | Array | Object_  
+开始组件的class
 
-// 结束组件的class
-endClass: [String, Array, Object]
+`end-class` _String | Array | Object_  
+结束组件的class
 
-// 开始时间placeholder
-beginHolder: String
+`begin-holder` _String_  
+开始时间placeholder
 
-// 结束时间placeholder
-endHolder: String
+`end-holder` _String_  
+结束时间placeholder
 
-// 一次性传给开始组件的prop
-beginAttr: Object
+`begin-attr` _Object_  
+一次性传给开始组件的prop
 
-// 一次性传给结束组件的prop
-endAttr: Object
+`end-attr` _Object_  
+一次性传给结束组件的prop
 
-// 中间连接符的class
-joinerClass: [String, Object]
+`joiner-class` _String | Object_  
+中间连接符的class
 
-// 是否禁止选择当天
-disableToday: Boolean
+`disable-today` _Boolean_  
+是否禁止选择当天
 
-// 是否隐藏连接符
-hideJoiner: Boolean
+`hide-joiner` _Boolean_  
+是否隐藏连接符
 
-// iview DatePicer的日期格式
-format: String
+`format` _String_  
+iview DatePicer的日期格式
 
-// 以下为DatePicker的同名prop
-clearable: Boolean
-disabled: Boolean
-transfer: Boolean
-```
+以下为DatePicker的同名prop
 
-**emits**
+`clearable` _Boolean_
 
-```js
-/**
- * 更改开始时间时触发
- * @param begin 开始时间
- */
-emit('change-begin', begin)
+`disabled` _Boolean_
 
-/**
- * 更改结束时间时触发
- * @param end 结束时间
- */
-emit('change-end', end)
+`transfer` _Boolean_
 
-/**
- * 更改时间时触发
- * @param begin 开始时间
- * @param end 结束时间
- * @param isEnd 是否修改的结束时间
- */
-emit('change', begin, end, isEnd)
-```
+## emits
+
+`change-begin` (begin)  
+更改开始时间时触发。`begin`：开始时间
+
+`change-end` (end)  
+更改结束时间时触发。`end`：结束时间
+
+`change` (begin, end, isEnd)  
+更改时间时触发。`begin`：开始时间，`end`：结束时间，`isEnd`：是否修改的结束时间

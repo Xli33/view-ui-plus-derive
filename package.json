@@ -70,6 +70,8 @@
     "url": "https://github.com/Xli33/view-ui-plus-derive/issues"
   },
   "homepage": "https://github.com/Xli33/view-ui-plus-derive#readme",
+  "unpkg": "dist/umd/index.js",
+  "jsdelivr": "dist/umd/index.js",
   "peerDependencies": {
     "utils-where": "^0.4.3"
   },

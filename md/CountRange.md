@@ -17,103 +17,78 @@
 </script>
 ```
 
-**props**
+## props
 
-```js
-// v-model:begin双向绑定最小值
-begin: {
-  type: Number,
-  default: null
-}
+`begin` _Number_ （default `null`）  
+v-model:begin双向绑定最小值
 
-// v-model:end双向绑定最大值
-end: {
-  type: Number,
-  default: null
-}
+`end` _Number_ （default `null`）  
+v-model:end双向绑定最大值
 
-// 允许的最小值，默认0
-min: {
-  type: Number,
-  default: 0
-}
+`min` _Number_ （default `0`）  
+允许的最小值
 
-// 允许的最大值，默认9999999999
-max: {
-  type: Number,
-  default: 9999999999
-}
+`max` _Number_ （default `9999999999`）  
+允许的最大值
 
-// 禁用整个组件
-disabled: Boolean
+`disabled` _Boolean_  
+禁用整个组件
 
-// 禁用最小值
-minDisabled: Boolean
+`min-disabled` _Boolean_  
+禁用最小值
 
-// 禁用最大值
-maxDisabled: Boolean
+`max-disabled` _Boolean_  
+禁用最大值
 
-// 最小值组件class
-minClass: [String, Array, Object]
+`min-class` _String | Array | Object_  
+最小值组件class
 
-// 最大值组件class
-maxClass: [String, Array, Object]
+`max-class` _String | Array | Object_  
+最大值组件class
 
-// 最小值占位文本
-minHolder: String
+`min-holder` _String_  
+最小值占位文本
 
-// 最大值占位文本
-maxHolder: String
+`max-holder` _String_  
+最大值占位文本
 
-// 传递给最小值组件的props
-minAttr: Object
+`min-attr` _Object_  
+传递给最小值组件的props
 
-// 传递给最大值组件的props
-maxAttr: Object
+`max-attr` _Object_  
+传递给最大值组件的props
 
-// 中间连接部分class
-joinerClass: [String, Object]
+`joiner-class` _String | Object_  
+中间连接部分class
 
-// 是否隐藏连接部分
-hideJoiner: Boolean
+`hide-joiner` _Boolean_  
+是否隐藏连接部分
 
-// 以下为InputNumber的同名prop
-controlsOutside: Boolean
-step: Number
-readonly: Boolean
-editable: {
-  type: Boolean,
-  default: true
-}
-precision: Number
-formatter: Function
-parser: Function
-activeChange: {
-  type: Boolean,
-  default: true
-}
-```
+以下为InputNumber的同名prop
 
-**emits**
+`controls-outside` _Boolean_
 
-```js
-/**
- * 最小值变化后触发
- * @param value 最小值
- */
-emit('change-min', value)
+`step` _Number_
 
-/**
- * 最大值变化后触发
- * @param value 最大值
- */
-emit('change-max', value)
+`readonly` _Boolean_
 
-/**
- * 任一值变化后触发
- * @param begin 最小值
- * @param end 最大值
- * @param isMax 是否修改的最大值
- */
-emit('change', begin, end, isMax)
-```
+`editable` _Boolean_ （default `true`）
+
+`precision` _Number_
+
+`formatter` _Function_
+
+`parser` _Function_
+
+`active-change` _Boolean_ （default `true`）
+
+## emits
+
+`change-min` (value)  
+最小值变化后触发。`value`：最小值
+
+`change-max` (value)  
+最大值变化后触发。`value`：最大值
+
+`change` (begin, end, isMax)  
+任一值变化后触发。`begin`：最小值，`end`：最大值，`isMax`：是否修改的最大值

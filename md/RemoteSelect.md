@@ -27,139 +27,107 @@
 </script>
 ```
 
-**props**  
+## props
+
 除以下prop，可传递Select的其它prop，如filterable
 
-```js
-// v-model双向绑定选中值
-modelValue: [String, Array, Number]
+`modelValue` _String | Array | Number_  
+v-model双向绑定选中值
 
-// 可通过v-model:list双向绑定选项列表
-list: Array
+`list` _Array_  
+可通过v-model:list双向绑定选项列表
 
-// 是否多选
-multiple: Boolean
+`multiple` _Boolean_  
+是否多选
 
-// 是否将选项的value作为Option的key，默认以v-for的index作为key
-valueAsKey: Boolean
+`value-as-key` _Boolean_  
+是否将选项的value作为Option的key，默认以v-for的index作为key
 
-// 选项对应value的key
-valueKey: {
-  type: String,
-  default: 'value'
-}
+`value-key` _String_ （default `'value'`）  
+选项对应value的key
 
-// 选项对应文本的key
-labelKey: {
-  type: String,
-  default: 'label'
-}
+`label-key` _String_ （default `'label'`）  
+选项对应文本的key
 
-// 同时设置 valueKey 与 labelKey，优先级更高
-keyMap: {
-  type: Object,
-  default(props) {
-    return {
-      value: props.valueKey,
-      label: props.labelKey
-    }
-  }
-}
+`key-map` _Object_  
+同时设置 valueKey 与 labelKey，优先级更高
 
-// 查询数据的函数/方法，结果为Falsy则认为请求失败，可返回一个Promise<result>。例如使用axios.get()
-method: Function
+`method` _Function_  
+查询数据的函数/方法，结果为Falsy则认为请求失败，可返回一个Promise<result>。例如使用axios.get()
 
-// 可通过v-model:refresh获取组件内部的查询方法
-refresh: Function
+`refresh` _Function_  
+可通过v-model:refresh获取组件内部的查询方法
 
-// 处理 method 成功返回后的结果
-process: Function
+`process` _Function_  
+处理 method 成功返回后的结果
 
-// 调用method时的参数
-param: [Object, Function, String]
+`param` _Object | Function | String_  
+调用method时的参数
 
-// 通过v-model:chosen获取选中对象
-chosen: [Object, Array]
+`chosen` _Object | Array_  
+通过v-model:chosen获取选中对象
 
-// 是否挂载后立即请求，否则在点开时请求
-autoGet: Boolean
+`auto-get` _Boolean_  
+是否挂载后立即请求，否则在点开时请求
 
-// 修改Option的label，参数分别为：当前项，当前项索引
-formatLabel: Function
+`format-label` _Function_  
+修改Option的label，参数分别为：当前项，当前项索引
 
-// 点开获取数据时根据该函数返回值确定可否发送请求
-check: Function
+`check` _Function_  
+点开获取数据时根据该函数返回值确定可否发送请求
 
-// 是否仅显示选中项的文本
-textMode: Boolean
+`text-mode` _Boolean_  
+是否仅显示选中项的文本
 
-// 修改当启用textMode时显示的文本，参数：选中项
-textFormat: Function
+`text-format` _Function_  
+修改当启用textMode时显示的文本，参数：选中项
 
-/**
- * 关联值，该值变化后会清空绑定值与选项
- *
- * @example 当 some 变化后，<RemoteSelect>的值与选项都会清空
- * <Select v-model="some" ><Option value="1">1</Option></Select>
- * <RemoteSelect :parentCode="some" />
- */
-parentCode: [String, Array, Number]
+`parent-code` _String | Array | Number_  
+关联值，该值变化后会清空绑定值与选项
 
-// 用于判断是否禁用每一项Option，参数：当前项，当前项索引
-optionDisabled: Function
-
-// 用于设置Option的tag，参数：当前项，当前项索引
-optionTag: Function
-
-// 手动处理获取选中项的过程，参数：{ multiple, keyMap, list, value }
-getSelected: Function
-
-// 启用则根据绑定的list判断是否需要在展开时发送请求
-cache: Boolean
-
-// 手动获取数据，此时method和param不生效
-loader: Function
-
-// 开启后则展开时仅当parentCode有效才会发送请求
-strict: Boolean
-
-// 是否使用 v-iview-select:all 增加一键全选功能，仅多选模式生效
-all: {
-  type: Boolean,
-  default: false
-}
+```jsx
+当 some 变化后，<RemoteSelect>的值与选项都会清空
+<select v-model="some">
+  <option value="1">1</option>
+</select>
+<RemoteSelect :parentCode="some" /></RemoteSelect>
 ```
 
-**emits**  
+`option-disabled` _Function_  
+用于判断是否禁用每一项Option，参数：当前项，当前项索引
+
+`option-tag` _Function_  
+用于设置Option的tag，参数：当前项，当前项索引
+
+`get-selected` _Function_  
+手动处理获取选中项的过程，参数：`{ multiple, keyMap, list, value }`
+
+`cache` _Boolean_  
+启用则根据绑定的list判断是否需要在展开时发送请求
+
+`loader` _Function_  
+手动获取数据，此时method和param不生效
+
+`strict` _Boolean_  
+开启后则展开时仅当parentCode有效才会发送请求
+
+`all` _Boolean_ （default `false`）  
+是否使用 `v-iview-select:all` 增加一键全选功能，仅多选模式生效
+
+## emits
+
 除以下事件，可监听Select的其它事件，如on-change
 
-```js
-/**
- * 成功加载数据后触发
- * @param value 返回的列表结果，应该是数组
- */
-emit('load', value)
-```
+`load` (value)  
+成功加载数据后触发。`value`: 返回的列表结果，应该是数组
 
-##### **slots**
+## slots
 
-```js
-/**
- * 选项显示的内容
- * @param item 单个选项
- * @param index 选项index
- */
-default({ item, index })
+`default({ item, index })`  
+选项显示的内容。`item`: 单个选项，`index`: 选项index
 
-/**
- * 替换<Select><Option /></Select>中的整个Option
- * @param list 选项数组
- */
-dropdown( { list })
+`dropdown({ list })`  
+替换`<Select><Option /></Select>`中的整个Option。`list`: 选项数组
 
-/**
- * textMode对应的文本内容
- * @param text 选中项
- */
-text( { text })
-```
+`text({ text })`  
+textMode对应的文本内容。`text`: 选中项

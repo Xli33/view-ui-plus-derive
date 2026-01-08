@@ -21,21 +21,20 @@
 </template>
 ```
 
-**props**
+## props
 
-```js
-// 前置文本
-prepend: String
-// 后置文本
-append: String
-```
+`prepend` _String_  
+前置文本
 
-**slots**
+`append` _String_  
+后置文本
 
-```js
-default()
-// 前置内容
-prepend()
-// 后置内容
-append()
-```
+## slots
+
+`default()`
+
+`prepend()`  
+前置内容
+
+`append()`  
+后置内容

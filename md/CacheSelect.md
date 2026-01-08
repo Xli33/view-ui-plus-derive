@@ -1,4 +1,4 @@
-#### CacheSelect
+# CacheSelect
 
 避免重复调用远程接口的RemoteSelect，同一个cacheId对应只触发一次请求
 
@@ -57,4 +57,4 @@ emit('change', value)
 ```
 
 **slots**  
-同RemoteSelect [slots](#slots)
+同RemoteSelect [slots](RemoteSelect.md#slots)

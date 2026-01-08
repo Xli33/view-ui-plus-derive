@@ -146,11 +146,11 @@ autoRemain: Boolean
 
 /**
  * 计算Table的maxHeight时，Table距离视口底部的距离
- * @default 80
+ * @default 45
  */
 bottomDis: {
   type: [Number, String],
-  default: 80
+  default: 45
 }
 
 border: Boolean

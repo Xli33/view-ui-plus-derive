@@ -30,8 +30,8 @@ export default defineConfig(({ command }) => {
     Object.entries({
       iviewDerive: 'src/index.ts',
       iviewMod: 'src/iview-mod.ts',
-      iviewDeriveZHCN: 'src/locale/zh-CN.ts',
-      iviewDeriveENUS: 'public/locale/en-US.js'
+      iviewDeriveZhCn: 'src/locale/zh-CN.ts',
+      iviewDeriveEnUs: 'public/locale/en-US.js'
     }).forEach(async (e) => {
       await build({
         configFile: false,

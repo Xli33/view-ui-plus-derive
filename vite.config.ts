@@ -77,7 +77,12 @@ export default defineConfig(({ command }) => {
         rollupTypes: true,
         // cleanVueFileName: true,
         // insertTypesEntry: false,
-        include: ['src/index.ts', 'src/type.ts', 'src/components/*.vue', 'src/directives/*.ts'],
+        include: [
+          'src/index.ts',
+          'src/type.ts',
+          'src/components/*.{vue,ts}',
+          'src/directives/*.ts'
+        ],
         afterBuild() {
           // console.log(fileMap)
           unlinkSync('dist/iview-mod.d.ts')
@@ -131,11 +136,11 @@ export default defineConfig(({ command }) => {
         output: {
           // 在 UMD 构建模式下为这些外部化的依赖
           // 提供一个全局变量
-          globals: {
-            vue: 'Vue',
-            'view-ui-plus': 'ViewUIPlus',
-            dayjs: 'dayjs'
-          },
+          // globals: {
+          //   vue: 'Vue',
+          //   'view-ui-plus': 'ViewUIPlus',
+          //   dayjs: 'dayjs'
+          // },
           manualChunks(id) {
             // console.log(id)
             // 按组件对应名输出各自的css

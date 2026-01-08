@@ -4,39 +4,26 @@ import type { Obj } from './type'
 // import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 // import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 
-import AllCheckbox, { type CheckValue } from './components/AllCheckbox.vue'
-import BaseSwitch, { type SwitchValue } from './components/BaseSwitch.vue'
-import Combi from './components/Combi.vue'
-import CountRange, { type CountValue } from './components/CountRange.vue'
-import CacheSelect from './components/CacheSelect.vue'
-import RemoteSelect, { type SelectValue } from './components/RemoteSelect.vue'
-import CurdTable from './components/CurdTable.vue'
-import DateRange, { type DateValue } from './components/DateRange.vue'
-import DateRangePicker from './components/DateRangePicker.vue'
-import MCalendar, { type MCalendarCell } from './components/MCalendar.vue'
-import ModalFooter from './components/ModalFooter.vue'
-import PageTable from './components/PageTable.vue'
-import ToggleColumn from './components/ToggleColumn.vue'
+// import AllCheckbox, { type CheckValue } from './components/AllCheckbox.vue'
+// import BaseSwitch, { type SwitchValue } from './components/BaseSwitch.vue'
+// import Combi from './components/Combi.vue'
+// import CountRange, { type CountValue } from './components/CountRange.vue'
+// import CacheSelect from './components/CacheSelect.vue'
+// import RemoteSelect, { type SelectValue } from './components/RemoteSelect.vue'
+// import CurdTable from './components/CurdTable.vue'
+// import DateRange, { type DateValue } from './components/DateRange.vue'
+// import DateRangePicker from './components/DateRangePicker.vue'
+// import MCalendar, { type MCalendarCell } from './components/MCalendar.vue'
+// import ModalFooter from './components/ModalFooter.vue'
+// import PageTable from './components/PageTable.vue'
+// import ToggleColumn from './components/ToggleColumn.vue'
+import * as allComponents from './components'
 import { $i18n } from './locale/i18n'
 import { iviewSelect } from './directives' // 用 import * as dirs from './directives'会导致生成额外的chunk，内容是通过Object.freeze处理过的只读对象
 import { classPrefix } from './utils'
 
-const components = [
-    AllCheckbox,
-    BaseSwitch,
-    Combi,
-    CountRange,
-    CacheSelect,
-    RemoteSelect,
-    CurdTable,
-    DateRange,
-    DateRangePicker,
-    MCalendar,
-    ModalFooter,
-    PageTable,
-    ToggleColumn
-  ],
-  directives = { iviewSelect }
+const components = Object.values(allComponents),
+  directives = Object.entries({ iviewSelect })
 // dayjsPlugin = {
 //   isSameOrBefore,
 //   isSameOrAfter
@@ -64,7 +51,7 @@ export function install(
   components.forEach((component) => {
     app.component(component.name!, component)
   })
-  Object.entries(directives).forEach((e) => {
+  directives.forEach((e) => {
     app.directive(e[0], e[1])
   })
   if (opt.i18n) {
@@ -88,22 +75,24 @@ export default {
   install
 }
 
+export * from './components'
+
 export {
-  AllCheckbox,
-  BaseSwitch,
-  Combi,
-  CountRange,
-  CacheSelect,
-  RemoteSelect,
-  CurdTable,
-  DateRange,
-  DateRangePicker,
-  MCalendar,
-  ModalFooter,
-  PageTable,
-  ToggleColumn,
+  // AllCheckbox,
+  // BaseSwitch,
+  // Combi,
+  // CountRange,
+  // CacheSelect,
+  // RemoteSelect,
+  // CurdTable,
+  // DateRange,
+  // DateRangePicker,
+  // MCalendar,
+  // ModalFooter,
+  // PageTable,
+  // ToggleColumn,
   // vue指令
   iviewSelect
 }
 
-export type { CheckValue, CountValue, MCalendarCell, DateValue, SelectValue, SwitchValue }
+// export type { CheckValue, CountValue, MCalendarCell, DateValue, SelectValue, SwitchValue }

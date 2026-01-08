@@ -3,7 +3,7 @@
     <Col>
       <slot name="other"></slot>
     </Col>
-    <Col class="flex">
+    <Col>
       <template v-if="!rightCancel">
         <Button
           :disabled="cancelDisabled"

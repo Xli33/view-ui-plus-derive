@@ -1,6 +1,20 @@
 # Changelog
 
 
+## [0.2.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.3...v0.2.0) (2026-01-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* 调整umd语言对象的全局变量名
+
+* 调整umd语言对象的全局变量名 ([2d42930](https://github.com/Xli33/view-ui-plus-derive/commit/2d429309f3ae18d2f7868924a9cb7ffc8b9761b9))
+
+
+### Bug Fixes
+
+* 完善逻辑，当未全局安装view-ui-plus时也能正常局部引入使用 ([2bb9683](https://github.com/Xli33/view-ui-plus-derive/commit/2bb96833a68f541ea50aac09c6f01d38d5fa24b0))
+
 ## [0.1.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.2...v0.1.3) (2025-12-21)
 
 

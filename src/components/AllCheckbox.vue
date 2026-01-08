@@ -22,7 +22,7 @@
 
 import type { Obj } from '@/type'
 import { type PropType, computed, onMounted, watch, shallowRef } from 'vue'
-// import { Checkbox, CheckboxGroup } from 'view-ui-plus' // 待必需才启用
+import { Checkbox, CheckboxGroup } from 'view-ui-plus'
 import { $i18n } from '@/locale/i18n'
 // 声明组件 name 不建议用 definOptions，因为 setup 内部有内容时，哪怕只有一行注释，依旧会导致无名组件被赋予 __name 属性
 // 这时若用 defineOptions 声明了 name，组件就会有一个多余的 __name

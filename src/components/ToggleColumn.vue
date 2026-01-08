@@ -48,7 +48,7 @@
 
 import type { Obj } from '@/type'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-// import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus' // 待必需才启用
+import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus'
 import { deepMerge, getPathValue, makeObjectByPath, setPathValue } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import { useClass } from '@/utils'

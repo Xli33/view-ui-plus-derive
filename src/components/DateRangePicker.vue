@@ -9,7 +9,7 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :placement="placement"
-    @on-change="change">
+    @on-change="change as any">
   </DatePicker>
 </template>
 
@@ -17,7 +17,7 @@
 // iview date-picker type=range组件
 
 import { type PropType, computed, getCurrentInstance } from 'vue'
-// import { DatePicker } from 'view-ui-plus' // 待必需才启用
+import { DatePicker } from 'view-ui-plus'
 
 export default {
   name: 'DateRangePicker'
@@ -73,7 +73,21 @@ const props = defineProps({
   transfer: Boolean,
   placeholder: String,
   disabled: Boolean,
-  placement: String,
+  placement: String as PropType<
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end'
+    | undefined
+  >,
   /**
    * 用于格式化绑定时间，默认 YYYY-MM-DD
    */
@@ -99,7 +113,7 @@ const dateOptions = computed(
           disabledDate: (date: Date) =>
             date && date.valueOf() < Date.now() - (props.disableToday ? 0 : 86400000)
         }
-      : null)
+      : undefined)
 )
 
 const dateRange = computed({

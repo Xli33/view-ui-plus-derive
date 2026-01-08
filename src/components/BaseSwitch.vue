@@ -18,7 +18,7 @@
 // Switch，避免反复写slot
 
 import { ref, watch } from 'vue'
-// import { Switch } from 'view-ui-plus' // 待必需才启用
+import { Switch } from 'view-ui-plus'
 
 export default {
   name: 'BaseSwitch'

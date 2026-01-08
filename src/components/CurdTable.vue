@@ -38,9 +38,9 @@
 <script lang="ts">
 // 增删表格组件
 
-import type { Obj } from '@/type'
+import type { BtnSize, BtnType, Obj } from '@/type'
 import { type PropType, computed, ref, watch } from 'vue'
-// import { Table, Button } from 'view-ui-plus' // 待必需才启用
+import { Table, Button } from 'view-ui-plus'
 import { $i18n } from '@/locale/i18n'
 
 export default {
@@ -127,10 +127,10 @@ const props = defineProps({
    */
   beforeRemove: Function,
   addBtnType: {
-    type: String,
+    type: String as PropType<BtnType>,
     default: 'dashed'
   },
-  addBtnSize: String,
+  addBtnSize: String as PropType<BtnSize>,
   addBtnGhost: {
     type: Boolean,
     default: false
@@ -146,11 +146,11 @@ const props = defineProps({
     default: () => ({})
   },
   delBtnType: {
-    type: String,
+    type: String as PropType<BtnType>,
     default: 'warning'
   },
   delBtnSize: {
-    type: String,
+    type: String as PropType<BtnSize>,
     default: 'small'
   },
   delBtnGhost: {

@@ -50,9 +50,10 @@
 <script lang="ts">
 // Modal底部组件
 
-import { getCurrentInstance } from 'vue'
-// import { Row, Col, Button } from 'view-ui-plus' // 待必需才启用
+import { getCurrentInstance, type PropType } from 'vue'
+import { Row, Col, Button } from 'view-ui-plus'
 import { $i18n } from '@/locale/i18n'
+import type { BtnType } from '@/type'
 
 export default {
   name: 'ModalFooter',
@@ -99,7 +100,7 @@ defineProps({
    * 取消按钮type，默认 text
    */
   cancelType: {
-    type: String,
+    type: String as PropType<BtnType>,
     default: 'text'
   },
   /**

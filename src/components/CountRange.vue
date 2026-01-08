@@ -10,7 +10,7 @@
 // 数值范围组件
 
 import { type PropType, computed, ref, watch } from 'vue'
-// import { InputNumber } from 'view-ui-plus' // 待必需才启用
+import { InputNumber } from 'view-ui-plus'
 import { $i18n } from '@/locale/i18n'
 import { useClass } from '@/utils'
 

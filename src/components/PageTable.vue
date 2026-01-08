@@ -68,7 +68,7 @@
         :loading="loading"
         :height="table.height"
         :max-height="table.maxHeight"
-        @on-row-click="clickRow">
+        @on-row-click="clickRow as any">
         <!-- @on-column-width-resize="changeColWidth"
         @on-sort-change="changeSort"
         @on-filter-change="afterFilter" -->
@@ -117,8 +117,7 @@ import {
   shallowRef,
   useTemplateRef
 } from 'vue'
-import { Checkbox, type Page, type Table } from 'view-ui-plus'
-// import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus' // 待必需才启用
+import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus'
 import { getPathValue, omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import ToggleColumn from './ToggleColumn.vue'
@@ -317,9 +316,9 @@ const emit = defineEmits<{
 let initHeight: number // 未传入height时自动计算出的height
 let initMaxHeight: number // 未传入maxHeight时自动计算出的maxHeight
 const loading = defineModel('loading', { type: Boolean }),
-  refTable = useTemplateRef<typeof Table>('tableRef'),
+  refTable = useTemplateRef<any>('tableRef'),
   refEl = useTemplateRef('elRef'),
-  refPage = useTemplateRef<typeof Page>('pageRef'),
+  refPage = useTemplateRef<any>('pageRef'),
   maximized = ref(false),
   tableColumns = shallowRef<Obj[]>() as Ref<Obj[]>,
   table = reactive({

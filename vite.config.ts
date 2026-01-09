@@ -83,6 +83,26 @@ export default defineConfig(({ command }) => {
           'src/components/*.{vue,ts}',
           'src/directives/*.ts'
         ],
+        // 写入.d.ts前去除部分组件中内联的其它组件类型声明
+        beforeWriteFile(filePath, content) {
+          if (filePath.includes('CacheSelect.vue')) {
+            // console.log('found:', content.match(/sel:.+?\}\)\s*\|\s*null;/s)?.[0])
+            return {
+              filePath,
+              content: content.replace(/sel:.+?\}\)\s*\|\s*null;/s, 'sel: any')
+            }
+          }
+          if (filePath.includes('PageTable.vue')) {
+            // console.log('found:', content.match(/tableRef:.+\| null;/s)?.[0])
+            return {
+              filePath,
+              content: content.replace(
+                /tableRef:.+\| null;\s*}, HTMLDivElement>/s,
+                'tableRef: any;\npageRef: any;\n}, HTMLDivElement>'
+              )
+            }
+          }
+        },
         afterBuild() {
           // console.log(fileMap)
           unlinkSync('dist/iview-mod.d.ts')

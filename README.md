@@ -307,13 +307,13 @@ import 'view-ui-plus-derive/iview-mod.css'
 更易于使用的Switch
 
 [RemoteSelect](./md/RemoteSelect.md)  
-远程Select
+获取远程数据的Select，默认在展开时才触发请求
 
 [CacheSelect](./md/CacheSelect.md)  
 避免重复调用远程接口的RemoteSelect，同一个cacheId对应只触发一次请求
 
 [Combi](./md/Combi.md)  
-类似iview Input[append prepend]的组合框
+类似iview Input[append prepend]样式的组合框
 
 [CountRange](./md/CountRange.md)  
 数值范围组件

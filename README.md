@@ -13,8 +13,6 @@ or
 yarn add view-ui-plus-derive
 ```
 
-[TOC]
-
 ### CDN引入
 
 ```html

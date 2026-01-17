@@ -99,7 +99,7 @@ createApp(App).use(ViewUIPlus).component(Combi.name, Combi).mount('#app')
 仅部分组件需要对应样式，如图
 ![css](./assets/import%20component%20css.png)
 
-### 国际化
+## 国际化
 
 目前提供中英翻译，默认显示简体中文。在安装插件时可传入需要显示的语言，若使用vue-i18n，则只需传入vue-i18n实例
 
@@ -228,7 +228,7 @@ createApp(App)
   .mount('#app')
 ```
 
-### 调优
+## 调优
 
 - 为多选模式的iview Select添加全选功能。**若全局安装了插件则无需再次注册指令**
 
@@ -298,7 +298,7 @@ import 'view-ui-plus-derive/iview-mod.css'
 <link rel="stylesheet" href="https://unpkg.com/view-ui-plus-derive/dist/iview-mod.css" />
 ```
 
-### 组件
+## 组件
 
 [AllCheckbox](./md/AllCheckbox.md)  
 提供全选功能的CheckboxGroup

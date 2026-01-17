@@ -1,15 +1,15 @@
-# BaseSwitch
+## BaseSwitch
 
 更易于使用的Switch
 
-```html
+```vue
 <template>
   <BaseSwitch v-model="toggle" true-label="开" false-label="关"></BaseSwitch>
 </template>
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 
-  const toggle = ref('T')
+const toggle = ref('T')
 </script>
 ```
 

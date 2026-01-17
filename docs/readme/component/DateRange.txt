@@ -1,0 +1,41 @@
+<h2>DateRange</h2>
+<p>组合形式的日期范围组件</p>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">DateRange</span></span>
+<span class="line"><span style="color:#C792EA">    v-model:begin</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">beginDate</span><span style="color:#89DDFF">"</span></span>
+<span class="line"><span style="color:#C792EA">    v-model:end</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">endDate</span><span style="color:#89DDFF">"</span></span>
+<span class="line"><span style="color:#C792EA">    clearable</span></span>
+<span class="line"><span style="color:#C792EA">    style</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">width: 240px</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">DateRange</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> {</span><span style="color:#BABED8"> ref</span><span style="color:#89DDFF"> }</span><span style="color:#89DDFF;font-style:italic"> from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">vue</span><span style="color:#89DDFF">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> beginDate </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">''</span><span style="color:#BABED8">)</span><span style="color:#89DDFF">,</span></span>
+<span class="line"><span style="color:#BABED8">  endDate </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">''</span><span style="color:#BABED8">)</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+<h2>props</h2>
+<p><code>begin</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:begin双向绑定开始时间</p>
+<p><code>end</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:end双向绑定结束时间</p>
+<p><code>type</code> <em>String</em> （default <code>&#39;date&#39;</code>）<br>可选的日期类型：date | month | year | datetime</p>
+<p><code>begin-disabled</code> <em>Boolean</em><br>禁用开始时间</p>
+<p><code>end-disabled</code> <em>Boolean</em><br>禁用结束时间</p>
+<p><code>auto-next</code> <em>Boolean</em> （default <code>true</code>）<br>是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天</p>
+<p><code>limit-begin</code> <em>Boolean</em> （default <code>true</code>）<br>是否默认限制开始时间</p>
+<p><code>begin-class</code> <em>String | Array | Object</em><br>开始组件的class</p>
+<p><code>end-class</code> <em>String | Array | Object</em><br>结束组件的class</p>
+<p><code>begin-holder</code> <em>String</em><br>开始时间placeholder</p>
+<p><code>end-holder</code> <em>String</em><br>结束时间placeholder</p>
+<p><code>begin-attr</code> <em>Object</em><br>一次性传给开始组件的prop</p>
+<p><code>end-attr</code> <em>Object</em><br>一次性传给结束组件的prop</p>
+<p><code>joiner-class</code> <em>String | Object</em><br>中间连接符的class</p>
+<p><code>disable-today</code> <em>Boolean</em><br>是否禁止选择当天</p>
+<p><code>hide-joiner</code> <em>Boolean</em><br>是否隐藏连接符</p>
+<p><code>format</code> <em>String</em><br>iview DatePicer的日期格式</p>
+<p>以下为DatePicker的同名prop</p>
+<p><code>clearable</code> <em>Boolean</em></p>
+<p><code>disabled</code> <em>Boolean</em></p>
+<p><code>transfer</code> <em>Boolean</em></p>
+<h2>emits</h2>
+<p><code>change-begin</code> (begin)<br>更改开始时间时触发。<code>begin</code>：开始时间</p>
+<p><code>change-end</code> (end)<br>更改结束时间时触发。<code>end</code>：结束时间</p>
+<p><code>change</code> (begin, end, isEnd)<br>更改时间时触发。<code>begin</code>：开始时间，<code>end</code>：结束时间，<code>isEnd</code>：是否修改的结束时间</p>

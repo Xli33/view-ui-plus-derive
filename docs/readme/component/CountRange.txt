@@ -1,0 +1,43 @@
+<h2>CountRange</h2>
+<p>数值范围组件</p>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">CountRange</span></span>
+<span class="line"><span style="color:#C792EA">    v-model:begin</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">minNum</span><span style="color:#89DDFF">"</span></span>
+<span class="line"><span style="color:#C792EA">    v-model:end</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">maxNum</span><span style="color:#89DDFF">"</span></span>
+<span class="line"><span style="color:#C792EA">    @change-min</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">(v) => console.log(v)</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">CountRange</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> {</span><span style="color:#BABED8"> ref</span><span style="color:#89DDFF"> }</span><span style="color:#89DDFF;font-style:italic"> from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">vue</span><span style="color:#89DDFF">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> minNum </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">()</span><span style="color:#89DDFF">,</span></span>
+<span class="line"><span style="color:#BABED8">  maxNum </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">()</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+<h2>props</h2>
+<p><code>begin</code> <em>Number</em> （default <code>null</code>）<br>v-model:begin双向绑定最小值</p>
+<p><code>end</code> <em>Number</em> （default <code>null</code>）<br>v-model:end双向绑定最大值</p>
+<p><code>min</code> <em>Number</em> （default <code>0</code>）<br>允许的最小值</p>
+<p><code>max</code> <em>Number</em> （default <code>9999999999</code>）<br>允许的最大值</p>
+<p><code>disabled</code> <em>Boolean</em><br>禁用整个组件</p>
+<p><code>min-disabled</code> <em>Boolean</em><br>禁用最小值</p>
+<p><code>max-disabled</code> <em>Boolean</em><br>禁用最大值</p>
+<p><code>min-class</code> <em>String | Array | Object</em><br>最小值组件class</p>
+<p><code>max-class</code> <em>String | Array | Object</em><br>最大值组件class</p>
+<p><code>min-holder</code> <em>String</em><br>最小值占位文本</p>
+<p><code>max-holder</code> <em>String</em><br>最大值占位文本</p>
+<p><code>min-attr</code> <em>Object</em><br>传递给最小值组件的props</p>
+<p><code>max-attr</code> <em>Object</em><br>传递给最大值组件的props</p>
+<p><code>joiner-class</code> <em>String | Object</em><br>中间连接部分class</p>
+<p><code>hide-joiner</code> <em>Boolean</em><br>是否隐藏连接部分</p>
+<p>以下为InputNumber的同名prop</p>
+<p><code>controls-outside</code> <em>Boolean</em></p>
+<p><code>step</code> <em>Number</em></p>
+<p><code>readonly</code> <em>Boolean</em></p>
+<p><code>editable</code> <em>Boolean</em> （default <code>true</code>）</p>
+<p><code>precision</code> <em>Number</em></p>
+<p><code>formatter</code> <em>Function</em></p>
+<p><code>parser</code> <em>Function</em></p>
+<p><code>active-change</code> <em>Boolean</em> （default <code>true</code>）</p>
+<h2>emits</h2>
+<p><code>change-min</code> (value)<br>最小值变化后触发。<code>value</code>：最小值</p>
+<p><code>change-max</code> (value)<br>最大值变化后触发。<code>value</code>：最大值</p>
+<p><code>change</code> (begin, end, isMax)<br>任一值变化后触发。<code>begin</code>：最小值，<code>end</code>：最大值，<code>isMax</code>：是否修改的最大值</p>

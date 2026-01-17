@@ -1,8 +1,8 @@
-# RemoteSelect
+## RemoteSelect
 
-远程Select
+获取远程数据的Select，默认在展开时才触发请求
 
-```html
+```vue
 <template>
   <RemoteSelect
     v-model="selectModel"
@@ -12,18 +12,18 @@
     @on-change="$Message.info($event)"></RemoteSelect>
 </template>
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 
-  const selectModel = ref(''),
-    getList = () => new Promise(resolve => {
-        setTimeout(() => {
-            resolve([
-                {value: 'a', label: '一'}
-                {value: 'b', label: '二'}
-                {value: 'c', label: '三'}
-            ])
-        }, 2000)
-    })
+const selectModel = ref(''),
+  getList = () => new Promise(resolve => {
+      setTimeout(() => {
+          resolve([
+              {value: 'a', label: '一'}
+              {value: 'b', label: '二'}
+              {value: 'c', label: '三'}
+          ])
+      }, 2000)
+  })
 </script>
 ```
 

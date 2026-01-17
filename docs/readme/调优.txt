@@ -1,0 +1,48 @@
+<h2>调优</h2>
+<ul>
+<li>为多选模式的iview Select添加全选功能。<strong>若全局安装了插件则无需再次注册指令</strong></li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">// 全局注册</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> {</span><span style="color:#BABED8"> createApp</span><span style="color:#89DDFF"> }</span><span style="color:#89DDFF;font-style:italic"> from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">vue</span><span style="color:#89DDFF">'</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#BABED8"> ViewUIPlus </span><span style="color:#89DDFF;font-style:italic">from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus</span><span style="color:#89DDFF">'</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus/dist/styles/viewuiplus.css</span><span style="color:#89DDFF">'</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> {</span><span style="color:#BABED8"> iviewSelect</span><span style="color:#89DDFF"> }</span><span style="color:#89DDFF;font-style:italic"> from</span><span style="color:#89DDFF"> "</span><span style="color:#C3E88D">view-ui-plus-derive</span><span style="color:#89DDFF">"</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#BABED8"> App </span><span style="color:#89DDFF;font-style:italic">from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">./App.vue</span><span style="color:#89DDFF">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#82AAFF">createApp</span><span style="color:#BABED8">(App)</span><span style="color:#89DDFF">.</span><span style="color:#82AAFF">use</span><span style="color:#BABED8">(ViewUIPlus)</span><span style="color:#89DDFF">.</span><span style="color:#82AAFF">directive</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">'</span><span style="color:#C3E88D">iviewSelect</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">,</span><span style="color:#BABED8"> iviewSelect)</span><span style="color:#89DDFF">.</span><span style="color:#82AAFF">mount</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">'</span><span style="color:#C3E88D">#app</span><span style="color:#89DDFF">'</span><span style="color:#BABED8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// 局部注册</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#BABED8">import </span><span style="color:#89DDFF">{</span><span style="color:#BABED8"> iviewSelect </span><span style="color:#89DDFF;font-style:italic">as</span><span style="color:#FFCB6B"> vIviewSelect</span><span style="color:#89DDFF"> }</span><span style="color:#BABED8"> from "view-ui-plus-derive";</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// 使用</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#FFCB6B">Select</span><span style="color:#C792EA"> v-iview-select</span><span style="color:#89DDFF">:</span><span style="color:#C792EA">all</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">true</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> multiple</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#FFCB6B">Select</span><span style="color:#89DDFF">></span></span></code></pre>
+<ul>
+<li>调整iview的InputNumber默认值为null，避免在值为undefined时显示 1</li>
+<li>为InputNumber添加prop：unset，用于设置在清空时的默认值</li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/input-number</span><span style="color:#89DDFF">'</span></span></code></pre>
+<ul>
+<li>修复iview Select启用filterable时在过滤后可能只显示之前所选项的bug</li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/select</span><span style="color:#89DDFF">'</span></span></code></pre>
+<ul>
+<li>修复Table在某些情况下表头/固定列与内容错位</li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/table</span><span style="color:#89DDFF">'</span></span></code></pre>
+<p>也可以一次性引入iview-mods下的input-number、select、table</p>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">// 本地引入</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mod</span><span style="color:#89DDFF">'</span></span></code></pre>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">&#x3C;!-- CDN引入 --></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> src</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">https://unpkg.com/view-ui-plus-derive/dist/umd/iview-mod.js</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+<p>针对iview组件的样式优化</p>
+<ul>
+<li>修复带有固定列的Table存在水平滚动条时，固定列下方的滚动条无法点中</li>
+<li>防止Select在关闭选项时可能出现的点击更换选项bug</li>
+<li>适当调整Input、InputNumber、Select、Button在禁用状态下非placeholder的文本颜色</li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">// 本地引入</span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mod.css</span><span style="color:#89DDFF">'</span></span></code></pre>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">&#x3C;!-- CDN引入 --></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">link</span><span style="color:#C792EA"> rel</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">stylesheet</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> href</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">https://unpkg.com/view-ui-plus-derive/dist/iview-mod.css</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF"> /></span></span></code></pre>

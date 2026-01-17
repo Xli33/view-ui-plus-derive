@@ -1,8 +1,8 @@
-# Combi
+## Combi
 
 类似iview Input[append prepend]的组合框
 
-```jsx
+```vue
 <template>
   <Combi>
     <template #prepend>

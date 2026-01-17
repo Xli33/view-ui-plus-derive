@@ -395,7 +395,7 @@ export default {
 // const { t } = useI18n()
 // const locale = ref('zh-CN')
 
-const toggle = ref('T')
+const toggle = ref('F')
 const allCheckeds = shallowRef(['1', '3']),
   allCheck = ref(),
   allCheckedList = Object.entries({

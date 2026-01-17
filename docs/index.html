@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>element-plus-derive</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.21/dist/styles/viewuiplus.css" />
+    <link
+      id="markdown-css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.26/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@4.6.4/dist/vue-router.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.21/dist/viewuiplus.min.js"></script>
+    <style>
+      /* html.dark {
+        .shiki,
+        .shiki span {
+          color: var(--shiki-dark) !important;
+          background-color: var(--shiki-dark-bg) !important;
+        }
+      } */
+      html.dark {
+        > body {
+          background: #0d1117;
+        }
+      }
+      body {
+        margin: 0;
+        font-family:
+          'Microsoft YaHei', '微软雅黑', 'PingFang SC', ' Hiragino Sans GB', 'SimSun', 'sans-serif';
+      }
+
+      #app {
+        width: 70vw;
+        height: 100vh;
+        margin: 0 auto;
+      }
+
+      [v-cloak] {
+        display: none;
+      }
+
+      .ivu-layout {
+        height: 100%;
+        background: transparent;
+      }
+
+      .ivu-layout-sider {
+        /* height: 100%; */
+        overflow: auto;
+        padding: 2vh 0;
+        background: transparent;
+      }
+
+      .ivu-menu-vertical.ivu-menu-light:after {
+        display: none;
+      }
+
+      .ivu-menu-dark,
+      .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened,
+      .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title:not(:hover) {
+        background: transparent;
+      }
+
+      .markdown-body {
+        padding: 20px;
+        overflow: auto;
+      }
+    </style>
+    <script>
+      const globalTheme = Vue.ref('light')
+      const matchDark = window.matchMedia('(prefers-color-scheme: dark)')
+      matchDark.addEventListener('change', (e) => {
+        const $markdownCss = document.getElementById('markdown-css')
+        if (e.target.matches) {
+          $markdownCss.href = $markdownCss.href.replace(
+            'github-markdown.min.css',
+            'github-markdown-dark.min.css'
+          )
+          globalTheme.value = 'dark'
+        } else {
+          $markdownCss.href = $markdownCss.href.replace(
+            'github-markdown-dark.min.css',
+            'github-markdown.min.css'
+          )
+          globalTheme.value = 'light'
+        }
+        document.documentElement.classList.toggle('dark', e.target.matches)
+      })
+      matchDark.dispatchEvent(new Event('change'))
+    </script>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <layout>
+        <sider width="200px">
+          <i-menu
+            v-if="menus.length"
+            mode="vertical"
+            :theme="theme"
+            :active-name="activeMenu"
+            :open-names="autoOpends">
+            <template v-for="(item, index) in menus" :key="index">
+              <!-- 一级菜单 -->
+              <menu-item v-if="!item.sub" :name="item.route || item.name" @click="open(item)">
+                {{ item.name }}
+              </menu-item>
+              <submenu v-else :name="item.name">
+                <!-- 二级菜单 -->
+                <template #title>
+                  <span>{{ item.name }}</span>
+                </template>
+                <template v-for="(subMenu, subMenuIndex) in item.sub" :key="subMenuIndex">
+                  <menu-item v-if="!subMenu.sub" :name="subMenu.name" @click="open(subMenu)">
+                    {{ subMenu.name }}
+                  </menu-item>
+
+                  <!-- 三级菜单 -->
+                  <submenu v-else :name="subMenu.name">
+                    <template #title>
+                      <span>{{ subMenu.name }}</span>
+                    </template>
+                    <menu-item
+                      v-for="(thirdMenu, thirdMenuIndex) in subMenu.sub"
+                      :key="thirdMenuIndex"
+                      :name="thirdMenu.name"
+                      @click="open(thirdMenu)">
+                      {{ thirdMenu.name }}
+                    </menu-item>
+                  </submenu>
+                </template>
+              </submenu>
+            </template>
+          </i-menu>
+        </sider>
+        <content class="markdown-body">
+          <router-view v-slot="{ Component, route }">
+            <keep-alive>
+              <component
+                v-if="route.name"
+                :is="Component"
+                :key="route.name"
+                :content="route.meta.content"></component>
+            </keep-alive>
+          </router-view>
+        </content>
+      </layout>
+    </div>
+
+    <script>
+      const { createApp, onMounted, shallowRef, computed } = Vue
+      const app = createApp({
+        setup() {
+          const menus = shallowRef([]),
+            autoOpends = []
+          const ViewMD = {
+            template: `<div v-html='content' class='md-content'></div>`,
+            props: {
+              content: String
+            },
+            setup(props) {
+              // onMounted(() => {
+              //   // document
+              //   //   .getElementById('app')
+              //   //   .querySelectorAll('.md-content pre code')
+              //   //   .forEach((block) => {
+              //   //     hljs.highlightElement(block)
+              //   //   })
+              // })
+              return {}
+            }
+          }
+          const route = VueRouter.useRoute()
+          const activeMenu = computed(() => route.name)
+
+          const open = (e) => {
+            if (e.name === router.currentRoute.value.name) return
+            // console.log(e);
+            router.replace({
+              name: e.route || e.name
+            })
+          }
+
+          onMounted(async () => {
+            const res = await fetch('menus.json').then((res) => res.json())
+            menus.value = res
+
+            const recursiveAddRoute = (menus) => {
+              menus.forEach((e, i) => {
+                if (!e.sub) {
+                  router.addRoute({
+                    name: e.route || e.name,
+                    path: '/' + (e.route || e.url.replace(/\.txt$/, '')),
+                    meta: {
+                      url: e.url
+                    },
+                    component: ViewMD
+                  })
+                  return
+                }
+                autoOpends.push(e.name)
+                recursiveAddRoute(e.sub)
+              })
+            }
+            recursiveAddRoute(menus.value)
+            router.addRoute({
+              path: '/',
+              redirect: { name: 'start' }
+            })
+            loadingRoutes = null
+            router.replace(route.fullPath)
+            console.log(menus, autoOpends, router.getRoutes(), route)
+          })
+
+          return {
+            activeMenu,
+            menus,
+            autoOpends,
+            theme: globalTheme,
+            open
+          }
+        }
+      })
+      const router = VueRouter.createRouter({
+        history: VueRouter.createWebHashHistory(),
+        routes: []
+      })
+      let loadingRoutes = true
+      router.beforeEach(async (to, from) => {
+        // console.log(to, from);
+        const toRoute = to.matched[to.matched.length - 1]
+        // 当未获取到路由配置时允许跳转不存在的地址，以免始终会重定向到 /start。当路由配置加载后会通过 replace 尝试导航到存在的路由
+        if (to.fullPath !== '/' && !toRoute) return loadingRoutes
+        // 若加载过对应txt则不重复获取
+        if (!toRoute || toRoute.meta.loaded) return
+        try {
+          const res = await fetch('readme/' + to.meta.url).then((res) => res.text())
+          to.meta.content = toRoute.meta.content = res
+          to.meta.loaded = toRoute.meta.loaded = true
+        } catch (err) {
+          console.error(err)
+        }
+      })
+      router.afterEach((to) => {
+        // activeMenu.value = to.name;
+      })
+      app.use(router)
+      app.use(ViewUIPlus)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

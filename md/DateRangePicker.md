@@ -1,16 +1,16 @@
-# DateRangePicker
+## DateRangePicker
 
 基于DatePicer[type=daterange]，绑定的值转为string
 
-```html
+```vue
 <template>
   <DateRangePicker v-model:begin="rangeBegin" v-model:end="rangeEnd"></DateRangePicker>
 </template>
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 
-  const rangeBegin = ref(''),
-    rangeEnd = ref('')
+const rangeBegin = ref(''),
+  rangeEnd = ref('')
 </script>
 ```
 

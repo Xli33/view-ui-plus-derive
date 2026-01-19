@@ -31,9 +31,17 @@
         }
       } */
       html.dark {
+        --bg-color: #0d1117;
+
         > body {
-          background: #0d1117;
+          background: var(--bg-color);
         }
+      }
+      :root {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-tap-highlight-color: transparent;
+        --bg-color: #fff;
       }
       body {
         margin: 0;
@@ -42,13 +50,9 @@
       }
 
       #app {
-        width: 70vw;
+        /* width: 70vw; */
         height: 100vh;
-        margin: 0 auto;
-      }
-
-      #menulist {
-        padding-right: 5px;
+        margin: 0;
       }
 
       [v-cloak] {
@@ -58,29 +62,84 @@
       .ivu-layout {
         height: 100%;
         background: transparent;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100%;
+          visibility: hidden;
+          background-color: rgba(0, 0, 0, 0);
+          transition:
+            visibility 0.3s ease-out,
+            background-color 0.3s ease-out;
+        }
+
+        &.show {
+          &::after {
+            visibility: visible;
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+
+          .ivu-layout-sider {
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.2);
+            transform: translateX(0);
+          }
+        }
       }
 
       .ivu-layout-sider {
-        /* height: 100%; */
-        overflow: auto;
+        position: fixed;
+        z-index: 1;
+        height: 100%;
         padding: 2vh 0;
-        background: transparent;
+        overflow: auto;
+        background-color: var(--bg-color);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-out;
       }
 
       .ivu-menu-vertical.ivu-menu-light:after {
         display: none;
       }
 
+      .ivu-menu,
       .ivu-menu-dark,
       .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened,
       .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title:not(:hover) {
         background: transparent;
       }
 
+      .menu-toggle {
+        align-self: flex-start;
+      }
+
       .markdown-body {
+        display: flex;
+        flex-direction: column;
         height: 100%;
         padding: 20px;
         /* overflow: auto; */
+      }
+
+      @media screen and (min-width: 1200px) {
+        #app {
+          margin: 0 10vw;
+        }
+        .ivu-layout-sider {
+          transform: translateX(0);
+        }
+        .ivu-layout-content {
+          margin-left: 200px;
+        }
+        .menu-toggle {
+          display: none;
+        }
+        #menulist {
+          padding-right: 5px;
+        }
       }
     </style>
     <script>
@@ -109,7 +168,7 @@
 
   <body>
     <div id="app" v-cloak>
-      <layout>
+      <layout :class="showMenu && 'show'">
         <sider>
           <div class="scroller fill">
             <div id="menulist">
@@ -156,6 +215,7 @@
           </div>
         </sider>
         <content class="markdown-body">
+          <icon type="md-menu" class="menu-toggle" @click="showMenu = !showMenu"></icon>
           <div class="scroller fill">
             <div id="md-list">
               <router-view v-slot="{ Component, route }">
@@ -172,7 +232,7 @@
 
     <script>
       const contentCache = {}
-      const { createApp, onMounted, shallowRef, computed } = Vue
+      const { createApp, onMounted, ref, shallowRef, computed } = Vue
       const app = createApp({
         setup() {
           const menus = shallowRef([]),
@@ -202,8 +262,10 @@
           }
           const route = VueRouter.useRoute()
           const activeMenu = computed(() => route.name)
+          const showMenu = ref(false)
 
           const open = (e) => {
+            showMenu.value = false
             if (e.name === router.currentRoute.value.name) return
             // console.log(e);
             router.replace({
@@ -240,9 +302,20 @@
             loadingRoutes = null
             router.replace(route.fullPath)
             console.log(menus, autoOpends, router.getRoutes(), route)
+
+            document.querySelector('.ivu-layout').onclick = (e) => {
+              if (
+                showMenu.value &&
+                !e.target.classList.contains('menu-toggle') &&
+                !e.target.closest('ivu-menu-submenu-title')
+              ) {
+                showMenu.value = false
+              }
+            }
           })
 
           return {
+            showMenu,
             activeMenu,
             menus,
             autoOpends,

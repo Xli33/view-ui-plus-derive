@@ -49,7 +49,7 @@
 import type { Obj } from '@/type'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus'
-import { deepMerge, getPathValue, makeObjectByPath, setPathValue } from 'utils-where'
+import { deepMerge, getPathValue, isObject, makeObjectByPath, setPathValue } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 import { useClass } from '@/utils'
 
@@ -89,8 +89,33 @@ const props = defineProps({
    * @example
    * // 组件会尝试将显示状态读写至 localStorage.app.main.cols
    * storeAt='app.main.cols'
+   *
+   * 特殊情况：如读写至 localStorage.app.page1['part1.list'].cols
+   * storeAt='app.page1.[part1.list].cols'
    */
-  storeAt: String
+  storeAt: String,
+  /**
+   * 最小可见列数
+   */
+  minVisible: {
+    type: Number,
+    default: 1
+  },
+  /**
+   * 切换列时是否实时读取本地存储
+   *
+   * 在启用storeAt时，默认只在初始化时从本地读取一次之前保存的状态 \
+   * 若需要每次切换列时都实时从本地获取最新的数据，则可以开启此项 \
+   * 一般在搭配其它逻辑共享同一数据结构时适用，如拖拽列宽后需要将列宽存至同一对象中以节省存储空间 \
+   * 当在循环中使用（即存在cacheId）时，建议开启此项，否则可能会出现列显示异常的情况
+   *
+   * @default
+   * !!props.storeAt && !!props.cacheId
+   */
+  realtime: {
+    type: Boolean,
+    default: (props: Obj) => !!props.storeAt && !!props.cacheId
+  }
 })
 
 const emit = defineEmits<{
@@ -127,30 +152,6 @@ if (props.storeAt) {
     config = {}
     save(true)
   }
-  // // 根据storeAt构建配置对象，保证configPath只有单一的storeAt对应对象结构
-  // let curr: Obj | undefined
-  // const arr = props.storeAt.split('.')
-  // const { userInfo, userConfig } = globalUser
-  // configPath = {}
-  // config = getPath(userConfig[userInfo.userCode || ''], props.storeAt)
-  // for (let v: string, i = 0, len = arr.length; i < len; i++) {
-  //   v = arr[i]
-  //   if (curr) {
-  //     curr[v] = i !== len - 1 ? {} : config || {}
-  //   } else {
-  //     configPath[v] = {}
-  //     curr = {
-  //       [v]: configPath[v]
-  //     }
-  //   }
-  //   curr = curr[v]
-  // }
-  // console.log(configPath)
-  // // 若无对应配置，则先保存至本地配置中
-  // if (!config) {
-  //   globalUser.saveConfig(configPath)
-  //   config = curr as Obj
-  // }
 }
 const visible = ref(false),
   backup = shallowRef<Obj[]>([]),
@@ -168,14 +169,34 @@ const checkAll = computed({
     return cols.length > 0 && cols.every((e) => e._visible)
   },
   set(val) {
-    checkList.value.forEach((e, i) => {
-      if (e._switchable) {
-        backup.value[i]!._visible = e._visible = val
-      }
-    })
-    if (props.storeAt) {
+    if (val) {
       checkList.value.forEach((e, i) => {
-        config[e.key] = e._visible
+        if (e._switchable) {
+          backup.value[i]!._visible = e._visible = val
+          return
+        }
+        e._switchable = e.initSwitchable
+      })
+    } else {
+      // 待禁用数量
+      const toDisableds = props.minVisible - checkList.value.filter((e) => !e._switchable).length
+      let count = 0
+      checkList.value.forEach((e, i) => {
+        if (!e._switchable) return
+        backup.value[i]!._visible = e._visible = count < toDisableds
+        if (e._visible) {
+          e._switchable = false
+          // backup.value[i]!._visible = e._visible = true
+          count++
+        }
+      })
+    }
+    if (props.storeAt) {
+      if (props.realtime) config = getPathValue(JSON.parse(localStorage[first]), restKeys)
+      checkList.value.forEach((e, i) => {
+        isObject(config[e.key])
+          ? (config[e.key].visible = e._visible)
+          : (config[e.key] = { visible: e._visible })
       })
       save()
       // globalUser.saveConfig(configPath)
@@ -189,9 +210,11 @@ const checkAll = computed({
 
 function checkValid() {
   const showns = checkList.value.filter((e) => e._visible)
-  // 只有一个列且没有“全选框”时禁止该列切换
-  if (!props.all && showns.length === 1) {
-    showns[0]!._switchable = false
+  // 达到最小可见列数时禁止切换
+  if (showns.length <= props.minVisible) {
+    showns.forEach((e) => {
+      e._switchable = false
+    })
     return
   }
   showns.forEach((e) => {
@@ -203,7 +226,10 @@ function change(item: Obj, index: number) {
   // console.log(item.key, item._visible);
   backup.value[index]!._visible = item._visible
   if (props.storeAt) {
-    config[item.key] = item._visible
+    if (props.realtime) config = getPathValue(JSON.parse(localStorage[first]), restKeys)
+    isObject(config[item.key])
+      ? (config[item.key].visible = item._visible)
+      : (config[item.key] = { visible: item._visible })
     save()
     // setTimeout(() => {
     //   globalUser.saveConfig(configPath)
@@ -224,14 +250,12 @@ function toggle(open: boolean) {
   }, 200)
 }
 
-function setColumns() {
+function setColumns(init?: boolean) {
+  if (!init && props.storeAt && props.realtime)
+    config = getPathValue(JSON.parse(localStorage[first]), restKeys)
   ;(initial[props.cacheId!]?.cols || props.modelValue).forEach((e: Obj) => {
     if (!e.hasOwnProperty('_visible')) {
-      if (props.storeAt) {
-        e._visible = config[e.key] === undefined || config[e.key]
-      } else {
-        e._visible = true
-      }
+      e._visible = props.storeAt ? config[e.key] == undefined || config[e.key].visible : true
     }
     if (!e.hasOwnProperty('_switchable')) {
       e._switchable = true
@@ -279,7 +303,7 @@ onMounted(() => {
       }
     })
   }
-  setColumns()
+  setColumns(true)
 })
 
 // watch

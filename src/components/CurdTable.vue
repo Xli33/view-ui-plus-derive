@@ -1,6 +1,12 @@
 <template>
   <div>
-    <Table :border="border" :columns="tableColumns" :data="list" :size="size" style="z-index: 0">
+    <Table
+      v-bind="omitOwnKeys($attrs, ['id', 'class', 'style'])"
+      :border="border"
+      :columns="tableColumns"
+      :data="list"
+      :size="size"
+      style="z-index: 0">
       <template v-for="item in slotColumns" #[item.slot]="params">
         <slot :name="item.slot" v-bind="params"></slot>
       </template>
@@ -41,6 +47,7 @@
 import type { BtnSize, BtnType, Obj } from '@/type'
 import { type PropType, computed, ref, watch } from 'vue'
 import { Table, Button } from 'view-ui-plus'
+import { omitOwnKeys } from 'utils-where'
 import { $i18n } from '@/locale/i18n'
 
 export default {
@@ -102,6 +109,7 @@ const props = defineProps({
     default(props: Obj) {
       return {
         // title: props.actionText,
+        key: '_action',
         slot: 'action',
         width: props.actionWidth,
         align: props.actionAlign,

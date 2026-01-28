@@ -56,8 +56,8 @@ import { $i18n } from '@/locale/i18n'
 import type { BtnType } from '@/type'
 
 export default {
-  name: 'ModalFooter',
-  inheritAttrs: false
+  name: 'ModalFooter'
+  // inheritAttrs: false
 }
 </script>
 

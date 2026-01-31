@@ -19,19 +19,47 @@
 <span class="line"><span style="color:#676E95;font-style:italic">// 使用</span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#FFCB6B">Select</span><span style="color:#C792EA"> v-iview-select</span><span style="color:#89DDFF">:</span><span style="color:#C792EA">all</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">true</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> multiple</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#FFCB6B">Select</span><span style="color:#89DDFF">></span></span></code></pre>
 <ul>
-<li>调整iview的InputNumber默认值为null，避免在值为undefined时显示 1</li>
-<li>为InputNumber添加prop：unset，用于设置在清空时的默认值</li>
+<li>调整iview的 InputNumber 默认值为null，避免在值为undefined时显示 1</li>
+<li>为 InputNumber 添加prop：<code>unset</code>，用于设置在清空时的默认值</li>
 </ul>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/input-number</span><span style="color:#89DDFF">'</span></span></code></pre>
 <ul>
-<li>修复iview Select启用filterable时在过滤后可能只显示之前所选项的bug</li>
+<li>修复 iview Select 启用filterable时在过滤后可能只显示之前所选项的bug</li>
 </ul>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/select</span><span style="color:#89DDFF">'</span></span></code></pre>
 <ul>
-<li>修复Table在某些情况下表头/固定列与内容错位</li>
+<li>修复 Table 在某些情况下表头/固定列与内容错位</li>
 </ul>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/table</span><span style="color:#89DDFF">'</span></span></code></pre>
-<p>也可以一次性引入iview-mods下的input-number、select、table</p>
+<ul>
+<li>为 Table 添加prop：<code>cache-cols</code>，启用列宽缓存功能</li>
+</ul>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mods/table-cache-cols</span><span style="color:#89DDFF">'</span></span></code></pre>
+<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">Table</span><span style="color:#89DDFF"> border </span><span style="color:#C792EA">:columns</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">columns</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> :cache-cols</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">cacheCols</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">Table</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> columns </span><span style="color:#89DDFF">=</span><span style="color:#BABED8"> [</span></span>
+<span class="line"><span style="color:#89DDFF">  {</span></span>
+<span class="line"><span style="color:#F07178">    prop</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">name</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">,</span></span>
+<span class="line"><span style="color:#F07178">    label</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">名称</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">,</span></span>
+<span class="line"><span style="color:#F07178">    resizable</span><span style="color:#89DDFF">:</span><span style="color:#FF9CAC"> true</span></span>
+<span class="line"><span style="color:#89DDFF">  },</span></span>
+<span class="line"><span style="color:#89DDFF">  {</span></span>
+<span class="line"><span style="color:#F07178">    prop</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">age</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">,</span></span>
+<span class="line"><span style="color:#F07178">    label</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">年龄</span><span style="color:#89DDFF">'</span></span>
+<span class="line"><span style="color:#89DDFF">  }</span></span>
+<span class="line"><span style="color:#BABED8">]</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// keys 决定存储路径，cols 为列配置</span></span>
+<span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> cacheCols </span><span style="color:#89DDFF">=</span><span style="color:#89DDFF"> {</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic">  // 若路径较深，建议适当扁平以简化存取的对象结构</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic">  // 如下会以 app.userA['page.list.cols'] 的形式读写 localStorage。若去掉中括号，对象将为 app.userA.page.list.cols 的形式</span></span>
+<span class="line"><span style="color:#F07178">  keys</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">app.userA.[page.list.cols]</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">,</span><span style="color:#676E95;font-style:italic"> // 或者不使用点，如 'app.userA.page_list_cols' | 'app.userA.page-list-cols'</span></span>
+<span class="line"><span style="color:#F07178">  cols</span><span style="color:#89DDFF">:</span><span style="color:#BABED8"> columns</span></span>
+<span class="line"><span style="color:#89DDFF">}</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+<p>也可以一次性引入iview-mods下的所有mod：input-number、select、table、cache-cols等</p>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">// 本地引入</span></span>
 <span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/iview-mod</span><span style="color:#89DDFF">'</span></span></code></pre>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#676E95;font-style:italic">&#x3C;!-- CDN引入 --></span></span>

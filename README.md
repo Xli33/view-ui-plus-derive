@@ -249,26 +249,59 @@ import { iviewSelect as vIviewSelect } from "view-ui-plus-derive";
 <Select v-iview-select:all="true" multiple></Select>
 ```
 
-- 调整iview的InputNumber默认值为null，避免在值为undefined时显示 1
-- 为InputNumber添加prop：unset，用于设置在清空时的默认值
+- 调整iview的 InputNumber 默认值为null，避免在值为undefined时显示 1
+- 为 InputNumber 添加prop：`unset`，用于设置在清空时的默认值
 
 ```js
 import 'view-ui-plus-derive/iview-mods/input-number'
 ```
 
-- 修复iview Select启用filterable时在过滤后可能只显示之前所选项的bug
+- 修复 iview Select 启用filterable时在过滤后可能只显示之前所选项的bug
 
 ```js
 import 'view-ui-plus-derive/iview-mods/select'
 ```
 
-- 修复Table在某些情况下表头/固定列与内容错位
+- 修复 Table 在某些情况下表头/固定列与内容错位
 
 ```js
 import 'view-ui-plus-derive/iview-mods/table'
 ```
 
-也可以一次性引入iview-mods下的input-number、select、table
+- 为 Table 添加prop：`cache-cols`，启用列宽缓存功能
+
+```js
+import 'view-ui-plus-derive/iview-mods/table-cache-cols'
+```
+
+```vue
+<template>
+  <Table border :columns="columns" :cache-cols="cacheCols"></Table>
+</template>
+
+<script setup>
+const columns = [
+  {
+    prop: 'name',
+    label: '名称',
+    resizable: true
+  },
+  {
+    prop: 'age',
+    label: '年龄'
+  }
+]
+// keys 决定存储路径，cols 为列配置
+const cacheCols = {
+  // 若路径较深，建议适当扁平以简化存取的对象结构
+  // 如下会以 app.userA['page.list.cols'] 的形式读写 localStorage。若去掉中括号，对象将为 app.userA.page.list.cols 的形式
+  keys: 'app.userA.[page.list.cols]', // 或者不使用点，如 'app.userA.page_list_cols' | 'app.userA.page-list-cols'
+  cols: columns
+}
+</script>
+```
+
+也可以一次性引入iview-mods下的所有mod：input-number、select、table、cache-cols等
 
 ```js
 // 本地引入

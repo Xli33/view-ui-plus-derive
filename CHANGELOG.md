@@ -1,6 +1,21 @@
 # Changelog
 
 
+## [0.2.1](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.0...v0.2.1) (2026-01-31)
+
+
+### Features
+
+* `CurdTable` 支持传递 Table 的所有prop ([600eaff](https://github.com/Xli33/view-ui-plus-derive/commit/600eaffba01279aeffad8bb52765b47d12cdbfeb))
+* 新增 table-cache-cols.ts，让Table支持将列宽缓存至本地 ([f271e21](https://github.com/Xli33/view-ui-plus-derive/commit/f271e21993b67d40d9dc3749fd6c0dd01eba3d92))
+* **ToggleColumn.vue:** 新增prop：`minVisible` 与 `realtime` ([80914be](https://github.com/Xli33/view-ui-plus-derive/commit/80914be3febf1658bd4410c723518833bad0b1cb))
+
+
+### Bug Fixes
+
+* **iview-mod.ts:** 添加table-cache-cols导入 ([7f4f8c4](https://github.com/Xli33/view-ui-plus-derive/commit/7f4f8c4098fe48ebdda15437231e6653d80d2f6f))
+* **ToggleColumn.vue:** 当获取的本地数据中无有效 `visible` 属性时，列应该可见 ([8c9f703](https://github.com/Xli33/view-ui-plus-derive/commit/8c9f7035080603f5df3e0dda8741fe0938a1c1c7))
+
 ## [0.2.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.1.3...v0.2.0) (2026-01-08)
 
 

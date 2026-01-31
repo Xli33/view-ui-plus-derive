@@ -3,6 +3,7 @@
 import './iview-mods/input-number'
 import './iview-mods/select'
 import './iview-mods/table'
+import './iview-mods/table-cache-cols'
 
 // const ViewUI: Obj = ViewUIPlus
 

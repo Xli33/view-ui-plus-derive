@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.2.2](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.1...v0.2.2) (2026-02-01)
+
+
+### Features
+
+* **table-cache-cols.ts:** `cacheCols` 支持仅传字符串作为本地存储路径 ([a8933d1](https://github.com/Xli33/view-ui-plus-derive/commit/a8933d1932fbb608e6f84699bcbeb21245571161))
+
 ## [0.2.1](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.0...v0.2.1) (2026-01-31)
 
 

@@ -291,7 +291,10 @@ const columns = [
     label: '年龄'
   }
 ]
-// keys 决定存储路径，cols 为列配置
+// 传递字符串指定存储路径
+const cacheCols = 'app.userA.[page.list.cols]'
+
+// 也可传递一个对象：keys 决定存储路径，cols 为列配置
 const cacheCols = {
   // 若路径较深，建议适当扁平以简化存取的对象结构
   // 如下会以 app.userA['page.list.cols'] 的形式读写 localStorage。若去掉中括号，对象将为 app.userA.page.list.cols 的形式

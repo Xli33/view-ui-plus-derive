@@ -51,7 +51,10 @@
 <span class="line"><span style="color:#F07178">    label</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">年龄</span><span style="color:#89DDFF">'</span></span>
 <span class="line"><span style="color:#89DDFF">  }</span></span>
 <span class="line"><span style="color:#BABED8">]</span></span>
-<span class="line"><span style="color:#676E95;font-style:italic">// keys 决定存储路径，cols 为列配置</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// 传递字符串指定存储路径</span></span>
+<span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> cacheCols </span><span style="color:#89DDFF">=</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">app.userA.[page.list.cols]</span><span style="color:#89DDFF">'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// 也可传递一个对象：keys 决定存储路径，cols 为列配置</span></span>
 <span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> cacheCols </span><span style="color:#89DDFF">=</span><span style="color:#89DDFF"> {</span></span>
 <span class="line"><span style="color:#676E95;font-style:italic">  // 若路径较深，建议适当扁平以简化存取的对象结构</span></span>
 <span class="line"><span style="color:#676E95;font-style:italic">  // 如下会以 app.userA['page.list.cols'] 的形式读写 localStorage。若去掉中括号，对象将为 app.userA.page.list.cols 的形式</span></span>

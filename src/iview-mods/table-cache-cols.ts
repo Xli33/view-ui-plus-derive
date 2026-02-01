@@ -7,7 +7,7 @@ import { Table, type TableColumnConfig } from 'view-ui-plus'
 import { deepMerge, getPathValue, makeObjectByPath } from 'utils-where'
 
 // 扩展Crud，添加cacheCols属性
-Table.props.cacheCols = Object /* {
+Table.props.cacheCols = [String, Object] /* {
   type: Object,
   default: () => ({
     keys: '', // 存储路径
@@ -21,8 +21,16 @@ const saveColWidth = function (
   column: typeof TableColumnConfig /* event: MouseEvent */
 ) {
   // console.log('onOnColumnWidthResize', newWidth, oldWidth, column)
-  const first = this.cacheCols.keys.split('.')[0],
-    targetKey = this.cacheCols.keys.slice(first.length + 1)
+  let keys, cols
+  if (typeof this.cacheCols === 'string') {
+    keys = this.cacheCols
+    cols = this.columns
+  } else {
+    keys = this.cacheCols.keys
+    cols = this.cacheCols.cols
+  }
+  const first = keys.split('.')[0],
+    targetKey = keys.slice(first.length + 1)
   const appData = localStorage.getItem(first)
   const localStore = appData ? JSON.parse(appData) : {}
   let targetObj: Obj = getPathValue(localStore, targetKey)
@@ -38,8 +46,8 @@ const saveColWidth = function (
       width: Math.round(newWidth)
     }
   }
-  if (this.cacheCols.cols?.length) {
-    this.cacheCols.cols.find((e: Obj) => e.key === column.key).width = Math.round(newWidth)
+  if (cols?.length) {
+    cols.find((e: Obj) => e.key === column.key).width = Math.round(newWidth)
   }
   setTimeout(() => {
     localStorage.setItem(first, JSON.stringify(localStore))
@@ -47,10 +55,11 @@ const saveColWidth = function (
 }
 
 const tableCreated = function (this: any) {
-  if (!this.cacheCols?.keys) return
+  if (typeof this.cacheCols !== 'string' ? !this.cacheCols?.keys : !this.cacheCols) return
   // 读取列宽配置
-  const first = this.cacheCols.keys.split('.')[0],
-    targetKey = this.cacheCols.keys.slice(first.length + 1)
+  const keys = typeof this.cacheCols === 'string' ? this.cacheCols : this.cacheCols.keys
+  const first = keys.split('.')[0],
+    targetKey = keys.slice(first.length + 1)
   const appData = localStorage.getItem(first)
   const currentData = appData && getPathValue(JSON.parse(appData), targetKey)
   if (!currentData || !Object.keys(currentData).length) return
@@ -64,7 +73,7 @@ const tableCreated = function (this: any) {
 }
 
 const tableUpdated = function (this: any) {
-  if (!this.cacheCols?.keys) return
+  if (typeof this.cacheCols !== 'string' ? !this.cacheCols?.keys : !this.cacheCols) return
   const selfProps = this.$.vnode.props
   if (
     typeof selfProps.onOnColumnWidthResize === 'function' &&

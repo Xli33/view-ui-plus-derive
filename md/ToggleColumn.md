@@ -8,9 +8,9 @@
   <Table :columns="table.columns" :data="table.list"></Table>
 </template>
 <script setup>
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
-const table = reactive({
+const table = ref({
   list: [
     {
       year: 2000,

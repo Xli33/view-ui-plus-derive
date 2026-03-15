@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.2.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.2...v0.2.3) (2026-03-15)
+
+
+### Bug Fixes
+
+* 优化PageTable工具样式 ([7bd95fd](https://github.com/Xli33/view-ui-plus-derive/commit/7bd95fd9f9ea6f59bf4de7f0933164546d41a721))
+
 ## [0.2.2](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.1...v0.2.2) (2026-02-01)
 
 

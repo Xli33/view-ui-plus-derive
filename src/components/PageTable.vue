@@ -45,9 +45,9 @@
         </Tooltip>
         <ToggleColumn
           v-model="tableColumns"
-          size="20"
           :transfer="isTransfer"
           :store-at="storeAt"
+          :class="useClass('page-table-action')"
           @change="$emit('change-col', $event)">
           <Icon type="md-settings" size="20" />
         </ToggleColumn>

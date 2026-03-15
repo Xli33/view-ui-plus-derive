@@ -2,8 +2,8 @@
 
 ```vue
 <template>
-  <ToggleColumn v-model="table.columns"></ToggleColumn>
-  <Table :columns="table.columns" :data="table.list"></Table>
+  <ToggleColumn v-model="table.columns" style="float:right;margin-bottom:10px"></ToggleColumn>
+  <Table :columns="table.columns" :data="table.list" style="width:100%"></Table>
 </template>
 <script setup>
 import { ref } from 'vue'

@@ -1,12 +1,10 @@
-## Combi
-
-类似iview Input[append prepend]的组合框
+#### 基本用法
 
 ```vue
 <template>
   <Combi>
     <template #prepend>
-      <Select clearable style="width: 4em">
+      <Select clearable style="width: 6em">
         <Option value="111">111</Option>
         <Option value="222">222</Option>
       </Select>
@@ -21,20 +19,15 @@
 </template>
 ```
 
-## props
+#### 使用文本
 
-`prepend` _String_  
-前置文本
-
-`append` _String_  
-后置文本
-
-## slots
-
-`default()`
-
-`prepend()`  
-前置内容
-
-`append()`  
-后置内容
+```vue
+<template>
+  <Combi prepend="在前" append="在后">
+    <DatePicker clearable style="width:100%"></DatePicker>
+  </Combi>
+</template>
+<script>
+export default {}
+</script>
+```

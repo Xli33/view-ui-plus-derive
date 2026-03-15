@@ -334,43 +334,45 @@ import 'view-ui-plus-derive/iview-mod.css'
 
 ## 组件
 
-[AllCheckbox](./md/AllCheckbox.md)  
+[文档](https://xli33.github.io/view-ui-plus-derive)
+
+`AllCheckbox`  
 提供全选功能的CheckboxGroup
 
-[BaseSwitch](./md/BaseSwitch.md)  
+`BaseSwitch`  
 更易于使用的Switch
 
-[RemoteSelect](./md/RemoteSelect.md)  
+`RemoteSelect`  
 获取远程数据的Select，默认在展开时才触发请求
 
-[CacheSelect](./md/CacheSelect.md)  
+`CacheSelect`  
 避免重复调用远程接口的RemoteSelect，同一个cacheId对应只触发一次请求
 
-[Combi](./md/Combi.md)  
+`Combi`  
 类似iview Input[append prepend]样式的组合框
 
-[CountRange](./md/CountRange.md)  
+`CountRange`  
 数值范围组件
 
-[CurdTable](./md/CurdTable.md)  
+`CurdTable`  
 具有增删功能的Table
 
-[DateRange](./md/DateRange.md)  
+`DateRange`  
 组合形式的日期范围组件
 
-[DateRangePicker](./md/DateRangePicker.md)  
+`DateRangePicker`  
 基于DatePicer[type=daterange]，绑定的值转为string
 
-[MCalendar](./md/MCalendar.md)  
+`MCalendar`  
 月度日历组件
 
-[ModalFooter](./md/ModalFooter.md)  
+`ModalFooter`  
 代替Modal自带的底栏部分，按钮易于控制，自定义度更高
 
-[PageTable](./md/PageTable.md)  
+`PageTable`  
 远程分页/本地分页的Table
 
-[ToggleColumn](./md/ToggleColumn.md)  
+`ToggleColumn`  
 用于切换Table列的显示状态
 
 ## License

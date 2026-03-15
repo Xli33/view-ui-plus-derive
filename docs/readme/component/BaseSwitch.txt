@@ -1,6 +1,13 @@
 <h2>BaseSwitch</h2>
 <p>更易于使用的Switch</p>
-<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<h4>基本用法</h4>
+
+          <div class="demo-block">
+            <live-preview demo-code="%3Ctemplate%3E%0A%20%20%3CBaseSwitch%20v-model=%22toggle%22%20true-label=%22%E5%BC%80%22%20false-label=%22%E5%85%B3%22%3E%3C/BaseSwitch%3E%0A%3C/template%3E%0A%3Cscript%20setup%3E%0Aimport%20%7B%20ref%20%7D%20from%20'vue'%0A%0Aconst%20toggle%20=%20ref('T')%0A%3C/script%3E"></live-preview>
+            <div class="demo-code-wrapper">
+              <details>
+                <summary>查看源码</summary>
+                <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">BaseSwitch</span><span style="color:#C792EA"> v-model</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">toggle</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> true-label</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">开</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> false-label</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">关</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">BaseSwitch</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
@@ -8,6 +15,10 @@
 <span class="line"></span>
 <span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> toggle </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">'</span><span style="color:#C3E88D">T</span><span style="color:#89DDFF">'</span><span style="color:#BABED8">)</span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+              </details>
+            </div>
+          </div>
+          
 <h2>props</h2>
 <p>除以下prop，可传递Switch的其它prop</p>
 <p><code>modelValue</code> <em>String | Number | Boolean</em><br>v-model双向绑定值</p>

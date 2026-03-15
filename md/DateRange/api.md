@@ -1,23 +1,3 @@
-## DateRange
-
-组合形式的日期范围组件
-
-```vue
-<template>
-  <DateRange
-    v-model:begin="beginDate"
-    v-model:end="endDate"
-    clearable
-    style="width: 240px"></DateRange>
-</template>
-<script setup>
-import { ref } from 'vue'
-
-const beginDate = ref(''),
-  endDate = ref('')
-</script>
-```
-
 ## props
 
 `begin` _Date | String_ （default `''`）  

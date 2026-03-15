@@ -1,9 +1,16 @@
 <h2>Combi</h2>
 <p>类似iview Input[append prepend]的组合框</p>
-<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<h4>基本用法</h4>
+
+          <div class="demo-block">
+            <live-preview demo-code="%3Ctemplate%3E%0A%20%20%3CCombi%3E%0A%20%20%20%20%3Ctemplate%20#prepend%3E%0A%20%20%20%20%20%20%3CSelect%20clearable%20style=%22width:%206em%22%3E%0A%20%20%20%20%20%20%20%20%3COption%20value=%22111%22%3E111%3C/Option%3E%0A%20%20%20%20%20%20%20%20%3COption%20value=%22222%22%3E222%3C/Option%3E%0A%20%20%20%20%20%20%3C/Select%3E%0A%20%20%20%20%3C/template%3E%0A%20%20%20%20%3CSelect%20clearable%3E%0A%20%20%20%20%20%20%3COption%20value=%222%22%3E2%3C/Option%3E%0A%20%20%20%20%3C/Select%3E%0A%20%20%20%20%3Ctemplate%20#append%3E%0A%20%20%20%20%20%20%3CIcon%20type=%22md-arrow-dropright-circle%22%20/%3E%0A%20%20%20%20%3C/template%3E%0A%20%20%3C/Combi%3E%0A%3C/template%3E"></live-preview>
+            <div class="demo-code-wrapper">
+              <details>
+                <summary>查看源码</summary>
+                <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">Combi</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">    &#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF"> #</span><span style="color:#C792EA">prepend</span><span style="color:#89DDFF">></span></span>
-<span class="line"><span style="color:#89DDFF">      &#x3C;</span><span style="color:#F07178">Select</span><span style="color:#C792EA"> clearable</span><span style="color:#C792EA"> style</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">width: 4em</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">      &#x3C;</span><span style="color:#F07178">Select</span><span style="color:#C792EA"> clearable</span><span style="color:#C792EA"> style</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">width: 6em</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">        &#x3C;</span><span style="color:#F07178">Option</span><span style="color:#C792EA"> value</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">111</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">></span><span style="color:#BABED8">111</span><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">Option</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">        &#x3C;</span><span style="color:#F07178">Option</span><span style="color:#C792EA"> value</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">222</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">></span><span style="color:#BABED8">222</span><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">Option</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">      &#x3C;/</span><span style="color:#F07178">Select</span><span style="color:#89DDFF">></span></span>
@@ -16,6 +23,29 @@
 <span class="line"><span style="color:#89DDFF">    &#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">  &#x3C;/</span><span style="color:#F07178">Combi</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span></code></pre>
+              </details>
+            </div>
+          </div>
+          
+<h4>使用文本</h4>
+
+          <div class="demo-block">
+            <live-preview demo-code="%3Ctemplate%3E%0A%20%20%3CCombi%20prepend=%22%E5%9C%A8%E5%89%8D%22%20append=%22%E5%9C%A8%E5%90%8E%22%3E%0A%20%20%20%20%3CDatePicker%20clearable%20style=%22width:100%25%22%3E%3C/DatePicker%3E%0A%20%20%3C/Combi%3E%0A%3C/template%3E%0A%3Cscript%3E%0Aexport%20default%20%7B%7D%0A%3C/script%3E"></live-preview>
+            <div class="demo-code-wrapper">
+              <details>
+                <summary>查看源码</summary>
+                <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">Combi</span><span style="color:#C792EA"> prepend</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">在前</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> append</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">在后</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">    &#x3C;</span><span style="color:#F07178">DatePicker</span><span style="color:#C792EA"> clearable</span><span style="color:#C792EA"> style</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">width:100%</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">DatePicker</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;/</span><span style="color:#F07178">Combi</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF;font-style:italic">export</span><span style="color:#89DDFF;font-style:italic"> default</span><span style="color:#89DDFF"> {}</span></span>
+<span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+              </details>
+            </div>
+          </div>
+          
 <h2>props</h2>
 <p><code>prepend</code> <em>String</em><br>前置文本</p>
 <p><code>append</code> <em>String</em><br>后置文本</p>

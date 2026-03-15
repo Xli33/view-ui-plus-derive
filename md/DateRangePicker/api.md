@@ -1,19 +1,3 @@
-## DateRangePicker
-
-基于DatePicer[type=daterange]，绑定的值转为string
-
-```vue
-<template>
-  <DateRangePicker v-model:begin="rangeBegin" v-model:end="rangeEnd"></DateRangePicker>
-</template>
-<script setup>
-import { ref } from 'vue'
-
-const rangeBegin = ref(''),
-  rangeEnd = ref('')
-</script>
-```
-
 ## props
 
 `begin` _Date | String_ （default `''`）  

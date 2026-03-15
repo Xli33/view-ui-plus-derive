@@ -1,11 +1,14 @@
 <h2>DateRange</h2>
 <p>组合形式的日期范围组件</p>
-<pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
-<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">DateRange</span></span>
-<span class="line"><span style="color:#C792EA">    v-model:begin</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">beginDate</span><span style="color:#89DDFF">"</span></span>
-<span class="line"><span style="color:#C792EA">    v-model:end</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">endDate</span><span style="color:#89DDFF">"</span></span>
-<span class="line"><span style="color:#C792EA">    clearable</span></span>
-<span class="line"><span style="color:#C792EA">    style</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">width: 240px</span><span style="color:#89DDFF">"</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">DateRange</span><span style="color:#89DDFF">></span></span>
+<h4>基本用法</h4>
+
+          <div class="demo-block">
+            <live-preview demo-code="%3Ctemplate%3E%0A%20%20%3CDateRange%20v-model:begin=%22beginDate%22%20v-model:end=%22endDate%22%20clearable%3E%3C/DateRange%3E%0A%3C/template%3E%0A%3Cscript%20setup%3E%0Aimport%20%7B%20ref%20%7D%20from%20'vue'%0A%0Aconst%20beginDate%20=%20ref(''),%0A%20%20endDate%20=%20ref('')%0A%3C/script%3E"></live-preview>
+            <div class="demo-code-wrapper">
+              <details>
+                <summary>查看源码</summary>
+                <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
+<span class="line"><span style="color:#89DDFF">  &#x3C;</span><span style="color:#F07178">DateRange</span><span style="color:#C792EA"> v-model:begin</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">beginDate</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> v-model:end</span><span style="color:#89DDFF">=</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">endDate</span><span style="color:#89DDFF">"</span><span style="color:#C792EA"> clearable</span><span style="color:#89DDFF">>&#x3C;/</span><span style="color:#F07178">DateRange</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">template</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;</span><span style="color:#F07178">script</span><span style="color:#C792EA"> setup</span><span style="color:#89DDFF">></span></span>
 <span class="line"><span style="color:#89DDFF;font-style:italic">import</span><span style="color:#89DDFF"> {</span><span style="color:#BABED8"> ref</span><span style="color:#89DDFF"> }</span><span style="color:#89DDFF;font-style:italic"> from</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">vue</span><span style="color:#89DDFF">'</span></span>
@@ -13,6 +16,10 @@
 <span class="line"><span style="color:#C792EA">const</span><span style="color:#BABED8"> beginDate </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">''</span><span style="color:#BABED8">)</span><span style="color:#89DDFF">,</span></span>
 <span class="line"><span style="color:#BABED8">  endDate </span><span style="color:#89DDFF">=</span><span style="color:#82AAFF"> ref</span><span style="color:#BABED8">(</span><span style="color:#89DDFF">''</span><span style="color:#BABED8">)</span></span>
 <span class="line"><span style="color:#89DDFF">&#x3C;/</span><span style="color:#F07178">script</span><span style="color:#89DDFF">></span></span></code></pre>
+              </details>
+            </div>
+          </div>
+          
 <h2>props</h2>
 <p><code>begin</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:begin双向绑定开始时间</p>
 <p><code>end</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:end双向绑定结束时间</p>

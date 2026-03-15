@@ -1,32 +1,3 @@
-## RemoteSelect
-
-获取远程数据的Select，默认在展开时才触发请求
-
-```vue
-<template>
-  <RemoteSelect
-    v-model="selectModel"
-    :method="getList"
-    filterable
-    style="width: 200px"
-    @on-change="$Message.info($event)"></RemoteSelect>
-</template>
-<script setup>
-import { ref } from 'vue'
-
-const selectModel = ref(''),
-  getList = () => new Promise(resolve => {
-      setTimeout(() => {
-          resolve([
-              {value: 'a', label: '一'}
-              {value: 'b', label: '二'}
-              {value: 'c', label: '三'}
-          ])
-      }, 2000)
-  })
-</script>
-```
-
 ## props
 
 除以下prop，可传递Select的其它prop，如filterable

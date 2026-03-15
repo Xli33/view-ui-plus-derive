@@ -1,26 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>view-ui-plus-derive</title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.21/dist/styles/viewuiplus.css" />
+      href="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.24/dist/styles/viewuiplus.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/view-ui-plus-derive/dist/umd/index.css" />
     <link
       id="markdown-css"
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.26/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.29/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-router@4.6.4/dist/vue-router.global.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.21/dist/viewuiplus.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.24/dist/viewuiplus.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus-derive/dist/umd/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
     <script type="module">
       import { Scrollbar } from 'https://cdn.jsdelivr.net/npm/utils-where/dist/esm/index.js'
       Scrollbar.init()
       if (!Scrollbar.disabled) {
         Scrollbar.syncPos = true
         Scrollbar.attach(document.getElementById('menulist')).attach(
-          document.getElementById('md-list')
+          document.getElementById('md-box')
         )
       }
     </script>
@@ -97,7 +102,7 @@
 
       .ivu-layout-sider {
         position: fixed;
-        z-index: 1;
+        z-index: 9;
         height: 100%;
         padding: 2vh 0;
         overflow: auto;
@@ -119,6 +124,68 @@
 
       .menu-toggle {
         align-self: flex-start;
+      }
+
+      ul[class*='ivu-'] {
+        margin: 0;
+        padding: 5px 0;
+      }
+
+      .ivu-table-header > table,
+      .ivu-table-body > table {
+        margin-bottom: 0;
+      }
+
+      .ivu-table tr > td {
+        padding: 0;
+      }
+
+      .ivu-table-cell {
+        padding: 0 8px;
+      }
+
+      .anchor {
+        display: none;
+        margin-top: 5vh;
+      }
+
+      h1.page-table-header-title {
+        border: none;
+        margin: 0;
+        font-size: medium;
+      }
+
+      .ivu-page > li.ivu-page-next,
+      .ivu-page > li.ivu-page-item {
+        margin-top: 0;
+      }
+
+      .demo-part {
+        display: flow-root;
+        position: relative;
+      }
+
+      .demo-part > .demo-code-copy {
+        position: absolute;
+        right: 0;
+        margin-top: 10px;
+        color: #fff;
+      }
+
+      .demo-code-wrapper {
+        margin-top: 10px;
+      }
+
+      .demo-code-wrapper summary {
+        margin-bottom: 5px;
+        font-size: smaller;
+        color: gray;
+      }
+
+      .demo-code-copy {
+        float: right;
+        margin-right: 10px;
+        font-size: 20px;
       }
 
       .markdown-body {
@@ -144,6 +211,10 @@
         }
         #menulist {
           padding-right: 5px;
+        }
+        .anchor {
+          display: block;
+          margin-left: 5px;
         }
       }
     </style>
@@ -221,27 +292,87 @@
         </sider>
         <content class="markdown-body">
           <icon type="md-menu" class="menu-toggle" @click="showMenu = !showMenu"></icon>
-          <div class="scroller fill">
-            <div id="md-list">
+          <div class="scroller fill ivu-pl-4">
+            <div id="md-box" class="md-box">
               <router-view v-slot="{ Component, route }">
                 <keep-alive>
                   <component v-if="route.name" :is="Component" :key="route.name"></component>
-                  <!-- :content="route.meta.content" -->
                 </keep-alive>
+                <!-- :content="route.meta.content" -->
               </router-view>
             </div>
           </div>
         </content>
+        <anchor
+          ref="anchorRef"
+          :offset-top="0"
+          container=".markdown-body .scroller"
+          show-ink
+          class="anchor"
+          @click="gotoAnchor">
+          <anchor-link
+            v-for="(anchor, i) in anchors"
+            :key="i"
+            :href="anchor.href"
+            :title="anchor.text">
+          </anchor-link>
+        </anchor>
       </layout>
     </div>
 
     <script>
       const contentCache = {}
-      const { createApp, onMounted, ref, shallowRef, computed } = Vue
+      const {
+        createApp,
+        ref,
+        shallowRef,
+        computed,
+        getCurrentInstance,
+        useTemplateRef,
+        onMounted,
+        onActivated,
+        onDeactivated
+      } = Vue
+
+      const { loadModule } = window['vue3-sfc-loader']
+      let /* manualLink, */ sections
+
+      /**
+       * 挂载vue3-sfc
+       * @param {string} source - 你的 .vue 源码字符串
+       * @param {HTMLElement} el - 挂载点
+       */
+      async function mountLiveDemo(source, el) {
+        try {
+          // 将源码包装成一个伪路径
+          const component = await loadModule(Date.now() + '.vue', {
+            moduleCache: { vue: Vue }, // 共享主应用的 Vue 实例
+            getFile: () => source,
+            addStyle(textContent) {
+              //   const style = document.createElement('style')
+              //   style.textContent = textContent
+              //   const ref = document.head.getElementsByTagName('style')[0] || null
+              //   document.head.insertBefore(style, ref)
+            }
+          })
+          const app = createApp(component)
+          app
+            .use(ViewUIPlus, {
+              // locale: ElementPlusLocaleZhCn
+            })
+            .use(iviewDerive)
+          app.mount(el)
+        } catch (err) {
+          console.error('SFC Load Error:', err)
+        }
+      }
+
       const app = createApp({
         setup() {
           const menus = shallowRef([]),
-            autoOpends = []
+            autoOpends = [],
+            refAnchor = useTemplateRef('anchorRef')
+          window.anchor = refAnchor
           const ViewMD = {
             template: `<div v-once v-html='content' class='md-content'></div>`,
             // props: {
@@ -260,12 +391,74 @@
               if (content) {
                 delete contentCache[route.name]
               }
+              onMounted(() => {
+                // 调整结构
+                const mdHeads = Array.from(
+                    document.querySelector('.md-content').querySelectorAll('h2,h3,h4')
+                  ),
+                  cpIcon = document.createElement('i')
+                cpIcon.className = 'demo-code-copy ivu-icon ivu-icon-md-copy'
+
+                mdHeads.forEach((h) => {
+                  const div = document.createElement('div')
+                  div.className = 'demo-part'
+                  let nextElement = h.nextElementSibling
+                  while (!mdHeads.includes(nextElement)) {
+                    const tmp = nextElement.nextElementSibling
+                    div.append(nextElement)
+                    nextElement.tagName === 'PRE' && nextElement.before(cpIcon.cloneNode())
+                    if (!tmp) break
+                    nextElement = tmp
+                  }
+                  h.before(div)
+                  div.prepend(h)
+                })
+
+                // 上面使用@vue/compiler-sfc预编译vue到js后存在插槽提升问题，用到嵌套插槽的demo无法正常渲染
+                // 故改为直接使用vue3-sfc-loader动态渲染vue
+                const demoBlocks = getCurrentInstance().proxy.$el.querySelectorAll('.demo-block')
+
+                demoBlocks.forEach((demoBlock) => {
+                  const div = document.createElement('div'),
+                    liveDemo = demoBlock.querySelector('live-preview')
+                  div.className = 'live-demo'
+                  div.append(liveDemo)
+                  demoBlock.prepend(div)
+                  demoBlock
+                    .querySelector('.demo-code-wrapper>details>summary')
+                    .append(cpIcon.cloneNode())
+                  mountLiveDemo(decodeURI(liveDemo.getAttribute('demo-code')), div)
+                })
+              })
+              onActivated(() => {
+                const refMdBox = document.getElementById('md-box')
+                // 生成锚点
+                anchors.value = []
+                sections = Array.from(refMdBox.querySelectorAll('.demo-part :is(h2,h3,h4)'))
+                sections.forEach((e, i) => {
+                  e.parentElement.id = e.textContent
+                  anchors.value.push({
+                    text: e.innerText,
+                    href: '#' + e.parentElement.id
+                  })
+                  sections[i] = e.parentElement
+                })
+                /* manualLink = true
+                setTimeout(() => {
+                  manualLink = false
+                }, 500) */
+                refMdBox.parentElement.scrollTo(0, 0)
+              })
+              onDeactivated(() => {
+                sections = null
+              })
               return {
                 content
               }
             }
           }
           const route = VueRouter.useRoute()
+          const anchors = shallowRef([])
           const activeMenu = computed(() => route.name)
           const showMenu = ref(false)
 
@@ -276,6 +469,43 @@
             router.replace({
               name: e.route || e.name
             })
+            // refAnchor.value.scrollTo('0')
+          }
+
+          const gotoAnchor = (e) => {
+            if (!e.target.classList.contains('ivu-anchor-link-title')) return
+            // manualLink = true
+            e.preventDefault()
+            const scroller = document.getElementById('md-box').parentElement,
+              href = e.target.title
+            /* if ('onscrollend' in window) {
+              scroller.addEventListener(
+                'scrollend',
+                () => {
+                  manualLink = false
+                },
+                { once: true }
+              )
+            } else {
+              //  备选方案：通过监听滚动是否停止来解锁
+              let lastPos = null
+              const checkScroll = () => {
+                const currentPos = scroller.scrollTop
+                if (lastPos === currentPos) {
+                  manualLink = false
+                  return
+                }
+                lastPos = currentPos
+                requestAnimationFrame(checkScroll)
+              }
+              requestAnimationFrame(checkScroll)
+            } */
+            router.replace({
+              query: {
+                anchor: href
+              }
+            })
+            scroller.querySelector('#' + href).scrollIntoView({ behavior: 'smooth' })
           }
 
           onMounted(async () => {
@@ -305,7 +535,20 @@
               redirect: { name: 'start' }
             })
             loadingRoutes = null
-            router.replace(route.fullPath)
+            router.replace(route.fullPath).then(() => {
+              if (route.query.anchor) {
+                // manualLink = true
+                // refAnchor.value.scrollTo(route.query.anchor)
+                setTimeout(() => {
+                  document
+                    .querySelector('.md-box #' + route.query.anchor)
+                    .scrollIntoView({ behavior: 'smooth' })
+                  /* setTimeout(() => {
+                    manualLink = false
+                  }, 500) */
+                })
+              }
+            })
             console.log(menus, autoOpends, router.getRoutes(), route)
 
             document.querySelector('.ivu-layout').onclick = (e) => {
@@ -317,15 +560,56 @@
                 showMenu.value = false
               }
             }
+
+            // let isTicking
+            const refMdBox = document.querySelector('.md-box')
+            // refScrollBox = refMdBox.parentElement
+            refMdBox.onclick = (e) => {
+              let target = e.target.closest('.demo-code-copy')
+              if (!target) return
+              // live demo内的复制按钮在<summary>中
+              if (target.closest('summary')) {
+                e.preventDefault()
+                target = target.closest('.demo-code-wrapper').querySelector('details>pre')
+              } else {
+                target = target.nextElementSibling
+              }
+              navigator.clipboard.writeText(target.textContent).then(() => {
+                ViewUIPlus.Message.success('代码已复制到剪贴板')
+              })
+            }
+
+            // let last = 0
+            // refScrollBox.addEventListener('scroll', () => {
+            //   if (Date.now() - last < 50) return
+            //   last = Date.now()
+            //   if (!manualLink && !isTicking) {
+            //     window.requestAnimationFrame(setActiveAnchor)
+            //     isTicking = true
+            //   }
+            // })
+
+            // function setActiveAnchor() {
+            //   const scrollPos = refScrollBox.scrollTop
+            //   for (const v of sections) {
+            //     if (scrollPos >= v.offsetTop && scrollPos < v.offsetTop + v.offsetHeight) {
+            //       refAnchor.value.scrollTo(v.id)
+            //       break
+            //     }
+            //   }
+            //   isTicking = null
+            // }
           })
 
           return {
             showMenu,
             activeMenu,
             menus,
+            anchors,
             autoOpends,
             theme: globalTheme,
-            open
+            open,
+            gotoAnchor
           }
         }
       })
@@ -335,6 +619,7 @@
       })
       let loadingRoutes = true
       router.beforeEach(async (to, from) => {
+        ViewUIPlus.LoadingBar.start()
         // console.log(to, from);
         const toRoute = to.matched[to.matched.length - 1]
         // 当未获取到路由配置时允许跳转不存在的地址，以免始终会重定向到 /start。当路由配置加载后会通过 replace 尝试导航到存在的路由
@@ -351,6 +636,7 @@
         }
       })
       router.afterEach((to) => {
+        ViewUIPlus.LoadingBar.finish()
         // activeMenu.value = to.name;
       })
       app.use(router)

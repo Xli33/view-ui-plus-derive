@@ -1,22 +1,3 @@
-## CountRange
-
-数值范围组件
-
-```vue
-<template>
-  <CountRange
-    v-model:begin="minNum"
-    v-model:end="maxNum"
-    @change-min="(v) => console.log(v)"></CountRange>
-</template>
-<script setup>
-import { ref } from 'vue'
-
-const minNum = ref(),
-  maxNum = ref()
-</script>
-```
-
 ## props
 
 `begin` _Number_ （default `null`）  

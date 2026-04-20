@@ -13,11 +13,11 @@
       href="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.24/dist/styles/viewuiplus.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/view-ui-plus-derive/dist/umd/index.css" />
+      href="https://cdn.jsdelivr.net/npm/view-ui-plus-derive@0/dist/umd/index.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@3.5.31/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-router@5.0.4/dist/vue-router.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/view-ui-plus@1.3.24/dist/viewuiplus.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus-derive/dist/umd/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/view-ui-plus-derive@0/dist/umd/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
     <script type="module">
       import { Scrollbar } from 'https://cdn.jsdelivr.net/npm/utils-where/dist/esm/index.js'
@@ -202,7 +202,7 @@
           height: 10px;
         }
         ::-webkit-scrollbar-thumb {
-          background-color: rgb(193 193 193 / .5);
+          background-color: rgb(193 193 193 / 0.5);
           border-radius: 5px;
         }
         #app {
@@ -354,7 +354,7 @@
         try {
           // 将源码包装成一个伪路径
           const component = await loadModule(Date.now() + '.vue', {
-            moduleCache: { vue: Vue }, // 共享主应用的 Vue 实例
+            moduleCache: { vue: Vue, 'view-ui-plus': ViewUIPlus }, // 共享主应用的 Vue 实例
             getFile: () => source,
             addStyle(textContent) {
               //   const style = document.createElement('style')

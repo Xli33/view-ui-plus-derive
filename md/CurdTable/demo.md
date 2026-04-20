@@ -7,7 +7,9 @@
     :columns="table.columns"
     size="small"
     :action-width="130"
-    :add-row="table.add">
+    :add-row="table.add"
+    :before-add="beforeAdd"
+    :before-remove="beforeRemove">
     <template #num="{ row, index }">
       <Input v-model.trim="table.list[index].num"></Input>
     </template>
@@ -17,6 +19,8 @@
   </CurdTable>
 </template>
 <script setup lang="jsx">
+import { Modal } from 'view-ui-plus'
+
 const table = {
   columns: [
     {
@@ -67,6 +71,25 @@ const table = {
       time: new Date().toLocaleString()
     }
   ]
+}
+
+const beforeAdd = (done) => {
+  Modal.confirm({
+    title: '提示',
+    content: '确定要添加吗？',
+    onOk: () => {
+      done()
+    }
+  })
+}
+const beforeRemove = (row, index, done) => {
+  Modal.confirm({
+    title: '提示',
+    content: `确定要删除${row.exp}吗？`,
+    onOk: () => {
+      done(index)
+    }
+  })
 }
 </script>
 ```

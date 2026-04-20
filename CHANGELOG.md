@@ -1,6 +1,19 @@
 # Changelog
 
 
+## [0.3.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.3...v0.3.0) (2026-04-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* 优化CurdTable的`beforeAdd`与`beforeRemove`，不再返回Promise，通过传参回调执行新增or删除，避免实际场景可能产生永远pending的Promise
+* 优化MCalendar样式，borderless化
+
+### Features
+
+* 优化CurdTable的`beforeAdd`与`beforeRemove`，不再返回Promise，通过传参回调执行新增or删除，避免实际场景可能产生永远pending的Promise ([5504c8f](https://github.com/Xli33/view-ui-plus-derive/commit/5504c8fbbfbb4689049cd29cf0b602e0b319fdb9))
+* 优化MCalendar样式，borderless化 ([601ef09](https://github.com/Xli33/view-ui-plus-derive/commit/601ef09f0880f6ec8b865d264518f80bea340785))
+
 ## [0.2.3](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.2...v0.2.3) (2026-03-15)
 
 

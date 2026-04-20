@@ -1,11 +1,11 @@
 & {
   @vupd-block: .vupd-block(mcalendar) [ @vupd-block];
-  @border: 1px solid #f5f5f5;
+  // @border: 1px solid #f5f5f5;
   @width: 14.2857%;
   @timing: 0.15s ease-out;
 
   .bgColor(@color) {
-    border-color: @color;
+    // border-color: @color;
     background-color: @color;
   }
 
@@ -36,17 +36,17 @@
         max-width: @width;
         min-height: 100px;
         padding: 5px;
-        border-bottom: @border;
-        border-left: @border;
+        // border-bottom: @border;
+        // border-left: @border;
         word-break: break-all;
         transition:
-          border-color @timing,
+          // border-color @timing,
           background-color @timing;
         // font-size: 14px;
 
-        &:nth-child(7n) {
-          border-right: @border;
-        }
+        // &:nth-child(7n) {
+        //   border-right: @border;
+        // }
 
         &.outer:not(.in-range) {
           color: #aaa;

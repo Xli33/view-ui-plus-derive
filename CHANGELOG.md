@@ -1,6 +1,20 @@
 # Changelog
 
 
+## [0.4.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.3.0...v0.4.0) (2026-05-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* 指令名统一以 `v` 起头，便于识别区分，并添加具体类型声明
+
+* 指令名统一以 `v` 起头，便于识别区分，并添加具体类型声明 ([7aa0ba7](https://github.com/Xli33/view-ui-plus-derive/commit/7aa0ba7ace3d66bcb1267c43d1f496c4f3c36132))
+
+
+### Bug Fixes
+
+* **CacheSelect:** fix type ([24b5a0a](https://github.com/Xli33/view-ui-plus-derive/commit/24b5a0af6b5dd39c9010dfb3631c4306bde58b26))
+
 ## [0.3.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.2.3...v0.3.0) (2026-04-20)
 
 

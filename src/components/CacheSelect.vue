@@ -44,9 +44,9 @@ const loadeds: {
   list: null
 }
 // 用于存储选项list
-const local: {
+const local = shallowReactive<{
   [n: string]: Obj[]
-} = shallowReactive({})
+}>({})
 // 需要防止触发重复请求的实例数组，并用于在第一次load后补充触发未触发的update:chosen
 const cached: {
   [n: string]: Obj[]

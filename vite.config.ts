@@ -37,9 +37,6 @@ export default defineConfig(({ command }) => {
         configFile: false,
         plugins: [vue(), vueJsx()],
         ...sameOption,
-        esbuild: {
-          drop: ['console', 'debugger'] // umd打包时删除所有的console 和 debugger
-        },
         build: {
           target: 'es2023',
           cssTarget: ['chrome112', 'edge112', 'firefox115', 'safari16.4'],
@@ -53,9 +50,15 @@ export default defineConfig(({ command }) => {
             cssFileName: 'index',
             formats: ['umd']
           },
-          rollupOptions: {
+          rolldownOptions: {
             external: ['vue', 'view-ui-plus'],
             output: {
+              minify: {
+                compress: {
+                  dropConsole: true,
+                  dropDebugger: true
+                }
+              },
               globals: {
                 vue: 'Vue',
                 'view-ui-plus': 'ViewUIPlus'
@@ -74,7 +77,7 @@ export default defineConfig(({ command }) => {
       vueDevTools(),
       dts({
         tsconfigPath: './tsconfig.app.json',
-        rollupTypes: true,
+        bundleTypes: true,
         // cleanVueFileName: true,
         // insertTypesEntry: false,
         include: [
@@ -107,7 +110,7 @@ export default defineConfig(({ command }) => {
           // console.log(fileMap)
           unlinkSync('dist/iview-mod.d.ts')
           unlinkSync('dist/iview-mod.less.d.ts')
-          unlinkSync('dist/zh-CN.d.ts')
+          // unlinkSync('dist/zh-CN.d.ts')
           cpSync('src/styles', 'dist/less', { recursive: true })
         }
         // beforeWriteFile(filePath) {
@@ -128,10 +131,11 @@ export default defineConfig(({ command }) => {
       } */
         entry: [
           'src/index.ts',
-          'src/directives/index.ts',
           'src/iview-mod.ts',
-          'src/iview-mod.less',
-          'src/locale/zh-CN.ts'
+          'src/iview-mod.less'
+          // vite8起，lib模式下无需指定entry，也能从 src/index 这种单一入口中拆分chunk了
+          // 'src/directives/index.ts',
+          // 'src/locale/zh-CN.ts'
           // 'src/components/Combi.vue'
         ],
         name: 'iviewDerive',
@@ -161,29 +165,60 @@ export default defineConfig(({ command }) => {
           //   'view-ui-plus': 'ViewUIPlus',
           //   dayjs: 'dayjs'
           // },
-          manualChunks(id) {
-            // console.log(id)
-            // 按组件对应名输出各自的css
-            if (id.includes('.vue?vue&type=style&index=0&lang.less' /* '/components/' */)) {
-              return id.match(/[a-zA-Z]+\.vue/)![0]
-            }
-            // 分离iview-mods/*
-            if (/src\/iview-mods\/[a-z-]+\.ts/.test(id)) {
-              return id.match(/[a-z-]+\.ts/)![0].slice(0, -3)
-            }
-            // 分离语言文件
-            // if (/src\/locale\/\w+-\w+\.ts$/.test(id)) {
-            //   const file = id.match(/[a-zA-Z-]+.ts/)![0]
-            //   return file.slice(0, -3)
-            // }
-            // 分离vue指令文件
-            if (/src\/directives\/.+\.ts$/.test(id)) {
-              return id.match(/[a-z-]+\.ts/)![0].slice(0, -3)
-            }
-            // if (id.includes('.vue?vue&type=style&index=0&lang.less')) return 'css'
-            // if (id.includes('.vue?vue&type=script&setup=true&lang.ts')) return 'coms'
-            // if (id.includes('.vue')) return 'vues'
+          codeSplitting: {
+            groups: [
+              // 按组件对应名输出各自的css
+              {
+                name: (id: string) => {
+                  if (id.includes('.vue?vue&type=style&index=0&lang.less' /* '/components/' */)) {
+                    return id.match(/[a-zA-Z]+\.vue/)![0]
+                  }
+                },
+                priority: 1
+              },
+              // 分离ep-mods/*
+              {
+                test: /src\/iview-mods\/[a-z-]+\.ts/,
+                name: (id: string) => 'iview-mods/' + id.match(/[a-z-]+\.ts/)![0].slice(0, -3),
+                priority: 1
+              },
+              // 分离语言文件
+              {
+                test: /src\/locale\/\w+-\w+\.ts$/,
+                name: (id: string) => 'locale/' + id.match(/[a-zA-Z-]+.ts/)![0].slice(0, -3),
+                priority: 1
+              },
+              // 分离vue指令文件
+              {
+                test: /src\/directives\/.+\.ts$/,
+                name: (id: string) => 'directives/' + id.match(/[a-z-]+\.ts/)![0].slice(0, -3),
+                priority: 1
+              }
+            ]
           },
+          // manualChunks(id) {
+          //   // console.log(id)
+          //   // 按组件对应名输出各自的css
+          //   if (id.includes('.vue?vue&type=style&index=0&lang.less' /* '/components/' */)) {
+          //     return id.match(/[a-zA-Z]+\.vue/)![0]
+          //   }
+          //   // 分离iview-mods/*
+          //   if (/src\/iview-mods\/[a-z-]+\.ts/.test(id)) {
+          //     return id.match(/[a-z-]+\.ts/)![0].slice(0, -3)
+          //   }
+          //   // 分离语言文件
+          //   // if (/src\/locale\/\w+-\w+\.ts$/.test(id)) {
+          //   //   const file = id.match(/[a-zA-Z-]+.ts/)![0]
+          //   //   return file.slice(0, -3)
+          //   // }
+          //   // 分离vue指令文件
+          //   if (/src\/directives\/.+\.ts$/.test(id)) {
+          //     return id.match(/[a-z-]+\.ts/)![0].slice(0, -3)
+          //   }
+          //   // if (id.includes('.vue?vue&type=style&index=0&lang.less')) return 'css'
+          //   // if (id.includes('.vue?vue&type=script&setup=true&lang.ts')) return 'coms'
+          //   // if (id.includes('.vue')) return 'vues'
+          // },
           assetFileNames: (assetInfo) => {
             // console.log(JSON.stringify(assetInfo, null, 1))
             // let folder = 'assets'
@@ -198,18 +233,18 @@ export default defineConfig(({ command }) => {
             // return `${folder}/[name]-[hash][extname]`
             return `${assetInfo.names[0] !== 'iview-mod.css' ? 'styles/' : ''}[name][extname]`
           },
-          chunkFileNames: (chunkInfo) => {
+          chunkFileNames: (/* chunkInfo */) => {
             // 分离到对应文件夹
 
             // const file = chunkInfo.name.match(/^\w+\.vue/)
             // return `${file ? 'components' : 'iview-mods'}/[name].js`
-            const mid = chunkInfo.moduleIds[0]
-            let matched = /src\/iview-mods\/.+\.ts$/.test(mid)
-            if (matched) return 'iview-mods/[name].js'
-            matched = /src\/locale\/.+\.ts$/.test(mid)
-            if (matched) return 'locale/[name].js'
-            matched = /src\/directives\/.+\.ts$/.test(mid)
-            if (matched) return 'directives/[name].js'
+            // const mid = chunkInfo.moduleIds[0]
+            // let matched = /src\/iview-mods\/.+\.ts$/.test(mid)
+            // if (matched) return 'iview-mods/[name].js'
+            // matched = /src\/locale\/.+\.ts$/.test(mid)
+            // if (matched) return 'locale/[name].js'
+            // matched = /src\/directives\/.+\.ts$/.test(mid)
+            // if (matched) return 'directives/[name].js'
 
             return '[name].js'
             //   if (
@@ -222,16 +257,16 @@ export default defineConfig(({ command }) => {
             //     return `assets/locale/${locale[1]}-[hash].js`
             //   }
             // return 'js/[name]-[hash].js'
-          },
-          entryFileNames: (chunkInfo) => {
-            //'js/[name]-[hash].js'
-            // console.log(chunkInfo)
-            let dir = ''
-            const { facadeModuleId } = chunkInfo
-            if (facadeModuleId!.match(/src\/locale\/.+\.ts$/)) dir = 'locale/'
-            else if (facadeModuleId!.match(/src\/directives\/.+\.ts$/)) dir = 'directives/'
-            return dir + '[name].js'
           }
+          // entryFileNames: (chunkInfo) => {
+          //   //'js/[name]-[hash].js'
+          //   // console.log(chunkInfo)
+          //   let dir = ''
+          //   const { facadeModuleId } = chunkInfo
+          //   if (facadeModuleId!.match(/src\/locale\/.+\.ts$/)) dir = 'locale/'
+          //   else if (facadeModuleId!.match(/src\/directives\/.+\.ts$/)) dir = 'directives/'
+          //   return dir + '[name].js'
+          // }
         }
       }
     }

@@ -1,1 +1,1 @@
-export { iviewSelect } from './v-iview-select'
+export { vIviewSelect } from './v-iview-select'

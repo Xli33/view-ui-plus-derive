@@ -32,7 +32,7 @@
 import type { Obj } from '@/type'
 import { type PropType, computed, nextTick, onMounted, ref, watch } from 'vue'
 import { Select, Option } from 'view-ui-plus'
-import { iviewSelect as vIviewSelect } from '@/directives'
+import { vIviewSelect } from '@/directives'
 
 export default {
   name: 'RemoteSelect',

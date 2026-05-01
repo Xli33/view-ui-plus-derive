@@ -1,8 +1,16 @@
 import type { Directive } from 'vue'
 import type { Obj } from '@/type'
 
+type VIViewSelectDirective = Directive<HTMLElement, boolean | undefined>
+
+declare module 'vue' {
+  export interface ComponentCustomProperties {
+    vIviewSelect: VIViewSelectDirective
+  }
+}
+
 // iview Select使用v-iview-select:all开启全选操作
-export const iviewSelect: Directive = {
+export const vIviewSelect: VIViewSelectDirective = {
   beforeMount: (el, binding, vnode: any) => {
     // console.log('created', el, binding, vnode)
     if (
@@ -27,9 +35,9 @@ export const iviewSelect: Directive = {
         ctx.values.length !== valids.length ? valids.map((e: Obj) => e.ctx.value) : []
       )
     }
-    if (!document.getElementById('iselect-css')) {
+    if (!document.getElementById('v-iselect-css')) {
       const style = document.createElement('style')
-      style.id = 'iselect-css'
+      style.id = 'v-iselect-css'
       style.innerHTML =
         '.with-all.ivu-select .ivu-select-selection .ivu-select-arrow.ivu-icon-md-done-all,' +
         '.with-all.ivu-select-multiple:hover .ivu-select-selection .ivu-select-arrow:not(.ivu-icon-md-done-all){display:none;}' +

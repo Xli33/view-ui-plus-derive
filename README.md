@@ -235,14 +235,14 @@ createApp(App)
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import { iviewSelect } from "view-ui-plus-derive"
+import { vIviewSelect } from "view-ui-plus-derive"
 import App from './App.vue'
 
-createApp(App).use(ViewUIPlus).directive('iviewSelect', iviewSelect).mount('#app')
+createApp(App).use(ViewUIPlus).directive('iviewSelect', vIviewSelect).mount('#app')
 
 // 局部注册
 <script setup>
-import { iviewSelect as vIviewSelect } from "view-ui-plus-derive";
+import { vIviewSelect } from "view-ui-plus-derive";
 </script>
 
 // 使用

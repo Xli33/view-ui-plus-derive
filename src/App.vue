@@ -44,7 +44,7 @@ import ConfigProviderDemo from './views/ConfigProvider/demo.vue'
 import { i18n } from './i18n.ts'
 import { AppLocale } from './store.ts'
 
-const appLocale = computed(() => i18n.global.messages.value[AppLocale.value])
+const appLocale = computed(() => i18n.global.messages.value[AppLocale.value].d)
 
 const map = {
   ConfigProviderDemo,

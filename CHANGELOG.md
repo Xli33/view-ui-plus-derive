@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.5.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.4.0...v0.5.0) (2026-11-22)
+
+### ⚠ BREAKING CHANGES
+
+* 调整`CurdTable` `MCalendar`的en-US翻译 ([9b6b1da](https://github.com/Xli33/view-ui-plus-derive/commit/9b6b1da2cbde37b3402f25943846540d4af01b97))
+* 简化ToggleColumn，去除title prop与全选文案，默认展示图标 ([064cd92](https://github.com/Xli33/view-ui-plus-derive/commit/064cd9224cdefe9993c80a3f56ec98fc239ccea2))
+* 以`Vupd`前缀导出 ([f06d793](https://github.com/Xli33/view-ui-plus-derive/commit/f06d793187e2fcf13c9999a0bd09e1f62e6d7331))
+* 优化AllCheckbox，去除prop：hideAll，单向数据流改造 ([7f98ed4](https://github.com/Xli33/view-ui-plus-derive/commit/7f98ed4043c3936b2ef2c10e6969a3240ee3555a))
+* 原`page-table-`类前缀改为`pagetable-` ([f943763](https://github.com/Xli33/view-ui-plus-derive/commit/f943763e93be887c84dc1d9d454f3804559edd48))
+
+### Features
+
+* 新增ConfigProvider组件，提供局部国际化支持 ([489ba05](https://github.com/Xli33/view-ui-plus-derive/commit/489ba0558e37f8798b7ec6cdff7a963a1dcf338e))
+* **locale:** 优化语言配置，传入语言包无需放在`d`节点下 ([35c3809](https://github.com/Xli33/view-ui-plus-derive/commit/35c3809f833afcd8e5e4591d266dec5fe81c1edf))
+* **MCalendar:** 适配暗色模式 ([4c6efb7](https://github.com/Xli33/view-ui-plus-derive/commit/4c6efb766f7d59f3d5011e15670ad255e5beca3d))
+* **style:** 优化`PageTable`样式 ([cd0b782](https://github.com/Xli33/view-ui-plus-derive/commit/cd0b782f88ec4d8b126a53684cd20795ce1d598b))
+
+### Bug Fixes
+
+* **install:** 修复多次安装同一个epDerive时，组件name的前缀会重复叠加 ([0396c6a](https://github.com/Xli33/view-ui-plus-derive/commit/0396c6aed89a62f10245e5a431b5539f3c8c5b8b))
 
 ## [0.4.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.3.0...v0.4.0) (2026-05-01)
 

@@ -7,7 +7,7 @@ import type { Obj } from './type'
 import * as allComponents from './components'
 import { $i18n } from './locale/i18n'
 import { vIviewSelect } from './directives' // 用 import * as dirs from './directives'会导致生成额外的chunk，内容是通过Object.freeze处理过的只读对象
-import { classPrefix } from './utils'
+import { useClass } from './utils'
 
 const components = Object.values(allComponents),
   directives = Object.entries({ iviewSelect: vIviewSelect })
@@ -30,11 +30,11 @@ export function install(
   } = {}
 ) {
   // 支持定义组件名前缀
-  if (opt.prefix) {
+  if (opt.prefix != null) {
     // app.provide(classSymbol, opt.prefix)
-    classPrefix[0] = opt.prefix
-    components.forEach((e) => (e.name = opt.prefix! + e.name))
+    useClass.prefix = opt.prefix
   }
+  components.forEach((e) => (e.name = useClass.prefix + e.name))
   components.forEach((component) => {
     app.component(component.name!, component)
   })

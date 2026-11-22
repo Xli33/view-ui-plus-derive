@@ -20,7 +20,7 @@
           v-bind="delBtn"
           :disabled="delBtnDisabled(row, index)"
           @click="toDel(index)"
-          >{{ $i18n.t('curdTable.del') }}</Button
+          >{{ t('curdTable.del') }}</Button
         >
       </template>
     </Table>
@@ -36,7 +36,7 @@
       icon="md-add"
       style="display: block; position: relative; margin-top: -1px"
       @click="toAdd">
-      {{ addText ?? $i18n.t('curdTable.addText') }}
+      {{ addText ?? t('curdTable.addText') }}
     </Button>
   </div>
 </template>
@@ -48,7 +48,7 @@ import type { BtnSize, BtnType, Obj } from '@/type'
 import { type PropType, computed, ref, watch } from 'vue'
 import { Table, Button } from 'view-ui-plus'
 import { omitOwnKeys } from 'utils-where'
-import { $i18n } from '@/locale/i18n'
+import { useLang } from '@/utils/useLang'
 
 export default {
   name: 'CurdTable'
@@ -202,6 +202,7 @@ const emit = defineEmits<{
 
 // data
 
+const { t } = useLang()
 const list = ref(props.modelValue)
 
 // computed
@@ -212,7 +213,7 @@ const tableColumns = computed(() =>
     : props.columns.concat(
         Object.assign(
           {
-            title: props.actionText ?? $i18n.t('curdTable.actionText')
+            title: props.actionText ?? t('curdTable.actionText')
           },
           props.actionCol
         )

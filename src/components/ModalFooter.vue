@@ -11,7 +11,7 @@
           :type="cancelType"
           v-bind="cancel"
           @click="toCancel"
-          >{{ cancelText ?? $i18n.t('modalFooter.cancel') }}</Button
+          >{{ cancelText ?? t('modalFooter.cancel') }}</Button
         >
         <Button
           v-if="hasOk"
@@ -20,7 +20,7 @@
           v-bind="ok"
           type="primary"
           @click="$emit('ok')"
-          >{{ okText ?? $i18n.t('modalFooter.ok') }}</Button
+          >{{ okText ?? t('modalFooter.ok') }}</Button
         >
       </template>
       <template v-else>
@@ -31,7 +31,7 @@
           v-bind="ok"
           type="primary"
           @click="$emit('ok')"
-          >{{ okText ?? $i18n.t('modalFooter.ok') }}</Button
+          >{{ okText ?? t('modalFooter.ok') }}</Button
         >
         <Button
           :disabled="cancelDisabled"
@@ -39,7 +39,7 @@
           :type="cancelType"
           v-bind="cancel"
           @click="toCancel"
-          >{{ cancelText ?? $i18n.t('modalFooter.cancel') }}</Button
+          >{{ cancelText ?? t('modalFooter.cancel') }}</Button
         >
       </template>
       <slot name="action"></slot>
@@ -52,7 +52,7 @@
 
 import { getCurrentInstance, type PropType } from 'vue'
 import { Row, Col, Button } from 'view-ui-plus'
-import { $i18n } from '@/locale/i18n'
+import { useLang } from '@/utils/useLang'
 import type { BtnType } from '@/type'
 
 export default {
@@ -121,6 +121,8 @@ const emit = defineEmits<{
   ok: []
   cancel: []
 }>()
+
+const { t } = useLang()
 const instance = getCurrentInstance()
 
 // methods

@@ -19,7 +19,7 @@
 
 import { type PropType, computed, getCurrentInstance, ref, watch } from 'vue'
 import { DatePicker } from 'view-ui-plus'
-import { $i18n } from '@/locale/i18n'
+import { useLang } from '@/utils/useLang'
 import { useClass } from '@/utils'
 
 export default {
@@ -137,6 +137,7 @@ const emit = defineEmits<{
 
 // data
 
+const { t } = useLang()
 const beginDate = ref<DateValue>(props.begin),
   endDate = ref<DateValue>(props.end)
 
@@ -151,7 +152,7 @@ const beginProps = computed(() => ({
       }
     : undefined,
   disabled: props.disabled || props.beginDisabled,
-  placeholder: props.beginHolder ?? $i18n.t('dateRange.beginHolder'),
+  placeholder: props.beginHolder ?? t('dateRange.beginHolder'),
   class: props.beginClass,
   clearable: props.clearable,
   transfer: props.transfer,
@@ -165,7 +166,7 @@ const endProps = computed(() => ({
       beginDate.value && date && dayjs(date).isBefore(beginDate.value, dateTypes[props.type])
   },
   disabled: props.disabled || props.endDisabled,
-  placeholder: props.endHolder ?? $i18n.t('dateRange.endHolder'),
+  placeholder: props.endHolder ?? t('dateRange.endHolder'),
   class: props.endClass,
   clearable: props.clearable,
   transfer: props.transfer,

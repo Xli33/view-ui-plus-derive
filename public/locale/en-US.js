@@ -31,10 +31,10 @@ export default {
       reload: 'Reload',
       maxmize: 'Maxmize',
       restore: 'Restore'
-    },
-    toggleColumn: {
-      title: 'column',
-      checkAll: 'All'
     }
+    // toggleColumn: {
+    //   title: 'column',
+    //   checkAll: 'All'
+    // }
   }
 }

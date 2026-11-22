@@ -11,19 +11,15 @@
       @mouseout="toggle(false)"
       :class="useClass('toggle-column-btn')">
       <slot>
-        <Button type="default" :icon="icon">
-          <template v-if="!icon"
-            >{{ title ?? $i18n.t('toggleColumn.title') }} <Icon type="ios-arrow-down"
-          /></template>
-        </Button>
+        <Button type="default" :icon="icon"></Button>
       </slot>
     </span>
     <template #list>
       <div @mouseenter="toggle(true)" @mouseleave="toggle(false)">
         <div v-if="all" class="ivu-dropdown-item">
-          <Checkbox v-model="checkAll" :indeterminate="indeterminate">{{
-            $i18n.t('toggleColumn.checkAll')
-          }}</Checkbox>
+          <Checkbox v-model="checkAll" :indeterminate="indeterminate">
+            <span style="padding: 0 1em"></span>
+          </Checkbox>
         </div>
         <DropdownMenu :class="useClass('toggle-column-list')">
           <DropdownItem
@@ -48,9 +44,8 @@
 
 import type { Obj } from '@/type'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-import { Dropdown, DropdownMenu, DropdownItem, Icon, Checkbox, Button } from 'view-ui-plus'
+import { Dropdown, DropdownMenu, DropdownItem, Checkbox, Button } from 'view-ui-plus'
 import { deepMerge, getPathValue, isObject, makeObjectByPath, setPathValue } from 'utils-where'
-import { $i18n } from '@/locale/i18n'
 import { useClass } from '@/utils'
 
 // 用于记录绑定的原始列，配合prop：cacheId使用，避免在v-for中绑定了有 _visible: false 的列时在切换显示后丢失原始列
@@ -66,11 +61,13 @@ const props = defineProps({
   modelValue: {
     type: Array
   },
-  title: String,
   /**
    * 仅显示图标
    */
-  icon: String,
+  icon: {
+    type: String,
+    default: 'md-apps'
+  },
   /**
    * 绑定columns对应的唯一标识，一般在v-for中绑定了固定某列且列配置中带有 _visible:false 时用到
    */

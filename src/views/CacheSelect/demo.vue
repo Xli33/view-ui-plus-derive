@@ -1,7 +1,7 @@
 <template>
   <Card title="CacheSelect" class="block">
     <Space>
-      <CacheSelect
+      <VupdCacheSelect
         v-model="selectModel"
         v-model:list="selectList"
         :method="getList"
@@ -10,16 +10,16 @@
         style="width: 200px"
         @on-change="$Message.info($event || '')"
         @load="(e: any) => console.log(e)">
-      </CacheSelect>
-      <CacheSelect :model-value="selectModel" :list="selectList" textMode></CacheSelect>
-      <CacheSelect
+      </VupdCacheSelect>
+      <VupdCacheSelect :model-value="selectModel" :list="selectList" textMode></VupdCacheSelect>
+      <VupdCacheSelect
         v-model:list="selectList"
         v-model="selectModel"
         :method="getList"
         filterable
         style="width: 220px"
         @load="(e: any) => console.log(e)">
-      </CacheSelect>
+      </VupdCacheSelect>
       值：{{ selectModel }}
     </Space>
   </Card>
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CacheSelect } from '@/index'
+import { VupdCacheSelect } from '@/index'
 import type { Obj } from '@/type'
 
 const selectModel = ref(''),

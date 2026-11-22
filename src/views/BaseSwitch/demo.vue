@@ -10,13 +10,17 @@
       <Btn id="qr">fff</Btn>
       <CD v-if="toggle === 'T'" :end="3600000"></CD>
       <CK v-if="toggle === 'T'"></CK>
-      <BaseSwitch v-model="toggle" @change="change"></BaseSwitch>
-      <BaseSwitch
+      <VupdBaseSwitch v-model="toggle" @change="change"></VupdBaseSwitch>
+      <VupdBaseSwitch
         v-model="toggle"
         true-label="开"
         false-label="关"
-        @on-change="$Message.info($event)"></BaseSwitch>
-      <BaseSwitch v-model="toggle" true-label="打开" false-label="关闭" size="large"></BaseSwitch>
+        @on-change="$Message.info($event)"></VupdBaseSwitch>
+      <VupdBaseSwitch
+        v-model="toggle"
+        true-label="打开"
+        false-label="关闭"
+        size="large"></VupdBaseSwitch>
       值：{{ toggle }}
     </Space>
   </Card>
@@ -24,7 +28,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { BaseSwitch } from '@/index'
+import { VupdBaseSwitch } from '@/index'
 import Btn from './Btn'
 import CD from './CD'
 import CK from './CK'

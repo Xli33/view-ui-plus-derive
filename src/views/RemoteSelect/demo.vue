@@ -1,7 +1,7 @@
 <template>
   <Card title="RemoteSelect" class="block">
     <Space>
-      <RemoteSelect
+      <VupdRemoteSelect
         v-model="selectModel"
         v-model:list="selectLists"
         :method="getList"
@@ -9,13 +9,13 @@
         clearable
         all
         style="width: 200px">
-      </RemoteSelect>
-      <RemoteSelect :model-value="selectModel" :list="selectLists" textMode></RemoteSelect>
-      <RemoteSelect
+      </VupdRemoteSelect>
+      <VupdRemoteSelect :model-value="selectModel" :list="selectLists" textMode></VupdRemoteSelect>
+      <VupdRemoteSelect
         :method="getList"
         multiple
         all
-        @on-change="$Message.info(JSON.stringify($event))"></RemoteSelect>
+        @on-change="$Message.info(JSON.stringify($event))"></VupdRemoteSelect>
       值：{{ selectModel }}
     </Space>
   </Card>
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { RemoteSelect } from '@/index'
+import { VupdRemoteSelect } from '@/index'
 
 const selectModel = ref(''),
   selectLists = ref([])

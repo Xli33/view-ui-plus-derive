@@ -1,39 +1,44 @@
 <template>
   <Card title="CurdTable & ToggleColumn" class="block">
-    <ToggleColumn
-      v-for="n in 2"
-      :key="n"
-      v-model="columns"
-      :min-visible="2"
-      cache-id="app"
-      store-at="app.[main.cols]"
-      realtime
-      class="ivu-mr-8 ivu-mb-16"></ToggleColumn>
+    <Row justify="end">
+      <VupdToggleColumn
+        v-for="n in 2"
+        :key="n"
+        v-model="columns"
+        :min-visible="2"
+        cache-id="app"
+        store-at="app.[main.cols]"
+        realtime
+        class="ivu-mr-8 ivu-mb-16"></VupdToggleColumn>
+    </Row>
     <Table :columns="columns" :data="table.list" border :cache-cols="tempBorder" class="ivu-mb-16">
       <template #num="{ index }">
         <Input v-model.trim="table.list[index]!.num"></Input>
       </template>
     </Table>
-    <CurdTable
+    <VupdCurdTable
       v-model="table.list"
       :columns="columns"
       size="small"
       :action-width="130"
-      :add-row="table.add">
+      :add-row="table.add"
+      :before-add="beforeAdd"
+      :before-remove="beforeRemove">
       <template #num="{ index }">
         <Input v-model.trim="table.list[index]!.num"></Input>
       </template>
       <template #moreAction="{ row }">
         <Button size="small" class="ivu-mr-8">查看 {{ row.age }}</Button>
       </template>
-    </CurdTable>
+    </VupdCurdTable>
   </Card>
 </template>
 
 <script setup lang="tsx">
 import { ref, shallowRef } from 'vue'
-import { CurdTable, ToggleColumn } from '@/index'
+import { VupdCurdTable, VupdToggleColumn } from '@/index'
 import type { Obj } from '@/type'
+import { Modal } from 'view-ui-plus'
 
 const genCols = () => [
   {
@@ -103,5 +108,24 @@ const table = {
       time: new Date().toLocaleString()
     }
   ]
+}
+
+function beforeAdd(done: (args?: Obj[]) => void) {
+  Modal.confirm({
+    title: '提示',
+    content: '确定要添加吗？',
+    onOk: () => {
+      done()
+    }
+  })
+}
+function beforeRemove(row: Obj, index: number, done: (index: number) => void) {
+  Modal.confirm({
+    title: '提示',
+    content: '确定要删除吗？' + index,
+    onOk: () => {
+      done(index)
+    }
+  })
 }
 </script>

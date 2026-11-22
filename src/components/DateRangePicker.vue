@@ -9,7 +9,7 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :placement="placement"
-    @on-change="change as any">
+    @on-change="change">
   </DatePicker>
 </template>
 
@@ -137,7 +137,7 @@ const dateRange = computed({
 
 // methods
 
-const change = (range: string[], type: DateType) => {
+const change: any = (range: string[], type: DateType) => {
   emit('change', range, type)
 }
 </script>

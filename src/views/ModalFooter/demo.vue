@@ -9,13 +9,13 @@
       :before-close="cancel">
       <Table></Table>
       <template #footer>
-        <ModalFooter
+        <VupdModalFooter
           v-model="modal.show"
           :ok-loading="modal.loading"
           :cancel-disabled="modal.loading"
           @ok="confirm"
           @cancel="cancel">
-        </ModalFooter>
+        </VupdModalFooter>
       </template>
     </Modal>
   </Card>
@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { shallowReactive } from 'vue'
 import { Modal } from 'view-ui-plus'
-import { ModalFooter } from '@/index'
+import { VupdModalFooter } from '@/index'
 
 const modal = shallowReactive({
   show: false,

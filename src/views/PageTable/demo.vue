@@ -2,7 +2,7 @@
   <Card title="PageTable" class="block">
     <Row align="bottom" :gutter="10">
       <Col span="12">
-        <PageTable
+        <VupdPageTable
           ref="pageTableRef"
           v-model:selection="pageTable.selection"
           v-model:loading="pageTable.loading"
@@ -18,10 +18,10 @@
           <template #num="{ column }">
             {{ column.title }}
           </template>
-        </PageTable>
+        </VupdPageTable>
       </Col>
       <Col span="12">
-        <PageTable
+        <VupdPageTable
           v-model="pageTable.list"
           :columns="table.columns"
           is-local
@@ -30,10 +30,14 @@
           style="margin-bottom: 15px" />
       </Col>
       <Col span="12">
-        <PageTable v-model="pageTable.list" :columns="table.columns" is-local :max-height="400" />
+        <VupdPageTable
+          v-model="pageTable.list"
+          :columns="table.columns"
+          is-local
+          :max-height="400" />
       </Col>
       <Col span="12">
-        <PageTable
+        <VupdPageTable
           v-model="pageTable.list"
           :columns="table.columns"
           is-local
@@ -48,7 +52,7 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, useTemplateRef } from 'vue'
-import { PageTable } from '@/index'
+import { VupdPageTable } from '@/index'
 
 const table = {
   columns: [
@@ -93,7 +97,7 @@ const table = {
 
 const refPageTable = useTemplateRef('pageTableRef')
 const getBareTableList = () =>
-  new Array(50).fill(0).map((e, i) => JSON.parse(JSON.stringify(table.list[i % 2]!)))
+  Array.from({ length: 50 }, (e, i) => JSON.parse(JSON.stringify(table.list[i % 2]!)))
 const pageTable = reactive({
   loading: false,
   selection: [],

@@ -1,14 +1,17 @@
 <template>
   <Card title="AllCheckbox" class="block">
-    <AllCheckbox v-model="allCheckeds" v-model:all="allCheck" :list="allCheckedList"></AllCheckbox>
-    <AllCheckbox v-model="allCheckeds" :list="allCheckedList">
+    <VupdAllCheckbox
+      v-model="allCheckeds"
+      v-model:all="allCheck"
+      :list="allCheckedList"></VupdAllCheckbox>
+    <VupdAllCheckbox v-model="allCheckeds" :list="allCheckedList">
       <template #default="{ item }">
         <DD>
           <del>{{ item }}</del>
         </DD>
       </template>
       <!-- <DD #default="item">{{ item }}</DD> -->
-    </AllCheckbox>
+    </VupdAllCheckbox>
     <p>
       值：{{ allCheckeds }} <span class="ivu-ml-16">whole: {{ allCheck }}</span>
     </p>
@@ -17,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref, shallowRef } from 'vue'
-import { AllCheckbox } from '@/index'
+import { VupdAllCheckbox } from '@/index'
 import DD from './DD'
 
 const allCheckeds = shallowRef(['1', '3']),

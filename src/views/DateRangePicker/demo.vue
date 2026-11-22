@@ -1,13 +1,13 @@
 <template>
   <Card title="DateRangePicker" class="block">
     <Space>
-      <DateRangePicker v-model:begin="rangeBegin" v-model:end="rangeEnd"></DateRangePicker>
-      <DateRangePicker
+      <VupdDateRangePicker v-model:begin="rangeBegin" v-model:end="rangeEnd"></VupdDateRangePicker>
+      <VupdDateRangePicker
         v-model:begin="rangeBegin"
         v-model:end="rangeEnd"
         type="datetimerange"
         style="width: 320px">
-      </DateRangePicker>
+      </VupdDateRangePicker>
       {{ rangeBegin }} ~ {{ rangeEnd }}
     </Space>
   </Card>
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DateRangePicker } from '@/index'
+import { VupdDateRangePicker } from '@/index'
 
 const rangeBegin = ref(''),
   rangeEnd = ref('')

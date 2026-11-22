@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Layout :style="{ height: '100vh' }">
-      <Sider collapsible :collapsed-width="78" v-model="isCollapsed">
+      <Sider :collapsed-width="78" v-model="isCollapsed">
         <Menu active-name="AllCheckboxDemo" theme="dark" width="auto" @on-select="changeMenu">
           <MenuItem v-for="(item, key) in map" :key="key" :name="key">
             <span>{{ key }}</span>
@@ -11,11 +11,10 @@
       <Layout style="overflow: auto">
         <!-- <Header :style="{ background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)' }"></Header> -->
         <Content :style="{ padding: '16px' }">
-          <!-- <Card> -->
-          <!-- <keep-alive> -->
-          <component :is="current"></component>
-          <!-- </keep-alive> -->
-          <!-- </Card> -->
+          <LangSet />
+          <VupdConfigProvider :locale="appLocale">
+            <component :is="current" />
+          </VupdConfigProvider>
         </Content>
       </Layout>
     </Layout>
@@ -23,7 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, shallowRef } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
+import LangSet from './devComponents/LangSet.vue'
+import { VupdConfigProvider } from '@/index.ts'
+
 import AllCheckboxDemo from './views/AllCheckbox/demo.vue'
 import BaseSwitchDemo from './views/BaseSwitch/demo.vue'
 import CacheSelectDemo from './views/CacheSelect/demo.vue'
@@ -36,9 +38,16 @@ import MCalendarDemo from './views/MCalendar/demo.vue'
 import ModalFooterDemo from './views/ModalFooter/demo.vue'
 import PageTableDemo from './views/PageTable/demo.vue'
 import RemoteSelectDemo from './views/RemoteSelect/demo.vue'
-// import ToggleColumnDemo from './views/ToggleColumn/demo.vue';
+import ToggleColumnDemo from './views/ToggleColumn/demo.vue'
+import ConfigProviderDemo from './views/ConfigProvider/demo.vue'
+
+import { i18n } from './i18n.ts'
+import { AppLocale } from './store.ts'
+
+const appLocale = computed(() => i18n.global.messages.value[AppLocale.value])
 
 const map = {
+  ConfigProviderDemo,
   AllCheckboxDemo,
   BaseSwitchDemo,
   CacheSelectDemo,
@@ -50,8 +59,8 @@ const map = {
   MCalendarDemo,
   ModalFooterDemo,
   PageTableDemo,
-  RemoteSelectDemo
-  // ToggleColumnDemo
+  RemoteSelectDemo,
+  ToggleColumnDemo
 }
 
 const isCollapsed = ref(false)

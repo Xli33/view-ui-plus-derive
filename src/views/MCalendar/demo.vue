@@ -1,6 +1,6 @@
 <template>
   <Card title="MCalendar" class="block">
-    <MCalendar
+    <VupdMCalendar
       v-model:range="calendar.range"
       has-range
       class="ivu-text-left"
@@ -12,13 +12,13 @@
       @dblclick-day="(...args: []) => console.log('dblclickDay', args)"
       @select-range="(...args: []) => console.log('select-range', args)">
       <template #cell="{ day }"> <Badge status="success"></Badge>{{ day._text }} </template>
-    </MCalendar>
+    </VupdMCalendar>
   </Card>
 </template>
 
 <script setup lang="ts">
 import { shallowReactive } from 'vue'
-import { MCalendar } from '@/index'
+import { VupdMCalendar } from '@/index'
 
 const calendar = shallowReactive({
   range: [

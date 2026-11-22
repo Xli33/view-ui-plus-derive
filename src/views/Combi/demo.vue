@@ -1,20 +1,20 @@
 <template>
   <Card title="Combi" class="block">
     <Space>
-      <Combi prepend="begin" append="end">
+      <VupdCombi prepend="begin" append="end">
         <Select clearable>
           <Option value="aaa">aaaaaaa</Option>
         </Select>
-      </Combi>
-      <Combi>
+      </VupdCombi>
+      <VupdCombi>
         <template #append>
           <Button icon="md-add"></Button>
         </template>
         <Select clearable>
           <Option value="sss">sssssss</Option>
         </Select>
-      </Combi>
-      <Combi>
+      </VupdCombi>
+      <VupdCombi>
         <template #prepend>
           <Select clearable style="width: 4em">
             <Option value="111">111</Option>
@@ -27,12 +27,14 @@
         <template #append>
           <Icon type="md-arrow-dropright-circle" />
         </template>
-      </Combi>
-      <InputNumber :unset="5"></InputNumber>
+      </VupdCombi>
+      <VupdCombi prepend="👌" append="%">
+        <InputNumber :unset="5"></InputNumber>
+      </VupdCombi>
     </Space>
   </Card>
 </template>
 
 <script setup lang="ts">
-import { Combi } from '@/index'
+import { VupdCombi } from '@/index'
 </script>

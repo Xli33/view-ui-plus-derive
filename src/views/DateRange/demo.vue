@@ -1,27 +1,27 @@
 <template>
   <Card title="DateRange" class="block">
     <Space>
-      <DateRange
+      <VupdDateRange
         v-model:begin="beginDate"
         v-model:end="endDate"
         clearable
-        style="width: 240px"></DateRange>
-      <DateRange
+        style="width: 240px"></VupdDateRange>
+      <VupdDateRange
         v-model:begin="beginDate"
         v-model:end="endDate"
         type="month"
         clearable
         transfer
         style="width: 220px">
-      </DateRange>
-      <DateRange
+      </VupdDateRange>
+      <VupdDateRange
         v-model:begin="beginDate"
         v-model:end="endDate"
         type="year"
         clearable
         transfer
         style="width: 220px">
-      </DateRange>
+      </VupdDateRange>
       <span>{{ beginDate.toLocaleString() }} ~ {{ endDate.toLocaleString() }}</span>
     </Space>
   </Card>
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DateRange } from '@/index'
+import { VupdDateRange } from '@/index'
 
 const beginDate = ref(''),
   endDate = ref('')

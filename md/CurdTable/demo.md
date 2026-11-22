@@ -2,7 +2,7 @@
 
 ```vue
 <template>
-  <CurdTable
+  <VupdCurdTable
     v-model="table.list"
     :columns="table.columns"
     size="small"
@@ -16,7 +16,7 @@
     <template #moreAction="{ row }">
       <Button size="small" class="ivu-mr-8">查看</Button>
     </template>
-  </CurdTable>
+  </VupdCurdTable>
 </template>
 <script setup lang="jsx">
 import { Modal } from 'view-ui-plus'

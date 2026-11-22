@@ -2,7 +2,9 @@
 
 ```vue
 <template>
-  <ToggleColumn v-model="table.columns" style="float:right;margin-bottom:10px"></ToggleColumn>
+  <VupdToggleColumn
+    v-model="table.columns"
+    style="float:right;margin-bottom:10px"></VupdToggleColumn>
   <Table :columns="table.columns" :data="table.list" style="width:100%"></Table>
 </template>
 <script setup>

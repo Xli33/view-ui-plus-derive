@@ -2,7 +2,7 @@
 
 ```vue
 <template>
-  <DateRange v-model:begin="beginDate" v-model:end="endDate" clearable></DateRange>
+  <VupdDateRange v-model:begin="beginDate" v-model:end="endDate" clearable></VupdDateRange>
 </template>
 <script setup>
 import { ref } from 'vue'

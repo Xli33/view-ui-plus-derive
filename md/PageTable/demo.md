@@ -3,7 +3,7 @@
 ```vue
 <template>
   <Button :loading="pageTable.loading" class="ivu-mb-8" @click="search">查询</Button>
-  <PageTable
+  <VupdPageTable
     ref="pageTableRef"
     v-model:selection="pageTable.selection"
     v-model:loading="pageTable.loading"
@@ -19,7 +19,7 @@
     border
     stripe>
     <template #num="{ column }">{{ column.title }}</template>
-  </PageTable>
+  </VupdPageTable>
 </template>
 <script setup>
 import { shallowReactive, useTemplateRef } from 'vue'

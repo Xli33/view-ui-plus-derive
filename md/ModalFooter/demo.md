@@ -11,12 +11,12 @@
     :before-close="cancel">
     <h1>modal content</h1>
     <template #footer>
-      <ModalFooter
+      <VupdModalFooter
         v-model="modal.show"
         :ok-loading="modal.loading"
         :cancel-disabled="modal.loading"
         @ok="confirm"
-        @cancel="cancel"></ModalFooter>
+        @cancel="cancel"></VupdModalFooter>
     </template>
   </Modal>
 </template>

@@ -2,12 +2,12 @@
 
 ```vue
 <template>
-  <RemoteSelect
+  <VupdRemoteSelect
     v-model="selectModel"
     :method="getList"
     filterable
     style="width: 200px"
-    @on-change="$Message.info($event)"></RemoteSelect>
+    @on-change="$Message.info($event)"></VupdRemoteSelect>
 </template>
 <script setup>
 import { ref } from 'vue'

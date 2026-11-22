@@ -2,9 +2,9 @@
 
 ```vue
 <template>
-  <MCalendar v-model:range="calendar.range" :date="calendar.date" has-range>
+  <VupdMCalendar v-model:range="calendar.range" :date="calendar.date" has-range>
     <template #cell="{ day }"> <Badge status="success"></Badge>{{ day._text }} </template>
-  </MCalendar>
+  </VupdMCalendar>
 </template>
 <script setup>
 import { shallowReactive } from 'vue'

@@ -34,9 +34,15 @@ export function install(
     // app.provide(classSymbol, opt.prefix)
     useClass.prefix = opt.prefix
   }
-  components.forEach((e) => (e.name = useClass.prefix + e.name))
+  /* 
+    当通过多个createApp实例化并调用同一个iviewDerive的install时，此处直接叠加prefix会导致前缀不断重复拼接
+    故应在下面的注册阶段修改注册名，保持组件自身name始终无前缀以避免该bug
+  */
+  // components.forEach((e) => {
+  //   e.name = useClass.prefix + e.name
+  // })
   components.forEach((component) => {
-    app.component(component.name!, component)
+    app.component(useClass.prefix + component.name!, component)
   })
   directives.forEach((e) => {
     app.directive(e[0], e[1])

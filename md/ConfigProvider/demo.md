@@ -3,8 +3,8 @@
 ```vue
 <template>
   <VupdConfigProvider :locale="zhTradMsg">
-    <EpdAllCheckbox></EpdAllCheckbox>
-    <EpdMCalendar week-type="short"></EpdMCalendar>
+    <VupdAllCheckbox></VupdAllCheckbox>
+    <VupdMCalendar week-type="short"></VupdMCalendar>
   </VupdConfigProvider>
 </template>
 <script setup>

@@ -1,12 +1,19 @@
 import { fileURLToPath, URL } from 'node:url'
-import { cpSync, unlinkSync } from 'node:fs'
+import {
+  readdirSync,
+  readFileSync,
+  copyFileSync,
+  writeFileSync,
+  unlinkSync,
+  mkdirSync
+} from 'node:fs'
 // import { resolve } from 'node:path'
 
 import { build, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import dts from 'vite-plugin-dts'
+import dts from 'unplugin-dts/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => {
@@ -75,6 +82,18 @@ export default defineConfig(({ command }) => {
       vue(),
       vueJsx(),
       vueDevTools(),
+      {
+        name: 'exclude-locale-sourcemap',
+        generateBundle(_, bundle) {
+          for (const fileName in bundle) {
+            // 匹配所有输出在 locale 目录下的 .js.map 文件
+            if (fileName.startsWith('locale/') && fileName.endsWith('.js.map')) {
+              // 从即将写入磁盘的资产包中直接删除它
+              delete bundle[fileName]
+            }
+          }
+        }
+      },
       dts({
         tsconfigPath: './tsconfig.app.json',
         bundleTypes: true,
@@ -87,31 +106,46 @@ export default defineConfig(({ command }) => {
           'src/directives/*.ts'
         ],
         // 写入.d.ts前去除部分组件中内联的其它组件类型声明
-        beforeWriteFile(filePath, content) {
-          if (filePath.includes('CacheSelect.vue')) {
-            // console.log('found:', content.match(/sel:.+?\}\)\s*\|\s*null;/s)?.[0])
-            return {
-              filePath,
-              content: content.replace(/sel:.+?\}\)\s*\|\s*null;/s, 'sel: any')
-            }
-          }
-          if (filePath.includes('PageTable.vue')) {
-            // console.log('found:', content.match(/tableRef:.+\| null;/s)?.[0])
-            return {
-              filePath,
-              content: content.replace(
-                /tableRef:.+\| null;\s*}, HTMLDivElement>/s,
-                'tableRef: any;\npageRef: any;\n}, HTMLDivElement>'
-              )
-            }
-          }
-        },
+        // beforeWriteFile(filePath, content) {
+        //   if (filePath.includes('CacheSelect.vue')) {
+        //     // console.log('found:', content.match(/sel:.+?\}\)\s*\|\s*null;/s)?.[0])
+        //     return {
+        //       filePath,
+        //       content: content.replace(/sel:.+?\}\)\s*\|\s*null;/s, 'sel: any')
+        //     }
+        //   }
+        //   if (filePath.includes('PageTable.vue')) {
+        //     // console.log('found:', content.match(/tableRef:.+\| null;/s)?.[0])
+        //     return {
+        //       filePath,
+        //       content: content.replace(
+        //         /tableRef:.+\| null;\s*}, HTMLDivElement>/s,
+        //         'tableRef: any;\npageRef: any;\n}, HTMLDivElement>'
+        //       )
+        //     }
+        //   }
+        // },
         afterBuild() {
+          const arr = ['index.less', 'common.less']
+
           // console.log(fileMap)
           unlinkSync('dist/iview-mod.d.ts')
           unlinkSync('dist/iview-mod.less.d.ts')
           // unlinkSync('dist/zh-CN.d.ts')
-          cpSync('src/styles', 'dist/less', { recursive: true })
+
+          mkdirSync('dist/less')
+          readdirSync('src/styles').forEach(
+            (f) =>
+              f !== arr[0] &&
+              copyFileSync(`src/styles/${f}`, `dist/less/${(arr.includes(f) ? '' : 'Vupd') + f}`)
+          )
+          // 替换 dist/less/index.less 里的引用路径
+          const index = readFileSync('src/styles/index.less', 'utf-8').replace(
+            /\.\/(\w+\.less)/g,
+            './Vupd$1'
+          )
+          writeFileSync('dist/less/index.less', index)
+          // cpSync('src/styles', 'dist/less', { recursive: true })
         }
         // beforeWriteFile(filePath) {
         //   if (filePath.match(/iview-mod.d.ts$|iview-mod.less.d.ts$/)) return false
@@ -145,7 +179,7 @@ export default defineConfig(({ command }) => {
         cssFileName: 'index',
         formats: ['es' /*'cjs', 'umd' */]
       },
-      rollupOptions: {
+      rolldownOptions: {
         // 确保外部化处理那些
         // 你不想打包进库的依赖
         external: ['vue', 'view-ui-plus', /dayjs\/?.*/, 'utils-where'],
@@ -231,7 +265,7 @@ export default defineConfig(({ command }) => {
             //   folder = 'fonts'
             // }
             // return `${folder}/[name]-[hash][extname]`
-            return `${assetInfo.names[0] !== 'iview-mod.css' ? 'styles/' : ''}[name][extname]`
+            return `${assetInfo.names[0] !== 'iview-mod.css' ? 'styles/Vupd' : ''}[name][extname]`
           },
           chunkFileNames: (/* chunkInfo */) => {
             // 分离到对应文件夹

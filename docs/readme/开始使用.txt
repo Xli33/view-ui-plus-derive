@@ -43,7 +43,7 @@
 <p><strong>此时需要再修改组件共用的less变量以适配前缀</strong>，无需前缀时建议直接引入<code>view-ui-plus-derive/style</code>中的css</p>
 <p><code>App.vue</code></p>
 <pre class="shiki material-theme-palenight" style="background-color:#292D3E;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#BABED8">&#x3C;</span><span style="color:#FFCB6B">style</span><span style="color:#BABED8"> lang="less"</span><span style="color:#89DDFF">></span></span>
-<span class="line"><span style="color:#676E95;font-style:italic">// 引入组件less则必须同时引入common.less，导入后并覆盖变量@vupd-prefix为需要的前缀名称</span></span>
+<span class="line"><span style="color:#676E95;font-style:italic">// 引入组件less则必须同时引入common.less，覆盖后并覆盖变量@vupd-prefix为需要的前缀名称</span></span>
 <span class="line"><span style="color:#89DDFF;font-style:italic">@import</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">view-ui-plus-derive/less/common.less</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">;</span></span>
 <span class="line"><span style="color:#89DDFF">@</span><span style="color:#BABED8">vupd-prefix</span><span style="color:#89DDFF">:</span><span style="color:#89DDFF"> '</span><span style="color:#C3E88D">my</span><span style="color:#89DDFF">'</span><span style="color:#89DDFF">;</span></span>
 <span class="line"></span>

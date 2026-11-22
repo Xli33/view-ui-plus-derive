@@ -2,16 +2,16 @@
 
 ```vue
 <template>
-  <CacheSelect
+  <VupdCacheSelect
     v-model="selectModel"
     :method="getList"
     style="width: 200px;margin-right:10px"
-    @on-change="$Message.info($event)"></CacheSelect>
-  <CacheSelect
+    @on-change="$Message.info($event)"></VupdCacheSelect>
+  <VupdCacheSelect
     v-model="selectModel"
     :method="getList"
     style="width: 200px"
-    @on-change="$Message.info($event)"></CacheSelect>
+    @on-change="$Message.info($event)"></VupdCacheSelect>
 </template>
 <script setup>
 import { ref } from 'vue'

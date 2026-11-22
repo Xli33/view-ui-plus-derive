@@ -2,7 +2,7 @@
 
 ```vue
 <template>
-  <BaseSwitch v-model="toggle" true-label="开" false-label="关"></BaseSwitch>
+  <VupdBaseSwitch v-model="toggle" true-label="开" false-label="关"></VupdBaseSwitch>
 </template>
 <script setup>
 import { ref } from 'vue'

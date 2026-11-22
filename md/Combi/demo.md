@@ -2,7 +2,7 @@
 
 ```vue
 <template>
-  <Combi>
+  <VupdCombi>
     <template #prepend>
       <Select clearable style="width: 6em">
         <Option value="111">111</Option>
@@ -15,7 +15,7 @@
     <template #append>
       <Icon type="md-arrow-dropright-circle" />
     </template>
-  </Combi>
+  </VupdCombi>
 </template>
 ```
 
@@ -23,9 +23,9 @@
 
 ```vue
 <template>
-  <Combi prepend="在前" append="在后">
+  <VupdCombi prepend="在前" append="在后">
     <DatePicker clearable style="width:100%"></DatePicker>
-  </Combi>
+  </VupdCombi>
 </template>
 <script>
 export default {}

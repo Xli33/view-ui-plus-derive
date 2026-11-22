@@ -525,7 +525,7 @@
                 if (!e.sub) {
                   router.addRoute({
                     name: e.route || e.name,
-                    path: '/' + (e.route || e.url.replace(/\.txt$/, '')),
+                    path: '/' + (e.route || e.url.replace('component/', 'component/Vupd').replace(/\.txt$/, '')),
                     meta: {
                       url: e.url
                     },

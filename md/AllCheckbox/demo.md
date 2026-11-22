@@ -2,7 +2,7 @@
 
 ```vue
 <template>
-  <AllCheckbox v-model="checkeds" v-model:all="checkAll" :list="list"></AllCheckbox>
+  <VupdAllCheckbox v-model="checkeds" v-model:all="checkAll" :list="list"></VupdAllCheckbox>
 </template>
 <script setup>
 import { ref, shallowRef } from 'vue'

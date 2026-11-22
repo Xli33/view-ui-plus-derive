@@ -68,7 +68,7 @@ createApp(App)
 
 ```less
 <style lang="less">
-// 引入组件less则必须同时引入common.less，导入后并覆盖变量@vupd-prefix为需要的前缀名称
+// 引入组件less则必须同时引入common.less，覆盖后并覆盖变量@vupd-prefix为需要的前缀名称
 @import 'view-ui-plus-derive/less/common.less';
 @vupd-prefix: 'my';
 

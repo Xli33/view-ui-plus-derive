@@ -5,7 +5,7 @@
 `modelValue` _String | Array | Number_  
 v-model双向绑定选中值
 
-`cache-id` _String_ （default `'list'`）  
+`cache-id` _String_ (default `'list'`)  
 缓存的唯一键，当页面上同时用到多个不同数据源的CacheSelect时需传入不同值
 
 ## emits

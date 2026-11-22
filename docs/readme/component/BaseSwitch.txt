@@ -22,8 +22,8 @@
 <h2>props</h2>
 <p>除以下prop，可传递Switch的其它prop</p>
 <p><code>modelValue</code> <em>String | Number | Boolean</em><br>v-model双向绑定值</p>
-<p><code>true-value</code> <em>String | Number | Boolean</em> （default <code>&#39;T&#39;</code>）<br>打开状态对应值</p>
-<p><code>false-value</code> <em>String | Number | Boolean</em> （default <code>&#39;F&#39;</code>）<br>关闭状态对应值</p>
+<p><code>true-value</code> <em>String | Number | Boolean</em> (default <code>&#39;T&#39;</code>)<br>打开状态对应值</p>
+<p><code>false-value</code> <em>String | Number | Boolean</em> (default <code>&#39;F&#39;</code>)<br>关闭状态对应值</p>
 <p><code>true-label</code> <em>String</em><br>打开状态对应文本</p>
 <p><code>false-label</code> <em>String</em><br>关闭状态对应文本</p>
 <h2>emits</h2>

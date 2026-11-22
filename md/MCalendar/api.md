@@ -7,13 +7,13 @@
 传入的额外日期数据。
 组件始终展示一段日期，但业务上有时需要根据返回的一组日期进行渲染，如 `[{date:'2000-01-01',xxx:false},{date:'2000-01-02',xxx:true}]`
 
-`start-day` _Number_ （default `1`）  
+`start-day` _Number_ (default `1`)  
 周起始日，默认星期一
 
-`off-day` _Array_ （default `[6, 0]`）  
+`off-day` _Array_ (default `[6, 0]`)  
 休息日，默认周六周日
 
-`date-key` _String_ （default `'date'`）  
+`date-key` _String_ (default `'date'`)  
 传入dates里日期值对应的key
 
 `title-class` _Function_  
@@ -25,7 +25,7 @@
 `loading` _Boolean_  
 加载状态
 
-`text-format` _String_ （default `'YYYY-MM-DD'`）  
+`text-format` _String_ (default `'YYYY-MM-DD'`)  
 单元格日期[格式](https://day.js.org/docs/en/display/format)
 
 `is-on-first-line` _Boolean_  
@@ -37,13 +37,13 @@
 `outer-in-range` _Boolean_  
 非当前有效时间范围内的日期是否可被选入范围
 
-`clearable` _Boolean_ （default `true`）  
+`clearable` _Boolean_ (default `true`)  
 选择一个范围后，再选择时是否先将已选范围清除，即是否可清除已选范围
 
 `range` _Array_  
 已选范围
 
-`week-type` _String_ （default `'mini'`）  
+`week-type` _String_ (default `'mini'`)  
 周标题内容类型，可选mini、short、long
 
 - `week-type='mini'` 对应显示成 一、二、三。。。

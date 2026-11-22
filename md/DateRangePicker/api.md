@@ -1,28 +1,28 @@
 ## props
 
-`begin` _Date | String_ （default `''`）  
+`begin` _Date | String_ (default `''`)  
 v-model:begin双向绑定开始时间
 
-`end` _Date | String_ （default `''`）  
+`end` _Date | String_ (default `''`)  
 v-model:end双向绑定结束时间
 
-`type` _String_ （default `'daterange'`）  
+`type` _String_ (default `'daterange'`)  
 可选的日期类型：daterange | datetimerange
 
-`limit-begin` _Boolean_ （default `true`）  
+`limit-begin` _Boolean_ (default `true`)  
 是否默认限制开始时间
 
 `disable-today` _Boolean_  
 是否禁止选择今天
 
-`value-format` _String_ （default `'YYYY-MM-DD'`）  
+`value-format` _String_ (default `'YYYY-MM-DD'`)  
 用于格式化绑定时间
 
 以下为DatePicker的同名prop
 
 `options` _Object_
 
-`clearable` _Boolean_ （default `true`）
+`clearable` _Boolean_ (default `true`)
 
 `split-panels` _Boolean_
 

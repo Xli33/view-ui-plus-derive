@@ -3,16 +3,13 @@
 `modelValue` _Array_  
 v-model双向绑定Table列
 
-`title` _String_  
-全选框文本
-
-`icon` _String_  
+`icon` _String_ (default `md-apps`)  
 传入iview icon名则仅显示图标
 
 `cache-id` _String | Number_  
 绑定columns对应的唯一标识，一般在v-for中绑定了固定某列且列配置中带有 `_visible:false` 时用到
 
-`all` _Boolean_ （default `true`）  
+`all` _Boolean_ (default `true`)  
 是否显示全选框
 
 `transfer` _Boolean_  

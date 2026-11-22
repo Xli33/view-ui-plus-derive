@@ -14,10 +14,10 @@ v-model双向绑定选中值
 `value-as-key` _Boolean_  
 是否将选项的value作为Option的key，默认以v-for的index作为key
 
-`value-key` _String_ （default `'value'`）  
+`value-key` _String_ (default `'value'`)  
 选项对应value的key
 
-`label-key` _String_ （default `'label'`）  
+`label-key` _String_ (default `'label'`)  
 选项对应文本的key
 
 `key-map` _Object_  
@@ -82,7 +82,7 @@ v-model双向绑定选中值
 `strict` _Boolean_  
 开启后则展开时仅当parentCode有效才会发送请求
 
-`all` _Boolean_ （default `false`）  
+`all` _Boolean_ (default `false`)  
 是否使用 `v-iview-select:all` 增加一键全选功能，仅多选模式生效
 
 ## emits

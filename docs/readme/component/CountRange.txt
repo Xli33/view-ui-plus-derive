@@ -24,10 +24,10 @@
           </div>
           
 <h2>props</h2>
-<p><code>begin</code> <em>Number</em> （default <code>null</code>）<br>v-model:begin双向绑定最小值</p>
-<p><code>end</code> <em>Number</em> （default <code>null</code>）<br>v-model:end双向绑定最大值</p>
-<p><code>min</code> <em>Number</em> （default <code>0</code>）<br>允许的最小值</p>
-<p><code>max</code> <em>Number</em> （default <code>9999999999</code>）<br>允许的最大值</p>
+<p><code>begin</code> <em>Number</em> (default <code>null</code>)<br>v-model:begin双向绑定最小值</p>
+<p><code>end</code> <em>Number</em> (default <code>null</code>)<br>v-model:end双向绑定最大值</p>
+<p><code>min</code> <em>Number</em> (default <code>0</code>)<br>允许的最小值</p>
+<p><code>max</code> <em>Number</em> (default <code>9999999999</code>)<br>允许的最大值</p>
 <p><code>disabled</code> <em>Boolean</em><br>禁用整个组件</p>
 <p><code>min-disabled</code> <em>Boolean</em><br>禁用最小值</p>
 <p><code>max-disabled</code> <em>Boolean</em><br>禁用最大值</p>
@@ -43,11 +43,11 @@
 <p><code>controls-outside</code> <em>Boolean</em></p>
 <p><code>step</code> <em>Number</em></p>
 <p><code>readonly</code> <em>Boolean</em></p>
-<p><code>editable</code> <em>Boolean</em> （default <code>true</code>）</p>
+<p><code>editable</code> <em>Boolean</em> (default <code>true</code>)</p>
 <p><code>precision</code> <em>Number</em></p>
 <p><code>formatter</code> <em>Function</em></p>
 <p><code>parser</code> <em>Function</em></p>
-<p><code>active-change</code> <em>Boolean</em> （default <code>true</code>）</p>
+<p><code>active-change</code> <em>Boolean</em> (default <code>true</code>)</p>
 <h2>emits</h2>
 <p><code>change-min</code> (value)<br>最小值变化后触发。<code>value</code>：最小值</p>
 <p><code>change-max</code> (value)<br>最大值变化后触发。<code>value</code>：最大值</p>

@@ -1,12 +1,12 @@
 ## props
 
-`begin` _Date | String_ （default `''`）  
+`begin` _Date | String_ (default `''`)  
 v-model:begin双向绑定开始时间
 
-`end` _Date | String_ （default `''`）  
+`end` _Date | String_ (default `''`)  
 v-model:end双向绑定结束时间
 
-`type` _String_ （default `'date'`）  
+`type` _String_ (default `'date'`)  
 可选的日期类型：date | month | year | datetime
 
 `begin-disabled` _Boolean_  
@@ -15,10 +15,10 @@ v-model:end双向绑定结束时间
 `end-disabled` _Boolean_  
 禁用结束时间
 
-`auto-next` _Boolean_ （default `true`）  
+`auto-next` _Boolean_ (default `true`)  
 是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天
 
-`limit-begin` _Boolean_ （default `true`）  
+`limit-begin` _Boolean_ (default `true`)  
 是否默认限制开始时间
 
 `begin-class` _String | Array | Object_  

@@ -21,13 +21,13 @@
           </div>
           
 <h2>props</h2>
-<p><code>begin</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:begin双向绑定开始时间</p>
-<p><code>end</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:end双向绑定结束时间</p>
-<p><code>type</code> <em>String</em> （default <code>&#39;date&#39;</code>）<br>可选的日期类型：date | month | year | datetime</p>
+<p><code>begin</code> <em>Date | String</em> (default <code>&#39;&#39;</code>)<br>v-model:begin双向绑定开始时间</p>
+<p><code>end</code> <em>Date | String</em> (default <code>&#39;&#39;</code>)<br>v-model:end双向绑定结束时间</p>
+<p><code>type</code> <em>String</em> (default <code>&#39;date&#39;</code>)<br>可选的日期类型：date | month | year | datetime</p>
 <p><code>begin-disabled</code> <em>Boolean</em><br>禁用开始时间</p>
 <p><code>end-disabled</code> <em>Boolean</em><br>禁用结束时间</p>
-<p><code>auto-next</code> <em>Boolean</em> （default <code>true</code>）<br>是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天</p>
-<p><code>limit-begin</code> <em>Boolean</em> （default <code>true</code>）<br>是否默认限制开始时间</p>
+<p><code>auto-next</code> <em>Boolean</em> (default <code>true</code>)<br>是否当所选开始日期大于结束日期时自动将结束日期置为开始日期后一天</p>
+<p><code>limit-begin</code> <em>Boolean</em> (default <code>true</code>)<br>是否默认限制开始时间</p>
 <p><code>begin-class</code> <em>String | Array | Object</em><br>开始组件的class</p>
 <p><code>end-class</code> <em>String | Array | Object</em><br>结束组件的class</p>
 <p><code>begin-holder</code> <em>String</em><br>开始时间placeholder</p>

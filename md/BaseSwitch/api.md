@@ -5,10 +5,10 @@
 `modelValue` _String | Number | Boolean_  
 v-model双向绑定值
 
-`true-value` _String | Number | Boolean_ （default `'T'`）  
+`true-value` _String | Number | Boolean_ (default `'T'`)  
 打开状态对应值
 
-`false-value` _String | Number | Boolean_ （default `'F'`）  
+`false-value` _String | Number | Boolean_ (default `'F'`)  
 关闭状态对应值
 
 `true-label` _String_  

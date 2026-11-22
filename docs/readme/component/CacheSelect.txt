@@ -41,7 +41,7 @@
 <h2>props</h2>
 <p>除以下prop，可传递RemoteSelect与Select的其它prop</p>
 <p><code>modelValue</code> <em>String | Array | Number</em><br>v-model双向绑定选中值</p>
-<p><code>cache-id</code> <em>String</em> （default <code>&#39;list&#39;</code>）<br>缓存的唯一键，当页面上同时用到多个不同数据源的CacheSelect时需传入不同值</p>
+<p><code>cache-id</code> <em>String</em> (default <code>&#39;list&#39;</code>)<br>缓存的唯一键，当页面上同时用到多个不同数据源的CacheSelect时需传入不同值</p>
 <h2>emits</h2>
 <p>除以下事件，可监听RemoteSelect与Select的其它事件</p>
 <p><code>change</code> (value)<br>更改选中项时触发。<code>value</code>：当前选中项</p>

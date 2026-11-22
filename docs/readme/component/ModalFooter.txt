@@ -70,9 +70,9 @@
 <p><code>cancel-loading</code> <em>Boolean</em><br>取消按钮加载状态</p>
 <p><code>cancel-disabled</code> <em>Boolean</em><br>取消按钮禁用状态</p>
 <p><code>cancel</code> <em>Object</em><br>传递给取消按钮的props</p>
-<p><code>cancel-type</code> <em>String</em> （default <code>&#39;text&#39;</code>）<br>取消按钮type</p>
+<p><code>cancel-type</code> <em>String</em> (default <code>&#39;text&#39;</code>)<br>取消按钮type</p>
 <p><code>right-cancel</code> <em>Boolean</em><br>是否把取消按钮放到确定按钮右边</p>
-<p><code>has-ok</code> <em>Boolean</em> （default <code>true</code>）<br>是否显示确定按钮</p>
+<p><code>has-ok</code> <em>Boolean</em> (default <code>true</code>)<br>是否显示确定按钮</p>
 <h2>emits</h2>
 <p><code>ok</code><br>点击确定按钮触发</p>
 <p><code>cancel</code><br>点击取消按钮触发。未监听该事件时会直接关闭Modal</p>

@@ -45,7 +45,7 @@ createApp(App).use(ViewUIPlus).use(iviewDerive).mount('#app')
 
 #### 自定义组件前缀
 
-为免容易变得冗长，组件名及其样式class默认无前缀，若需要自定义，可传入prefix参数
+为便于使用，组件名及其样式class默认使用Vupd与vupd前缀，若需要自定义，可传入**PascalCase**的prefix参数
 
 ```js
 import { createApp } from 'vue'
@@ -76,7 +76,7 @@ createApp(App)
 @import 'view-ui-plus-derive/less/index.less';
 
 // 或者单独导入需要的组件样式
-@import 'view-ui-plus-derive/less/Combi.less';
+@import 'view-ui-plus-derive/less/VupdCombi.less';
 </style>
 ```
 
@@ -86,12 +86,12 @@ createApp(App)
 import { createApp } from 'vue'
 import ViewUIPlus from 'view-ui-plus'
 import 'view-ui-plus/dist/styles/viewuiplus.css'
-import { Combi } from 'view-ui-plus-derive'
-import 'view-ui-plus-derive/styles/Combi.css' // 引入需要的组件样式
+import { VupdCombi } from 'view-ui-plus-derive'
+import 'view-ui-plus-derive/styles/VupdCombi.css' // 引入需要的组件样式
 
 import App from './App.vue'
 
-createApp(App).use(ViewUIPlus).component(Combi.name, Combi).mount('#app')
+createApp(App).use(ViewUIPlus).component('VupdCombi', VupdCombi).mount('#app')
 ```
 
 仅部分组件需要对应样式，如图
@@ -134,43 +134,37 @@ createApp(App)
   .use(ViewUIPlus)
   .use(iviewDerive, {
     msg: {
-      d: {
-        lang: 'zh-Hant',
-        allCheckbox: {
-          title: '全選'
-        },
-        countRange: {
-          minHolder: '最小值',
-          maxHolder: '最大值'
-        },
-        curdTable: {
-          actionText: '操作',
-          addText: '新增',
-          del: '刪除'
-        },
-        dateRange: {
-          beginHolder: '開始時間',
-          endHolder: '結束時間'
-        },
-        mCalendar: {
-          mini: ['日', '一', '二', '三', '四', '五', '六'],
-          short: ['週日', '週一', '週二', '週三', '週四', '週五', '週六'],
-          long: ['禮拜日', '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六']
-        },
-        modalFooter: {
-          ok: '確定',
-          cancel: '取消'
-        },
-        pageTable: {
-          title: '列表',
-          reload: '重載',
-          maxmize: '最大化',
-          restore: '還原'
-        },
-        toggleColumn: {
-          title: '列',
-          checkAll: '全選'
-        }
+      lang: 'zh-Hant',
+      allCheckbox: {
+        title: '全選'
+      },
+      countRange: {
+        minHolder: '最小值',
+        maxHolder: '最大值'
+      },
+      curdTable: {
+        actionText: '操作',
+        addText: '新增',
+        del: '刪除'
+      },
+      dateRange: {
+        beginHolder: '開始時間',
+        endHolder: '結束時間'
+      },
+      mCalendar: {
+        mini: ['日', '一', '二', '三', '四', '五', '六'],
+        short: ['週日', '週一', '週二', '週三', '週四', '週五', '週六'],
+        long: ['禮拜日', '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六']
+      },
+      modalFooter: {
+        ok: '確定',
+        cancel: '取消'
+      },
+      pageTable: {
+        title: '列表',
+        reload: '重載',
+        maxmize: '最大化',
+        restore: '還原'
       }
     }
   })
@@ -192,12 +186,6 @@ import enUS from 'view-ui-plus-derive/locale/en-US'
 
 import App from './App.vue'
 
-// 需要时可手动修改语言主要key，并在安装插件时传入参数msgPrefix，如 {msgPrefix: 'someKey'}
-// zhCN.someKey = zhCN.d
-// delete zhCN.d
-// enUS.someKey = enUS.d
-// delete enUS.d
-
 const i18n = createI18n({
   allowComposition: true,
   // globalInjection: true,
@@ -207,11 +195,11 @@ const i18n = createI18n({
   messages: {
     'zh-CN': {
       ...zh,
-      ...zhCN
+      d: zhCN // 默认key为d，需要时可手动修改，并在安装插件时传入参数msgPrefix，如 {msgPrefix: 'someKey'}
     },
     'en-US': {
       ...en,
-      ...enUS
+      d: enUS
     }
   }
 })
@@ -224,6 +212,32 @@ createApp(App)
     // msgPrefix: 'someKey' // 该值仅针对使用vue-i18n的情况生效
   })
   .mount('#app')
+```
+
+- 使用`ConfigProvider`
+
+```vue
+<template>
+  <VupdConfigProvider :locale="zhTradMsg">
+    <VupdAllCheckbox></VupdAllCheckbox>
+    <VupdMCalendar week-type="short"></VupdMCalendar>
+  </VupdConfigProvider>
+</template>
+
+<script setup>
+import { VupdConfigProvider, VupdAllCheckbox, VupdMCalendar } from 'view-ui-plus-derive'
+
+const zhTradMsg = {
+  allCheckbox: {
+    title: '全選'
+  },
+  mCalendar: {
+    // mini: ['日', '一', '二', '三', '四', '五', '六'],
+    short: ['週日', '週一', '週二', '週三', '週四', '週五', '週六']
+    // long: ['禮拜日', '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六']
+  }
+}
+</script>
 ```
 
 ## 调优
@@ -336,43 +350,46 @@ import 'view-ui-plus-derive/iview-mod.css'
 
 [文档](https://xli33.github.io/view-ui-plus-derive)
 
-`AllCheckbox`  
+`VupdConfigProvider`  
+为其它组件提供provide注入配置，例如翻译内容
+
+`VupdAllCheckbox`  
 提供全选功能的CheckboxGroup
 
-`BaseSwitch`  
+`VupdBaseSwitch`  
 更易于使用的Switch
 
-`RemoteSelect`  
+`VupdRemoteSelect`  
 获取远程数据的Select，默认在展开时才触发请求
 
-`CacheSelect`  
+`VupdCacheSelect`  
 避免重复调用远程接口的RemoteSelect，同一个cacheId对应只触发一次请求
 
-`Combi`  
+`VupdCombi`  
 类似iview Input[append prepend]样式的组合框
 
-`CountRange`  
+`VupdCountRange`  
 数值范围组件
 
-`CurdTable`  
+`VupdCurdTable`  
 具有增删功能的Table
 
-`DateRange`  
+`VupdDateRange`  
 组合形式的日期范围组件
 
-`DateRangePicker`  
+`VupdDateRangePicker`  
 基于DatePicer[type=daterange]，绑定的值转为string
 
-`MCalendar`  
+`VupdMCalendar`  
 月度日历组件
 
-`ModalFooter`  
+`VupdModalFooter`  
 代替Modal自带的底栏部分，按钮易于控制，自定义度更高
 
-`PageTable`  
+`VupdPageTable`  
 远程分页/本地分页的Table
 
-`ToggleColumn`  
+`VupdToggleColumn`  
 用于切换Table列的显示状态
 
 ## License

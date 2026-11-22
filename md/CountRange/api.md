@@ -1,15 +1,15 @@
 ## props
 
-`begin` _Number_ （default `null`）  
+`begin` _Number_ (default `null`)  
 v-model:begin双向绑定最小值
 
-`end` _Number_ （default `null`）  
+`end` _Number_ (default `null`)  
 v-model:end双向绑定最大值
 
-`min` _Number_ （default `0`）  
+`min` _Number_ (default `0`)  
 允许的最小值
 
-`max` _Number_ （default `9999999999`）  
+`max` _Number_ (default `9999999999`)  
 允许的最大值
 
 `disabled` _Boolean_  
@@ -53,7 +53,7 @@ v-model:end双向绑定最大值
 
 `readonly` _Boolean_
 
-`editable` _Boolean_ （default `true`）
+`editable` _Boolean_ (default `true`)
 
 `precision` _Number_
 
@@ -61,7 +61,7 @@ v-model:end双向绑定最大值
 
 `parser` _Function_
 
-`active-change` _Boolean_ （default `true`）
+`active-change` _Boolean_ (default `true`)
 
 ## emits
 

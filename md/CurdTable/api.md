@@ -2,22 +2,22 @@
 
 除以下内容，可传递其它Table的prop
 
-`modelValue` _Array_ （default `[]`）  
+`modelValue` _Array_ (default `[]`)  
 v-model双向绑定列表数据
 
-`columns` _Array_ （default `[]`）  
+`columns` _Array_ (default `[]`)  
 iview Table columns
 
 `disabled` _Boolean_  
 隐藏控制列
 
-`addable` _Boolean_ （default `true`）  
+`addable` _Boolean_ (default `true`)  
 可否增加数据
 
-`action-width` _Number_ （default `90`）  
+`action-width` _Number_ (default `90`)  
 控制列宽度
 
-`action-align` _String_ （default `'center'`）  
+`action-align` _String_ (default `'center'`)  
 控制列水平对齐
 
 `action-fixed` _String_  
@@ -29,7 +29,7 @@ iview Table columns
 `action-col` _Object_  
 右侧控制列
 
-`add-row` _Function_ （default `() => []`）  
+`add-row` _Function_ (default `() => []`)  
 新增行时需要添加的数据
 
 `border` _Boolean_  
@@ -44,13 +44,13 @@ Table的size
 `before-remove` _Function_  
 控制何时删除数据，签名：`(row, index, done) => void`，调用done(index)即执行删除指定index项
 
-`add-btn-type` _String_ （default `'dashed'`）  
+`add-btn-type` _String_ (default `'dashed'`)  
 新增按钮type
 
 `add-btn-size` _String_  
 新增按钮size
 
-`add-btn-ghost` _Boolean_ （default `false`）  
+`add-btn-ghost` _Boolean_ (default `false`)  
 新增按钮的ghost
 
 `add-btn-disabled` _Boolean_  
@@ -59,13 +59,13 @@ Table的size
 `add-btn` _Object_  
 传给新增Button的prop
 
-`del-btn-type` _String_ （default `'warning'`）  
+`del-btn-type` _String_ (default `'warning'`)  
 删除按钮type
 
-`del-btn-size` _String_ （default `'small'`）  
+`del-btn-size` _String_ (default `'small'`)  
 删除按钮size
 
-`del-btn-ghost` _Boolean_ （default `true`）  
+`del-btn-ghost` _Boolean_ (default `true`)  
 删除按钮的ghost
 
 `del-btn` _Object_  
@@ -77,7 +77,7 @@ Table的size
 `hide-del-btn` _Function_  
 是否隐藏每行的删除按钮，通过函数返回值决定
 
-`del-btn-disabled` _Function_ （default `() => false`）  
+`del-btn-disabled` _Function_ (default `() => false`)  
 是否禁用每行删除按钮，通过函数返回值决定
 
 ## emits

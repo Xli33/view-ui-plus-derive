@@ -2,10 +2,10 @@
 
 除以下prop，可传递Table的其它prop
 
-`columns` _Array_ （default `[]`）  
+`columns` _Array_ (default `[]`)  
 Table的columns
 
-`modelValue` _Array_ （default `[]`）  
+`modelValue` _Array_ (default `[]`)  
 v-model绑定Table的data
 
 `method` _Function_  
@@ -46,13 +46,13 @@ const getResult = () => axios.get('').then(res => res.data)
 `is-local` _Boolean_  
 是否本地分页
 
-`page-size-opts` _Array_ （default `[30, 50, 100, 200]`）  
+`page-size-opts` _Array_ (default `[30, 50, 100, 200]`)  
 分页条数选项
 
 `auto-remain` _Boolean_  
 查询失败时不清除之前获取到的结果
 
-`bottom-dis` _Number | String_ （default `45`）  
+`bottom-dis` _Number | String_ (default `45`)  
 计算Table的maxHeight时，Table距离视口底部的距离
 
 `border` _Boolean_  
@@ -82,7 +82,7 @@ head title
 `show-header` _Boolean_  
 是否显示带有功能项的header
 
-`transfer` _Boolean_ （default `true`）  
+`transfer` _Boolean_ (default `true`)  
 内部使用的Tooltip等iview组件的transfer
 
 `fullscreen` _Boolean_  
@@ -91,7 +91,7 @@ head title
 `store-at` _String_  
 传至ToggleColumn组件的storeAt
 
-`auto-max-height` _Boolean_ （default `true`）  
+`auto-max-height` _Boolean_ (default `true`)  
 自动设置Table的maxHeight
 
 `max-height` _Number | String_  
@@ -103,7 +103,7 @@ Table的height
 `auto-height` _Boolean_  
 自动设置Table的height
 
-`maximize-height-type` _String_ （default `'maxHeight'`）  
+`maximize-height-type` _String_ (default `'maxHeight'`)  
 最大化时自动计算哪种高度
 
 ## emits

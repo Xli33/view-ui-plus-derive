@@ -40,8 +40,8 @@
 <p><code>list</code> <em>Array</em><br>可通过v-model:list双向绑定选项列表</p>
 <p><code>multiple</code> <em>Boolean</em><br>是否多选</p>
 <p><code>value-as-key</code> <em>Boolean</em><br>是否将选项的value作为Option的key，默认以v-for的index作为key</p>
-<p><code>value-key</code> <em>String</em> （default <code>&#39;value&#39;</code>）<br>选项对应value的key</p>
-<p><code>label-key</code> <em>String</em> （default <code>&#39;label&#39;</code>）<br>选项对应文本的key</p>
+<p><code>value-key</code> <em>String</em> (default <code>&#39;value&#39;</code>)<br>选项对应value的key</p>
+<p><code>label-key</code> <em>String</em> (default <code>&#39;label&#39;</code>)<br>选项对应文本的key</p>
 <p><code>key-map</code> <em>Object</em><br>同时设置 valueKey 与 labelKey，优先级更高</p>
 <p><code>method</code> <em>Function</em><br>查询数据的函数/方法，结果为Falsy则认为请求失败，可返回一个Promise<result>。例如使用axios.get()</p>
 <p><code>refresh</code> <em>Function</em><br>可通过v-model:refresh获取组件内部的查询方法</p>
@@ -65,7 +65,7 @@
 <p><code>cache</code> <em>Boolean</em><br>启用则根据绑定的list判断是否需要在展开时发送请求</p>
 <p><code>loader</code> <em>Function</em><br>手动获取数据，此时method和param不生效</p>
 <p><code>strict</code> <em>Boolean</em><br>开启后则展开时仅当parentCode有效才会发送请求</p>
-<p><code>all</code> <em>Boolean</em> （default <code>false</code>）<br>是否使用 <code>v-iview-select:all</code> 增加一键全选功能，仅多选模式生效</p>
+<p><code>all</code> <em>Boolean</em> (default <code>false</code>)<br>是否使用 <code>v-iview-select:all</code> 增加一键全选功能，仅多选模式生效</p>
 <h2>emits</h2>
 <p>除以下事件，可监听Select的其它事件，如on-change</p>
 <p><code>load</code> (value)<br>成功加载数据后触发。<code>value</code>: 返回的列表结果，应该是数组</p>

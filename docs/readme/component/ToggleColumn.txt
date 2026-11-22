@@ -49,10 +49,9 @@
           
 <h2>props</h2>
 <p><code>modelValue</code> <em>Array</em><br>v-model双向绑定Table列</p>
-<p><code>title</code> <em>String</em><br>全选框文本</p>
-<p><code>icon</code> <em>String</em><br>传入iview icon名则仅显示图标</p>
+<p><code>icon</code> <em>String</em> (default <code>md-apps</code>)<br>传入iview icon名则仅显示图标</p>
 <p><code>cache-id</code> <em>String | Number</em><br>绑定columns对应的唯一标识，一般在v-for中绑定了固定某列且列配置中带有 <code>_visible:false</code> 时用到</p>
-<p><code>all</code> <em>Boolean</em> （default <code>true</code>）<br>是否显示全选框</p>
+<p><code>all</code> <em>Boolean</em> (default <code>true</code>)<br>是否显示全选框</p>
 <p><code>transfer</code> <em>Boolean</em><br>Dropdown的transfer</p>
 <p><code>store-at</code> <em>String</em><br>将状态缓存至localStorage中的key，支持a.b形式<br>如<code>store-at=&#39;app.main.cols&#39;</code>，组件会尝试将显示状态读写至 localStorage.app.main.cols</p>
 <h2>emits</h2>

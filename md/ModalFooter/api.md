@@ -27,13 +27,13 @@
 `cancel` _Object_  
 传递给取消按钮的props
 
-`cancel-type` _String_ （default `'text'`）  
+`cancel-type` _String_ (default `'text'`)  
 取消按钮type
 
 `right-cancel` _Boolean_  
 是否把取消按钮放到确定按钮右边
 
-`has-ok` _Boolean_ （default `true`）  
+`has-ok` _Boolean_ (default `true`)  
 是否显示确定按钮
 
 ## emits

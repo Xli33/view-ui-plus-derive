@@ -104,32 +104,32 @@
           
 <h2>props</h2>
 <p>除以下内容，可传递其它Table的prop</p>
-<p><code>modelValue</code> <em>Array</em> （default <code>[]</code>）<br>v-model双向绑定列表数据</p>
-<p><code>columns</code> <em>Array</em> （default <code>[]</code>）<br>iview Table columns</p>
+<p><code>modelValue</code> <em>Array</em> (default <code>[]</code>)<br>v-model双向绑定列表数据</p>
+<p><code>columns</code> <em>Array</em> (default <code>[]</code>)<br>iview Table columns</p>
 <p><code>disabled</code> <em>Boolean</em><br>隐藏控制列</p>
-<p><code>addable</code> <em>Boolean</em> （default <code>true</code>）<br>可否增加数据</p>
-<p><code>action-width</code> <em>Number</em> （default <code>90</code>）<br>控制列宽度</p>
-<p><code>action-align</code> <em>String</em> （default <code>&#39;center&#39;</code>）<br>控制列水平对齐</p>
+<p><code>addable</code> <em>Boolean</em> (default <code>true</code>)<br>可否增加数据</p>
+<p><code>action-width</code> <em>Number</em> (default <code>90</code>)<br>控制列宽度</p>
+<p><code>action-align</code> <em>String</em> (default <code>&#39;center&#39;</code>)<br>控制列水平对齐</p>
 <p><code>action-fixed</code> <em>String</em><br>控制列是否固定</p>
 <p><code>action-text</code> <em>String</em><br>控制列表头文本</p>
 <p><code>action-col</code> <em>Object</em><br>右侧控制列</p>
-<p><code>add-row</code> <em>Function</em> （default <code>() =&gt; []</code>）<br>新增行时需要添加的数据</p>
+<p><code>add-row</code> <em>Function</em> (default <code>() =&gt; []</code>)<br>新增行时需要添加的数据</p>
 <p><code>border</code> <em>Boolean</em><br>Table的border</p>
 <p><code>size</code> <em>String</em><br>Table的size</p>
 <p><code>before-add</code> <em>Function</em><br>控制何时新增数据，签名：<code>(done) =&gt; void</code>，调用done()即执行新增</p>
 <p><code>before-remove</code> <em>Function</em><br>控制何时删除数据，签名：<code>(row, index, done) =&gt; void</code>，调用done(index)即执行删除指定index项</p>
-<p><code>add-btn-type</code> <em>String</em> （default <code>&#39;dashed&#39;</code>）<br>新增按钮type</p>
+<p><code>add-btn-type</code> <em>String</em> (default <code>&#39;dashed&#39;</code>)<br>新增按钮type</p>
 <p><code>add-btn-size</code> <em>String</em><br>新增按钮size</p>
-<p><code>add-btn-ghost</code> <em>Boolean</em> （default <code>false</code>）<br>新增按钮的ghost</p>
+<p><code>add-btn-ghost</code> <em>Boolean</em> (default <code>false</code>)<br>新增按钮的ghost</p>
 <p><code>add-btn-disabled</code> <em>Boolean</em><br>新增按钮的disabled</p>
 <p><code>add-btn</code> <em>Object</em><br>传给新增Button的prop</p>
-<p><code>del-btn-type</code> <em>String</em> （default <code>&#39;warning&#39;</code>）<br>删除按钮type</p>
-<p><code>del-btn-size</code> <em>String</em> （default <code>&#39;small&#39;</code>）<br>删除按钮size</p>
-<p><code>del-btn-ghost</code> <em>Boolean</em> （default <code>true</code>）<br>删除按钮的ghost</p>
+<p><code>del-btn-type</code> <em>String</em> (default <code>&#39;warning&#39;</code>)<br>删除按钮type</p>
+<p><code>del-btn-size</code> <em>String</em> (default <code>&#39;small&#39;</code>)<br>删除按钮size</p>
+<p><code>del-btn-ghost</code> <em>Boolean</em> (default <code>true</code>)<br>删除按钮的ghost</p>
 <p><code>del-btn</code> <em>Object</em><br>传给删除按钮的prop</p>
 <p><code>add-text</code> <em>String</em><br>新增按钮文本</p>
 <p><code>hide-del-btn</code> <em>Function</em><br>是否隐藏每行的删除按钮，通过函数返回值决定</p>
-<p><code>del-btn-disabled</code> <em>Function</em> （default <code>() =&gt; false</code>）<br>是否禁用每行删除按钮，通过函数返回值决定</p>
+<p><code>del-btn-disabled</code> <em>Function</em> (default <code>() =&gt; false</code>)<br>是否禁用每行删除按钮，通过函数返回值决定</p>
 <h2>emits</h2>
 <p><code>add</code> (row)<br>新增后触发。<code>row</code>：新增的行</p>
 <p><code>remove</code> (row)<br>删除后触发。<code>row</code>：删除的行</p>

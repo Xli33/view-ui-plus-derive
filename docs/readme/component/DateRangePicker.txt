@@ -21,15 +21,15 @@
           </div>
           
 <h2>props</h2>
-<p><code>begin</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:begin双向绑定开始时间</p>
-<p><code>end</code> <em>Date | String</em> （default <code>&#39;&#39;</code>）<br>v-model:end双向绑定结束时间</p>
-<p><code>type</code> <em>String</em> （default <code>&#39;daterange&#39;</code>）<br>可选的日期类型：daterange | datetimerange</p>
-<p><code>limit-begin</code> <em>Boolean</em> （default <code>true</code>）<br>是否默认限制开始时间</p>
+<p><code>begin</code> <em>Date | String</em> (default <code>&#39;&#39;</code>)<br>v-model:begin双向绑定开始时间</p>
+<p><code>end</code> <em>Date | String</em> (default <code>&#39;&#39;</code>)<br>v-model:end双向绑定结束时间</p>
+<p><code>type</code> <em>String</em> (default <code>&#39;daterange&#39;</code>)<br>可选的日期类型：daterange | datetimerange</p>
+<p><code>limit-begin</code> <em>Boolean</em> (default <code>true</code>)<br>是否默认限制开始时间</p>
 <p><code>disable-today</code> <em>Boolean</em><br>是否禁止选择今天</p>
-<p><code>value-format</code> <em>String</em> （default <code>&#39;YYYY-MM-DD&#39;</code>）<br>用于格式化绑定时间</p>
+<p><code>value-format</code> <em>String</em> (default <code>&#39;YYYY-MM-DD&#39;</code>)<br>用于格式化绑定时间</p>
 <p>以下为DatePicker的同名prop</p>
 <p><code>options</code> <em>Object</em></p>
-<p><code>clearable</code> <em>Boolean</em> （default <code>true</code>）</p>
+<p><code>clearable</code> <em>Boolean</em> (default <code>true</code>)</p>
 <p><code>split-panels</code> <em>Boolean</em></p>
 <p><code>transfer</code> <em>Boolean</em></p>
 <p><code>placeholder</code> <em>String</em></p>

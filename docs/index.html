@@ -40,6 +40,7 @@
       html {
         overscroll-behavior-y: contain;
       }
+
       html.dark {
         --bg-color: #0d1117;
 
@@ -47,12 +48,31 @@
           background: var(--bg-color);
         }
       }
+
       :root {
+        --bg-color: #fff;
+        interpolate-size: allow-keywords;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         /* -webkit-tap-highlight-color: transparent; */
-        --bg-color: #fff;
       }
+
+      details {
+        /* overflow: hidden; */
+
+        &::details-content {
+          block-size: 0;
+          overflow: hidden;
+          transition:
+            block-size 0.3s ease,
+            content-visibility 0.3s allow-discrete;
+        }
+
+        &[open]::details-content {
+          block-size: auto;
+        }
+      }
+
       body {
         margin: 0;
         font-family:
@@ -201,25 +221,32 @@
           width: 10px;
           height: 10px;
         }
+
         ::-webkit-scrollbar-thumb {
           background-color: rgb(193 193 193 / 0.5);
           border-radius: 5px;
         }
+
         #app {
           margin: 0 10vw;
         }
+
         .ivu-layout-sider {
           transform: translateX(0);
         }
+
         .ivu-layout-content {
           margin-left: 200px;
         }
+
         .menu-toggle {
           display: none;
         }
+
         #menulist {
           padding-right: 5px;
         }
+
         .anchor {
           display: block;
           margin-left: 5px;
@@ -452,9 +479,9 @@
                   sections[i] = e.parentElement
                 })
                 /* manualLink = true
-                setTimeout(() => {
-                  manualLink = false
-                }, 500) */
+              setTimeout(() => {
+                manualLink = false
+              }, 500) */
                 refMdBox.parentElement.scrollTo(0, 0)
               })
               onDeactivated(() => {
@@ -487,27 +514,27 @@
             const scroller = document.getElementById('md-box').parentElement,
               href = e.target.title
             /* if ('onscrollend' in window) {
-              scroller.addEventListener(
-                'scrollend',
-                () => {
-                  manualLink = false
-                },
-                { once: true }
-              )
-            } else {
-              //  备选方案：通过监听滚动是否停止来解锁
-              let lastPos = null
-              const checkScroll = () => {
-                const currentPos = scroller.scrollTop
-                if (lastPos === currentPos) {
-                  manualLink = false
-                  return
-                }
-                lastPos = currentPos
-                requestAnimationFrame(checkScroll)
+            scroller.addEventListener(
+              'scrollend',
+              () => {
+                manualLink = false
+              },
+              { once: true }
+            )
+          } else {
+            //  备选方案：通过监听滚动是否停止来解锁
+            let lastPos = null
+            const checkScroll = () => {
+              const currentPos = scroller.scrollTop
+              if (lastPos === currentPos) {
+                manualLink = false
+                return
               }
+              lastPos = currentPos
               requestAnimationFrame(checkScroll)
-            } */
+            }
+            requestAnimationFrame(checkScroll)
+          } */
             router.replace({
               query: {
                 anchor: href
@@ -525,7 +552,10 @@
                 if (!e.sub) {
                   router.addRoute({
                     name: e.route || e.name,
-                    path: '/' + (e.route || e.url.replace('component/', 'component/Vupd').replace(/\.txt$/, '')),
+                    path:
+                      '/' +
+                      (e.route ||
+                        e.url.replace('component/', 'component/Vupd').replace(/\.txt$/, '')),
                     meta: {
                       url: e.url
                     },
@@ -552,8 +582,8 @@
                     .querySelector('.md-box #' + route.query.anchor)
                     .scrollIntoView({ behavior: 'smooth' })
                   /* setTimeout(() => {
-                    manualLink = false
-                  }, 500) */
+                  manualLink = false
+                }, 500) */
                 })
               }
             })

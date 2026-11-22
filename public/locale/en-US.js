@@ -9,17 +9,17 @@ export default {
       maxHolder: 'max'
     },
     curdTable: {
-      actionText: 'action',
-      addText: 'add',
-      del: 'del'
+      actionText: 'Action',
+      addText: 'Add',
+      del: 'Del'
     },
     dateRange: {
       beginHolder: 'start from',
       endHolder: 'end at'
     },
     mCalendar: {
-      mini: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      short: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      mini: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+      short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       long: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     },
     modalFooter: {

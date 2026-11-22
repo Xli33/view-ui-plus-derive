@@ -2,25 +2,25 @@
   <div
     ref="elRef"
     :class="[
-      useClass('page-table-container'),
+      useClass('pagetable-container'),
       // {
-      //   'page-table-bordered': border && showHeader,
-      //   'page-table-maximized': maximized,
-      //   'page-table-fullscreen': maximized && fullscreen
+      //   'pagetable-bordered': border && showHeader,
+      //   'pagetable-maximized': maximized,
+      //   'pagetable-fullscreen': maximized && fullscreen
       // }
-      border && showHeader && useClass('page-table-bordered'),
-      maximized && useClass('page-table-maximized'),
-      maximized && fullscreen && useClass('page-table-fullscreen')
+      border && showHeader && useClass('pagetable-bordered'),
+      maximized && useClass('pagetable-maximized'),
+      maximized && fullscreen && useClass('pagetable-fullscreen')
     ]">
     <Row
       v-if="showHeader"
       justify="space-between"
       align="middle"
-      :class="useClass('page-table-header')">
+      :class="useClass('pagetable-header')">
       <Col>
         <slot name="title">
-          <h1 :class="useClass('page-table-header-title')">
-            {{ title ?? $i18n.t('pageTable.title') }}
+          <h1 :class="useClass('pagetable-header-title')">
+            {{ title ?? t('pageTable.title') }}
           </h1>
         </slot>
       </Col>
@@ -28,16 +28,16 @@
         <slot name="headerAction"></slot>
         <Tooltip
           placement="top"
-          :content="$i18n.t('pageTable.reload')"
+          :content="t('pageTable.reload')"
           :transfer="isTransfer"
-          :class="useClass('page-table-action')">
+          :class="useClass('pagetable-action')">
           <Icon type="md-refresh" size="20" @click="reload" />
         </Tooltip>
         <Tooltip
           placement="top"
-          :content="$i18n.t(`pageTable.${maximized ? 'restore' : 'maxmize'}`)"
+          :content="t(`pageTable.${maximized ? 'restore' : 'maxmize'}`)"
           :transfer="isTransfer"
-          :class="useClass('page-table-action')">
+          :class="useClass('pagetable-action')">
           <Icon
             :type="maximized ? 'md-contract' : 'md-expand'"
             size="20"
@@ -47,7 +47,7 @@
           v-model="tableColumns"
           :transfer="isTransfer"
           :store-at="storeAt"
-          :class="useClass('page-table-action')"
+          :class="useClass('pagetable-action')"
           @change="$emit('change-col', $event)">
           <Icon type="md-settings" size="20" />
         </ToggleColumn>
@@ -56,8 +56,8 @@
     </Row>
     <div
       :class="[
-        useClass('page-table-list'),
-        !sizer.total && !table.data.length && useClass('page-table-list-empty')
+        useClass('pagetable-list'),
+        !sizer.total && !table.data.length && useClass('pagetable-list-empty')
       ]">
       <Table
         ref="tableRef"
@@ -93,7 +93,7 @@
         show-elevator
         :transfer="isTransfer"
         :page-size-opts="pageSizeOpts"
-        :class="useClass('page-table-paginator')"
+        :class="useClass('pagetable-paginator')"
         @on-change="changePage"
         @on-page-size-change="changePageSize" />
     </div>
@@ -119,7 +119,7 @@ import {
 } from 'vue'
 import { Checkbox, Row, Col, Table, Tooltip, Page, Icon } from 'view-ui-plus'
 import { getPathValue, omitOwnKeys } from 'utils-where'
-import { $i18n } from '@/locale/i18n'
+import { useLang } from '@/utils/useLang'
 import ToggleColumn from './ToggleColumn.vue'
 import { useClass } from '@/utils'
 
@@ -313,6 +313,7 @@ const emit = defineEmits<{
 
 // data
 
+const { t } = useLang()
 let initHeight: number // 未传入height时自动计算出的height
 let initMaxHeight: number // 未传入maxHeight时自动计算出的maxHeight
 const loading = defineModel('loading', { type: Boolean }),
@@ -330,7 +331,7 @@ const loading = defineModel('loading', { type: Boolean }),
     maxHeight: props.maxHeight,
     selectType: {
       align: 'center',
-      className: useClass('page-table-mr0'),
+      className: useClass('pagetable-mr0'),
       renderHeader: (h: any) => {
         // const checkableList = table.rows.filter((e) => e._checkable && !e._disabled),
         const checkableList = table.data.filter((e) => e._checkable && !e._disabled),

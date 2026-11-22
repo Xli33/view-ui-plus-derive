@@ -1,31 +1,10 @@
-// import type { Obj } from '@/type'
+// export const classPrefix: [string?] = []
 
-// import { inject } from 'vue'
+type UseClass = ((name: string) => string) & { prefix: string }
 
-// /**
-//  * 根据源对象返回不包含自有可枚举指定属性的新对象
-//  *
-//  * @param obj 普通对象
-//  * @param excludes string[]
-//  * @returns object
-//  * @example
-//  * <template>
-//  *  <some-com v-bind="attrs" />
-//  * </template>
-//  * <script setup>
-//  *  const attrs = omitKeys(useAttrs(), )
-//  * </script>
-//  */
-// export function omitKeys(obj: Obj, excludes: string[] = ['id', 'class', 'style']) {
-//   const omitted: Obj = {}
-//   Object.entries(obj).forEach((e) => {
-//     if (!excludes.includes(e[0])) omitted[e[0]] = e[1]
-//   })
-//   return omitted
-// }
+export const useClass: UseClass = (name: string) =>
+  useClass.prefix ? useClass.prefix.replace(/\B([A-Z])/g, '-$1').toLowerCase() + '-' + name : name
+useClass.prefix = 'Vupd' // 默认组件前缀
 
-export const classPrefix: [string?] = [] //Symbol('vupdPrefix')
-
-export const useClass = (name: string) =>
-  // const prefix = inject(classSymbol, '') as string
-  classPrefix[0] ? classPrefix[0].replace(/\B([A-Z])/g, '-$1').toLowerCase() + '-' + name : name
+// config-provider调用vue provide时的key
+export const CPKey = Symbol('vupd-c-p')

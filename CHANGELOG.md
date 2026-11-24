@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.1](https://github.com/Xli33/view-ui-plus-derive/compare/v0.5.0...v0.5.1) (2026-11-24)
+
+### Bug Fixes
+
+* 修复部分组件未使用ConfigProvider包裹时会触发警告`injection "Symbol(epd-c-p)" not found` ([3e8a76c](https://github.com/Xli33/view-ui-plus-derive/commit/3e8a76ce55ab52f73ce7bbee3fd9f4a876c6dd52))
 
 ## [0.5.0](https://github.com/Xli33/view-ui-plus-derive/compare/v0.4.0...v0.5.0) (2026-11-22)
 
